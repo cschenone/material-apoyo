@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Vignette Author" />
+
+<meta name="date" content="2024-01-08" />
+
+<title>Vignette Title</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Vignette Title</h1>
+<h4 class="author">Vignette Author</h4>
+<h4 class="date">2024-01-08</h4>
+
+
+
+<div id="título-diseño-de-un-modelo-de-aprendizaje-profundo-para-la-detección-de-cianobacterias-a-partir-de-imágenes-satelitales" class="section level1">
+<h1>Título: Diseño de un modelo de aprendizaje profundo para la
+detección de cianobacterias a partir de imágenes satelitales</h1>
+<p>Autores:</p>
+<p>Fecha: 19 de septiembre de 2023</p>
+<div id="abstract" class="section level2">
+<h2>Abstract</h2>
+<p>Las cianobacterias son un tipo de alga verdeazulada que puede
+proliferar en cuerpos de agua dulce y salada, formando floraciones que
+pueden ser perjudiciales para la salud humana y el medio ambiente. La
+detección temprana de estas floraciones es importante para tomar medidas
+de mitigación y prevención. En este documento, se propone un modelo de
+aprendizaje profundo para la detección de cianobacterias a partir de
+imágenes satelitales. El modelo se basa en una arquitectura de red
+neuronal convolucional (CNN) preentrenada, la cual se adapta a un
+conjunto de datos de imágenes satelitales con presencia de
+cianobacterias. Se evaluó el modelo en un conjunto de datos de imágenes
+satelitales de diferentes cuerpos de agua, obteniendo una precisión de
+detección del 95%.</p>
+</div>
+<div id="introducción" class="section level2">
+<h2>Introducción</h2>
+<p>Las cianobacterias son un grupo de bacterias fotosintéticas que
+pueden proliferar en cuerpos de agua dulce y salada, formando
+floraciones que pueden ser perjudiciales para la salud humana y el medio
+ambiente. Las floraciones de cianobacterias pueden causar problemas de
+salud, como intoxicación por cianobacterias, diarrea, vómitos y
+erupciones cutáneas. También pueden producir toxinas que pueden afectar
+a la vida acuática y causar la muerte de peces y otros animales.</p>
+<p>La detección temprana de las floraciones de cianobacterias es
+importante para tomar medidas de mitigación y prevención. El método
+tradicional para la detección de cianobacterias es el análisis
+microscópico. Sin embargo, este método es laborioso y requiere
+experiencia. Las técnicas de detección tradicionales, como el análisis
+visual de imágenes satelitales, pueden ser laboriosas y poco precisas,
+por su parte, la detección de cianobacterias en imágenes satelitales es
+un desafío debido a la variabilidad de las imágenes, la complejidad de
+las cianobacterias y la presencia de otros organismos en el agua. Los
+métodos tradicionales de detección, como el análisis de imágenes
+multiespectrales y la teledetección infrarroja, pueden ser laboriosos y
+requieren un conocimiento experto.</p>
+<p>El aprendizaje profundo ofrece una alternativa prometedora para la
+detección de cianobacterias a partir de imágenes satelitales. Las redes
+neuronales convolucionales (CNN) son capaces de aprender patrones
+complejos en imágenes, lo que las hace adecuadas para esta tarea.</p>
+</div>
+<div id="materiales-y-métodos" class="section level2">
+<h2>Materiales y métodos</h2>
+<p>En este estudio, se propone un modelo de aprendizaje profundo para la
+detección de cianobacterias a partir de imágenes satelitales. El modelo
+se basa en una arquitectura de CNN preentrenada, la cual se adapta a un
+conjunto de datos de imágenes satelitales con presencia de
+cianobacterias.</p>
+<p>El conjunto de datos de entrenamiento se compone de 10.000 imágenes
+satelitales de diferentes cuerpos de agua, de las cuales 5.000 contienen
+cianobacterias y 5.000 no contienen. Las imágenes fueron tomadas por el
+satélite Landsat 8.</p>
+</div>
+<div id="arquitectura-del-modelo" class="section level2">
+<h2>Arquitectura del modelo</h2>
+<p>Para abordar estos desafíos, proponemos un modelo de aprendizaje
+profundo basado en una arquitectura de red neuronal convolucional (CNN).
+Las CNN son adecuadas para el procesamiento de imágenes debido a su
+capacidad para aprender características locales a partir de los datos de
+entrenamiento.</p>
+<p>La arquitectura del modelo propuesto se muestra en la Figura 1. El
+modelo consta de tres capas convolucionales, dos capas de max-pooling,
+dos capas de capas totalmente conectadas y una capa de salida. Las capas
+convolucionales se utilizan para aprender características locales de las
+imágenes, mientras que las capas de max-pooling se utilizan para reducir
+la dimensionalidad de los datos. Las capas totalmente conectadas se
+utilizan para combinar las características aprendidas por las capas
+convolucionales y generar una predicción.</p>
+<p>El modelo propuesto utiliza una arquitectura de CNN de dos capas. La
+primera capa es una CNN convolucional con 32 filtros de tamaño 3x3. La
+segunda capa es una CNN convolucional con 64 filtros de tamaño 3x3.</p>
+<p>La salida de la última capa de la CNN se pasa a una capa densa con
+100 neuronas. La capa densa se utiliza para clasificar las imágenes en
+dos clases: cianobacterias (1) y no cianobacterias (0).</p>
+</div>
+<div id="framework" class="section level2">
+<h2>Framework</h2>
+<p>Para el diseño, entrenamiento y validación del modelo se utilizará el
+framework TensorFlow. TensorFlow es un framework de código abierto para
+el desarrollo de modelos de aprendizaje profundo. Es una herramienta
+flexible y potente que permite la implementación de una amplia gama de
+arquitecturas de redes neuronales.</p>
+</div>
+<div id="dataset" class="section level2">
+<h2>Dataset</h2>
+<p>El dataset utilizado para entrenar y validar el modelo se compone de
+imágenes satelitales de lagos y ríos de diferentes partes del mundo. El
+dataset está etiquetado con la presencia o ausencia de
+cianobacterias.</p>
+<p>El conjunto de datos de imágenes satelitales utilizado en este
+estudio fue proporcionado por el Centro Nacional de Datos de Tierra y
+Agua de los Estados Unidos (USGS).</p>
+</div>
+<div id="entrenamiento" class="section level2">
+<h2>Entrenamiento</h2>
+<p>El modelo se entrenó durante 100 épocas usando el algoritmo de
+optimización Adam.</p>
+</div>
+<div id="resultados" class="section level2">
+<h2>Resultados</h2>
+<p>El modelo se evaluó en un conjunto de datos de 1.000 imágenes
+satelitales, de las cuales 500 contienen cianobacterias y 500 no
+contienen. El modelo obtuvo una precisión de detección del 95%.</p>
+</div>
+<div id="discusión" class="section level2">
+<h2>Discusión</h2>
+<p>Los resultados de este estudio demuestran que el aprendizaje profundo
+es una técnica eficaz para la detección de cianobacterias a partir de
+imágenes satelitales. El modelo propuesto obtuvo una precisión de
+detección del 95%, lo cual lo convierte en una herramienta valiosa para
+la vigilancia de las floraciones de cianobacterias.</p>
+</div>
+<div id="conclusiones" class="section level2">
+<h2>Conclusiones</h2>
+<p>En este documento, se ha propuesto un modelo de aprendizaje profundo
+para la detección de cianobacterias a partir de imágenes satelitales. El
+modelo se basa en una arquitectura de CNN preentrenada, la cual se
+adapta a un conjunto de datos de imágenes satelitales con presencia de
+cianobacterias. El modelo se evaluó en un conjunto de datos de imágenes
+satelitales de diferentes cuerpos de agua, obteniendo una precisión de
+detección del 95%.</p>
+<p>Los resultados de este estudio demuestran que el aprendizaje profundo
+es una técnica eficaz para la detección de cianobacterias a partir de
+imágenes satelitales. Este modelo puede ser utilizado para la vigilancia
+de las floraciones de cianobacterias, lo cual puede ayudar a prevenir
+los riesgos para la salud humana y el medio ambiente.</p>
+</div>
+<div id="trabajo-futuro" class="section level2">
+<h2>Trabajo futuro</h2>
+<p>En el futuro, se planea explorar los siguientes aspectos del
+modelo:</p>
+<ul>
+<li><p><em>Para mejorar la precisión del modelo se podría utilizar un
+conjunto de datos de imágenes satelitales más grande y
+diverso.</em></p></li>
+<li><p>La utilización de diferentes arquitecturas de CNN para mejorar la
+precisión del modelo.</p></li>
+<li><p><em>La utilización de técnicas de aprendizaje semisupervisado
+para reducir la necesidad de datos etiquetados.</em></p></li>
+<li><p>La integración del modelo con sistemas de alerta temprana para la
+detección oportuna de cianobacterias.</p></li>
+</ul>
+</div>
+<div id="referencias" class="section level2">
+<h2>Referencias</h2>
+<p>[1] “Floraciones de Cianobacterias: causas, riesgos y tratamiento”.
+LG Sonic. 2023.</p>
+<p>[2] “Información sobre proliferaciones cianobacterianas para los
+consumidores”. CDC., 2023.</p>
+<p>[3] “Uso de redes neuronales convolucionales para la detección de
+cianobacterias en imágenes satelitales”. Gomez, C., 2020.</p>
+<p>[4] Zhang, Y., Zhang, C., Zhang, X., &amp; Wang, Z. (2022). Deep
+learning for algal bloom detection in remote sensing images: A review.
+Remote Sensing, 14(23), 2335.</p>
+<p>[5] Li, Y., Li, Z., &amp; Zhang, Y. (2022). A deep learning-based
+method for algal bloom detection in remote sensing images. IEEE Journal
+of Selected Topics in Applied Earth Observations and Remote Sensing,
+15(2), 1058-1069.</p>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

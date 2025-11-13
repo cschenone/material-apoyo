@@ -1,0 +1,757 @@
+---
+title: "Comentarios de interes en el desarrollo del trabajo de investigación sobre análisis híbrido de un corpus: Análisis bibliométrico y Análisis de contenido de trabajos de investigación"
+author: "Carlos Schenone"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5  # up to five depths of headings (specified by #, ## and ...)
+    number_sections: true  # if you want number sections at each table header
+    theme: united  # specifies the theme style
+    highlight: tango  # specifies the syntax highlighting style  
+---
+
+# Introducción
+Al avanzar en las etapas preliminares de un estudio cuyo objetivo es recuperar las investigaciones más destacadas sobre el uso de técnicas de inteligencia artificial aplicadas al campo de la hidrología nos encontramos con la posibilidad de realizar un aporte basado en la propuesta de una metodología que combine las técnicas basadas en revisión sistemática y análisis bibliométrico, a partir de la explotación de las capacidades de análisis de texto ofrecidas por los lenguajes de programación como R y las facilidades de consulta brindadas por las bases de datos indexadas abiertas como OpenAlex.
+
+En el documento se presentan los objetivos que fueron surgiendo en el camino y los principales hallazgos.
+
+# Documentos de trabajo
+A continuación se presenta la ubicación de los documentos que se están trabajando.
+
+**main_functions.R**: script en R que consolida los avances en la investigación.
+[Link al documento Main Functions](https://github.com/cschenone/doctorado/blob/main/desarrollo/OpenAlexAPI/main_functions.R)
+
+**Directrices_para_procesamiento_de_texto_en_R.Rmd**: documento en formato markdown donde se proponen las líneas de trabajo en el procesamiento de texto enfocado en puntuar un texto según la ocurrencia de palabras clave.
+[Link al documento Directrices para procesamiento de texto en R](https://github.com/cschenone/doctorado/blob/main/directrices/Directrices_para_procesamiento_de_texto_en_R.Rmd)
+
+# Objetivo: Presentar el Plan de Acción y mostrar su avance
+
+## (OK) (1) Mejorar la eficiencia de recuperación de trabajos
+Considerando que las claves buscan en el titulo, abstract y full-text del trabajo. Para el cumplimiento de la etapa se proponen los siguientes pasos:
+(OK) a) separar las búsquedas de cada elemento (titulo, abstract y full text)
+(OK) b) separar las búsquedas de las distintas palabras clave
+(OK) c) definir criterios lógicos "y" u "o" para las palabras clave
+(OK) d) unir los resultados en un solo conjunto de datos (tibble) de acuerdo a los criterios lógicos definidos
+
+## (OK) (2) Incorporar trabajos aplicando la técnica de Snowballing
+(OK) a) aplicar la técnica de Snowballing al conjunto de trabajos inicial
+(OK) b) aplicar los criterios de inclusión y exclusión a los documentos recuperados
+
+## (En Proceso) (3) Definir los criterios de importancia (o interés) de los trabajos recuperados
+Nota: buscar en el curso "diseccionando papers" los criterios de calidad de un paper y además, buscar en recomendaciones para revisión bibliográfica, cuales son los criterios para identificar trabajos.
+En una exploración temprana se evaluarán los siguientes:
+a) cantidad de citas
+b) indice del autor (indice H)
+c) indice de la revista (CiteScore, ¿indice H?)
+d) indice de la institución
+e) presencia de claves de búsqueda en el trabajo (título, abstract, fulltext). Se puede abordar a través de la técnica "Content analysis", presentando la frecuencia de las palabras clave en el trabajo. Content Analysis: Is a research technique for making inferences by systematically and objectively identifying specified characteristics within texts. Link al ar´ticulo donde se encuentra la definición del content analysis: P. J. Stone,et al. The General Inquirer: A Computer Approach to Content Analysis. Cambridge, Mass: M.I.T, 1966, pp.5.
+Link al artículo donde se aborda el tema: https://sci-hub.ru/10.1109/ETTLIS.2018.8485186
+f) índice de co-cita (criterio bibliométrico, se puede obtener utilizando el paquete R bibliometrix)
+g) trabajos relacionados (criterios propio de OpenAlex, basado en el atributo related-works),   
+
+### (No iniciado) Discusión: El conjunto de datos obtenidos con el paquete OpenAlexR requiere un ajuste en el atributo "keywords" para utilizar la capacidad de análisis y visualización de bibliometrix.
+Se detectaron diferencias al utilizar bibliometrix con el conjunto de datos proveniente de OpenAlex en relación a los resultados si se utiliza un paquete de datos utilizado en Scopus o WoS, u otra como Dimensions. Se debería ajustar la pabras clave del autor viene vacías debido a que la base de datos OpenAlex no lo considera, por lo cual se propone copiar el atributo "concepts" en el campo "keywords" y analizar el resultado.
+
+Luego de probar el análisis de los datos obtenidos de OpenAlex, transformados con la función "oa2bibliometrix(query)" no ofrecían los resultados esperados (por ejemplo, varios campos parecían no tener datos o estar corridas las columnas.
+
+Se propone hacer la prueba de exportar el resultado de una consulta realizada con openalexR y levantarla con biblioshiny (en el trabajo https://arxiv.org/ftp/arxiv/papers/2205/2205.13471.pdf, parece que también descargan el resultado de la búsqueda y luego lo analizan)
+
+## (No iniciado) (4) Aplicar los criterios de importancia al conjunto de trabajos recuperados
+El objetivo de la etapa es ordenar  el cuerpo de trabajos de acuerdo a la importancia.
+Hallazgos: Se avanzó analizando los aportes del paquete bibliometrix, cuyas facilidades permiten resolver gran parte de los objetivos. Se debe continuar en la linea 188 del documento "functions.R"
+
+## (No iniciado) (5) Evaluación de los resultados
+Evaluar los resultados y proponer medidas correctivas sobre las desviaciones.
+
+## (No iniciado) (6) Aplicar medidas correctivas
+Realizar los ajustes necesarios sobre la metodología considerando los hallazgos de la evaluación de resultados.
+
+## (No iniciado) (7) Iniciar una nueva iteración
+Realizar los ajustes necesarios sobre la metodología considerando los resultados obtenidos.
+
+# Objetivo: Discusiones que aportan a la definición del origen de artículos que conformarán el corpus
+
+## (No iniciado) Discusión: ¿Es pertinente incorporar trabajos de bases de datos sin suscripción?
+La pertinencia se considera de acuerdo a la necesidad de validar el uso de la base de datos OpenAlex contrastando los artículos recuperados en OpenAlex versus los artículos recuperados en las otras base de datos utilizando los mismos criterios de búsqueda. La expectativa es que OpenAlex cubra o supere la totalidad de trabajos recuperados.
+En principio se analizan las facilidades brindadas en las versiones sin suscripción para las bases de datos Scopus, Dimensions y IEEE Explore:
+
+### Scopus
+author search
+open access
+orcid
+
+Nota: la facilidad de recuperar trabajos aplicando filtros de búsqueda solamente está disponible en la versión con suscripcin, lo cual impone una restricción bloqueante.
+
+### IEEE Explore
+Campo de búsqueda (en Full data, Title and abstract or DOI, incorporando criterios AND y OR)
+La exportación se limita a 2000 registros en la versión gratuita, pero en la página aparecen hasta 100. Contiene titulo y abstract.
+
+Filtros disponibles:
+
+* publication year
+* researcher (author)
+* research categories (fields fo research o sustainable development goal)
+* publication type
+* souce title
+* journal list
+* open access
+
+A continuación presentamos la información recuperada para un artículo modelo:
+
+Scientometric Analysis of Artificial Intelligence (AI) for Geohazard Research
+Sheng Jiang, Junwei Ma, Zhiyang Liu, Haixiang Guo
+2022, Sensors - Article
+Geohazard prevention and mitigation are highly complex and remain challenges for researchers and practitioners. Artificial intelligence...more
+Citations 7 Altmetric 1 View PDF
+
+Conclusión: la base de datos aparece como un candidato para analizar con scrapping
+
+### Dimensions
+Campo de búsqueda (en Full data, Title and abstract or DOI, incorporando criterios AND y OR)
+La exportación se limita a 500 registros en la versión gratuita. Contiene titulo y abstract.
+
+Filtros disponibles:
+* advanced search: permite agregar palabras clave en la forma de AND y OR
+
+Otros filtros disponibles:
+* publication year
+* researcher (author)
+* affiliation
+* Publitacion title (journal)
+* Publisher (organization)
+* Publication topics (presentes en los artículo, por ejemplo: learning (artificial intelligence, feature extraction, neural nets, deep learning (artificial intelligence), image classification.
+* publication type (por ejemplo Journals, no se observa la categoría artículos)
+* open access or all results
+
+A continuación presentamos la información recuperada para un artículo modelo:
+
+Dual Water Choices: The Assessment of the Influential Factors on Water Sources Choices Using Unsupervised Machine Learning Market Basket Analysis
+Tiyasha Tiyasha; Suraj Kumar Bhagat; Firaol Fituma; Tran Minh Tung; Shamsuddin Shahid; Zaher Mundher Yaseen
+IEEE Access
+Year: 2021 | Volume: 9 | Journal Article | Publisher: IEEE
+Cited by: Papers (5)
+
+Abstract, HTML
+
+Conclusión: la base de datos aparece como un candidato para analizar con scrapping
+
+...
+
+## (No iniciado) Analizar el uso del Scrapping para recuperar datos de base de datos indexadas con suscripción
+Se presenta como primer alternativa el uso de Scrapping para extraer los datos obtenidos de una búsqueda sin suscripción, la cual generalmente ofrece el autor y título de los trabajos que cumplen con el criterio. En este punto es importante destacar las facilidades de búsqueda ofrecidas por la versión libre de las base de datos con suscripción.
+
+Fuente de información: https://www.cienciadedatos.net/documentos/38_text_minig_con_r_ejemplo_practico_twitter
+Clave de búsqueda: paquete Rselenium
+Descripción: Por suerte existe el paquete Rselenium que permite, entre otras muchas cosas, avanzar en la barra de navegación de una web de forma automática.
+
+
+# Objetivo: Discusiones que aportan a la estructura del trabajo
+
+## ¿Cómo plantear la pregunta disparadora?
+A continuación proponemos el siguiente artículo apra ayudar en la discusión: https://eprints.whiterose.ac.uk/152016/8/WRRO%20Pournader%20et%20al%202019.pdf
+
+Blockchains and other advanced technologies such as the Internet of Things (IoT) and artificial intelligence are predicted to rapidly transform supply chains, transport and logistics by 2023 (Maguire et al. 2018; Xu, Xu, and Li 2018; Gunasekaran et al. 2018). While there are a number of use cases already existing in the industry that reveal the hidden transformative powers of blockchain technology such as increased supply chain transparency, freight tracking, carrier onboarding and Mobility as a Service (Carter and Koh 2018; Babich and Hilary 2018; Casey and Wong 2017), this paper aims to contribute to these attempts by reviewing the latest academic debates, industry use cases and possible future trends that might emerge in this domain.
+http://mc.manuscriptcentral.com/tprs Email: TPRS-peerreview@journals.tandf.co.uk
+
+To achieve this objective, we have made an attempt to answer the following research questions:
+
++ (i) What is the latest progress made by the scientific literature to examine the adoption and implementation of blockchain technology in supply chains, logistics and transport operations?
++ (ii) What are some of the key knowledge areas in supply chain, logistics and transport studies that blockchains can contribute to?
++ (iii) What are some of the key research questions to be addressed in each knowledge area?
++ (iv) Which future applications and research streams can be envisaged for blockchains in supply chains and logistics aside from the current use cases?
+
+## ¿Cómo plantear el hilo conductor del trabajo?
+Artículo de referencia para ayudar a organizar el trabajo: https://eprints.whiterose.ac.uk/152016/8/WRRO%20Pournader%20et%20al%202019.pdf
+
+The present paper is organised as follows:
++ First, we provide an overview of blockchain technology and its main features.
++ Next, we discuss the method we used to identify relevant academic publications that discuss the application of blockchains in supply chains, transport or logistics. We use
+++ an inductive approach to reveal the main research streams (Tranfield, Denyer, and Smart 2003; Seuring and Gold 2012; Webster and Watson 2002), take
+++ an iterative approach to categorise the main research clusters arising from our analyses, and elaborate on them by accessing additional relevant resources and use cases.
++++ To identify the main clusters in our identified pool of articles, we conduct co-citation network analysis and, using the clusters of articles appearing from the co-citation analysis,
++++ we discuss the main themes in each cluster and their relevance to the literature and future research in this domain.
++ We conclude by providing implications for future research and applications of blockchains in supply chains, logistics and transport.
+
+## ¿Cómo validar el uso de OpenAlex?
+
+### Alternativa 1: Obtener la cantidad de trabajos indexados en las distinas bases de datos y exponerlas
+
+#### OpenAlex
+Get all of the works in OpenAlex: https://api.openalex.org/works
+
+Which returns a response like this:
+
+{
+    "meta": {
+        "count": 245684392,
+        "db_response_time_ms": 929,
+        "page": 1,
+        "per_page": 25
+    },
+
+#### Scopus, Dimensions
+...
+
+
+### Alternativa 2: Incorporar referencias a OpenAlex
+
+Revista Nature: NEWS, 24 January 2022, Massive open index of scholarly papers launches. OpenAlex catalogues hundreds of millions of scientific documents and charts connections between them.
+doi: https://doi.org/10.1038/d41586-022-00138-y
+
+### Alternativa 3: ¿Donde buscar si hay un trabajo donde se plantee la comparación entre OpenAlex y las otras? 
+En el siguiente trabajo se plantea la comparativa con otras bases de datos bibliográficas:
+Source: Visser, M., van Eck, N. J., & Waltman, L. (2021). Large-scale comparison of bibliographic data sources: Scopus, Web of Science, Dimensions, Crossref, and Microsoft Academic. Quantitative Science Studies,2(1), 20-41.
+
+
+# Objetivo: Definir la metodología para construir el corpus
+
+Con el objetivo de definir los pasos metodológicos a ejecutar para recuperar los trabajos de interés de la/las bases de datos se considerarán las metodologías más relevantes.
+
+### "Análisis Bibliométrico"
+a) A bibliometric analysis of bitcoin scientific production. Ignasi Merediz-Solà, Aurelio F. Bariviera. Link en IDEAS: https://ideas.info.unlp.edu.ar/aplicaciones-de-inteligencia-de-datos/Contents/Material/View/Access/adbdd6e7-dd8d-11ea-899b-b26a7e7cf880
+b) Bibliometrix: An R-tool for comprehensive science mapping analysis, Massimo Aria, Corrado Cuccurullo, https://doi.org/10.1016/j.joi.2017.08.007. (https://www.sciencedirect.com/science/article/pii/S1751157717300500)
+
+### "Revisión sistemática"
+a) PRISMA: https://prisma-statement.org/
+
+### "Análisis Híbrido": Análisis Bibliométrico plus Revisión Sistemática
+a) WHERE DO WE STAND IN CRYPTOCURRENCIES ECONOMIC RESEARCH? A SURVEY BASED ON HYBRID ANALYSIS. Aurelio F. Bariviera and Ignasi Merediz-Solà. Link en IDEAS: https://ideas.info.unlp.edu.ar/aplicaciones-de-inteligencia-de-datos/Contents/Material/View/Access/cd8e67b9-f601-11eb-b3a7-b26a7e7cf880
+
+
+# Objetivo: Definir los criterios para extraer los trabajos de interes de la/las base de datos indexadas
+
+A continuación se presentan las propuestas para lograr el corpus
+
++ 1) Aplicar criterios de inclusión de la/las bd definidas (tipo de trabajo, palabras clave, cantidad de citas, fechas de publicación, entre otros)
+
++ 2) Ampliar el corpus con técnicas complementarias:
+
+++ 2.1) "Snowballing" 
+a) Jalali, S. and Wohlin, C. 2012. Systematic literature studies: Database searches vs. backward snowballing. In Proceedings 6th International Symposium on Empirical Software Engineering and Measurement, 29-38.
+b) Guidelines for Snowballing in Systematic Literature Studies and a Replication in Software Engineering (https://sci-hub.se/10.1145/2601248.2601268)
+
+++ 2.2) Trabajos "relacionados"
+Tomando la definición de OpenAlex, "Related works" are computed algorithmically; the algorithm finds recent papers with the most concepts in common with the current paper.
+Revisar el atributo "related_works", incorporar estos trabajos al listado y unirlos a la lista de trabajos recuperados.
+related_woks (list): OpenAlex IDs for works related to this work. Related works are computed algorithmically; the algorithm finds recent papers with the most concepts in common with the current paper.
+
+
+# Objetivo: Definir la estructura del artículo
+Al momento de definir la estructura del artículo se considerarán las buenas prácticas tomadas de las principales metodologías.
+
+## Estructura sugerida por Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA)
+"PRISMA is an evidence-based minimum set of items for reporting in systematic reviews and meta-analyses. PRISMA primarily focuses on the reporting of reviews evaluating the effects of interventions, but can also be used as a basis for reporting systematic reviews with objectives other than evaluating interventions (e.g. evaluating aetiology, prevalence, diagnosis or prognosis)."
+Link a la página: http://prisma-statement.org/
+
+Recurso en línea para validar la adopción de las buenas prácticas sugeridas por la metodología PRISMA: http://prisma-statement.org/documents/PRISMA_2020_checklist.pdf
+Recurso en línea: https://prisma.shinyapps.io/checklist/
+
+De la revisión del checklist propuesto por PRISMA se extrajeron las siguientes secciones:
+
+### 1. Title
++ Title: Identify the report as a systematic review.
+
+### 2. Abstract
++ Abstract: See the PRISMA 2020 for Abstracts checklist
+
+### 3. Introduction
++ Rationale: Describe the rationale for the review in the context of existing knowledge.
++ Objectives: Provide an explicit statement of the objective(s) or question(s) the review addresses.
+
+### 4. Methods
++ Eligibility criteria: Specify the inclusion and exclusion criteria for the review and how studies were grouped for the syntheses.
++ Information sources: Specify all databases, registers, websites, organisations, reference lists and other sources searched or consulted to identify studies. Specify the date when each source was last searched or consulted.
++ Search strategy: Present the full search strategies for all databases, registers and websites, including any filters and limits used.
++ Selection process: Specify the methods used to decide whether a study met the inclusion criteria of the review, including how many reviewers screened each record and each report retrieved, whether they worked independently, and if applicable, details of automation tools used in the process.
++ Data collection process: Specify the methods used to collect data from reports, including how many reviewers collected data from each report, whether they worked independently, any processes for obtaining or confirming data from study investigators, and if applicable, details of automation tools used in the process.
++ Data items:
+++ List and define all outcomes for which data were sought. Specify whether all results that were compatible with each outcome domain in each study were sought (e.g. for all measures, time points, analyses), and if not, the methods used to decide which results to collect.
+++ List and define all other variables for which data were sought (e.g. participant and intervention characteristics, funding sources). Describe any assumptions made about any missing or unclear information.
++ Study risk of bias assessment: Specify the methods used to assess risk of bias in the included studies, including details of the tool(s) used, how many reviewers assessed each study and whether they worked independently, and if applicable, details of automation tools used in the process.
++ Effect measures: Specify for each outcome the effect measure(s) (e.g. risk ratio, mean difference) used in the synthesis or presentation of results.
++ Synthesis methods:
+++ Describe the processes used to decide which studies were eligible for each synthesis (e.g. tabulating the study intervention characteristics and comparing against the planned groups for each synthesis (item METHODS. Eligibility criteria)).
+++ Describe any methods required to prepare the data for presentation or synthesis, such as handling of missing summary statistics, or data conversions.
+++ Describe any methods used to tabulate or visually display results of individual studies and syntheses.
+++ Describe any methods used to synthesize results and provide a rationale for the choice(s). If meta-analysis was performed, describe the model(s), method(s) to identify the presence and extent of statistical heterogeneity, and software package(s) used.
+++ Describe any methods used to explore possible causes of heterogeneity among study results (e.g. subgroup analysis, meta-regression).
+++ Describe any sensitivity analyses conducted to assess robustness of the synthesized results.
++ Reporting bias assessment: Describe any methods used to assess risk of bias due to missing results in a synthesis (arising from reporting biases).
++ Certainty assessment: Describe any methods used to assess certainty (or confidence) in the body of evidence for an outcome.
+
+### 5. Results
++ Study selection:
+++ Describe the results of the search and selection process, from the number of records identified in the search to the number of studies included in the review, ideally using a flow diagram.
+++ Cite studies that might appear to meet the inclusion criteria, but which were excluded, and explain why they were excluded.
++ Study characteristics: Cite each included study and present its characteristics.
++ Risk of bias in studies: Present assessments of risk of bias for each included study.
++ Results of individual studies: For all outcomes, present, for each study:
+++ (a) summary statistics for each group (where appropriate) and 
+++ (b) an effect estimate and its precision (e.g. confidence/credible interval), ideally using structured tables or plots.
++ Results of syntheses:
+++ For each synthesis, briefly summarise the characteristics and risk of bias among contributing studies.
+++ Present results of all statistical syntheses conducted. If meta-analysis was done, present for each the summary estimate and its precision (e.g. confidence/credible interval) and measures of statistical heterogeneity. If comparing groups, describe the direction of the effect.
+++ Present results of all investigations of possible causes of heterogeneity among study results.
+++ Present results of all sensitivity analyses conducted to assess the robustness of the synthesized results.
++ Reporting biases: Present assessments of risk of bias due to missing results (arising from reporting biases) for each synthesis assessed.
++ Certainty of evidence: Present assessments of certainty (or confidence) in the body of evidence for each outcome assessed.
+
+### 6. Discussion
++ Discussion:
+++ Provide a general interpretation of the results in the context of other evidence.
+++ Discuss any limitations of the evidence included in the review.
+++ Discuss any limitations of the review processes used.
+++ Discuss implications of the results for practice, policy, and future research.
+
+#### 6.1. Discusión: Agregar las siguientes ejes de discusión.
++ Plantear el eje disparador: "transparencia del modelo", "alcances éticos del modelo"
+++ Revisar de Erick Fromm, en "la revolución de la esperanza", el concepto "tecnología humanizada"
+++ Revisar de E. F. Schumacher, en "lo pequeño es hermoso",
++ Plantear el eje disparador: deconstruir el paradigma tecnocrático (es lo que esta hoy presente, sin cuestionamiento ético)
+++ Revisar de Papa Francisco, en "laudato si'"
+++ Revisar del Sacerdote Romano Guardini,
+
+### 7. Other information
++ Registration and protocol:
+++ Provide registration information for the review, including register name and registration number, or state that the review was not registered.
+++ Indicate where the review protocol can be accessed, or state that a protocol was not prepared.
+++ Describe and explain any amendments to information provided at registration or in the protocol.
++ Support: Describe sources of financial or non-financial support for the review, and the role of the funders or sponsors in the review.
++ Competing interests: Declare any competing interests of review authors.
++ Availability of data, code and other materials: Report which of the following are publicly available and where they can be found: template data collection forms; data extracted from included studies; data used for all analyses; analytic code; any other materials used in the review.
+
+Link a la referencia: https://prisma.shinyapps.io/checklist/ 
+
+## Estructura sugerida para Science Mapping
+
+Recommended workflow for science mapping: The general science mapping workflow was described by Börner, Chen, and Boyack (2003). Cobo, Lopez-Herrera, Herrera-Viedma, and Herrera (2011a) compared science mapping software tools using a similar workflow. 
+
+A standard workflow consists of five stages (Zupic & Cater, 2015)
+
+### 1. Study design.
+### 2. Data collection.
+### 3. Data analysis.
+### 4. Data visualization.
+### 5. Interpretation.
+
+Link al artículo "bibliometrix: An R-tool for comprehensive science mapping analysis": https://www.sciencedirect.com/science/article/abs/pii/S1751157717300500
+
+## Estructura sugerida para el análisis de los datos utilizando la metodología de Análisis Bibliométrico
+A continuación se presentan los principales ítems extraídos de la sección "Datos y resultados" del articulo sobre análisis bibliometrico de bitcoin utilizando el paquete bibliometrix, los cuales se corresponden con los elementos "3. Data analysis" y "4. Data visualization" del flujo sugerido para realizar Science Mapping.
+
+Link a la referencia: Science Mapping Analysis with bibliometrix R-package: an example. Massimo Aria and Corrado Cuccurullo. March 29, 2022. https://bibliometrix.org/documents/bibliometrix_Report.html
+
+### 0. Áreas de investigación y palabras clave
+Principales áreas de investigación asignadas en los trabajos en el ejemplo (Áreas de investigación, # Registros, % del total)
+
+Número de trabajos publicados por año, con "palabra clave" como tópico. Origen: Web of Science Core Collection (Año, # artículos, Ratio de crecimiento anual)
+
+### 1. Distribución geográfica de los autores
+
+10 principales países con mayor cantidad de citas por autor (País, artículos, frecuencia, publicaciones de un sólo país, publicaciones de múltiples países, Ratio MCP)
+
+10 países con mayor cantidad de citas (País, Total de citas, Promedio de citas por artículos) 
+
+### 2. Principales fuentes de publicación
+
+10 principales fuentes (Fuente, # articulos, tipo)
+
+### 3. Principales palabras clave
+
+Palabras clave (Palabras clave de autor, # artículos, palabras clave plus (ID), # articulos)
+
+### 4. Artículos altamente citados
+
+Artículos altamente citados, en orden descendente por número de citaciones (Autor (año), Título, Fuente, # Citas)
+
+Autores más productivos (Autores, Institución, # artículos)
+
+### 5. Grado de concentración de las variables seleccionadas
+
+Indice de concentración entrópica (H) de las variables seleccionadas (Variable, H)
+
+Distribución observada del número de autores que han escrito un número dado de articulos y valores ajustados según la de la ley de Lotka (# artículos, # autores, frencuencia observada, frecuencia ajustada)
+
+### 6. Citas, origen y gráficos de autores
+
+Nube de palabras encontradas en títulos y resumen generados con VOSviewer (url al vosviewer) (Para la interpretación de las referencias al color en el texto, el lector se debe dirigir a la versión web del artículo)
+
+Nube de palabras encontradas en títulos y resumen (cuenta binaria) generados con VOSviewer (url al vosviewer) (Para la interpretación de las referencias al color en el texto, el lector se debe dirigir a la versión web del artículo)
+
+Nube de palabras de las revistas donde fueron publicados los artículos de referencia generados con VOSviewer (url al vosviewer) (Para la interpretación de las referencias al color en el texto, el lector se debe dirigir a la versión web del artículo)
+
+Nube de palabras de los autores de las revistas donde fueron publicados los artículos generados con VOSviewer (url al vosviewer) (Para la interpretación de las referencias al color en el texto, el lector se debe dirigir a la versión web del artículo)
+
+
+# Objetivo: Definir el Flujo para obtener un corpus de artículos categorizado según el objeto del estudio
+
+A continuación presentamos las tres fases a través de las cuales se propone el logro del objetivo.
+
+## Fase 1) Definir los criterios de inclusión e exclusión
+
+### Fase 1.1) Definir los criterios de inclusión
+
+a) "Tipo" de trabajo: Trabajo de investigación o publicación (En OpenAlex type: "journal-article") 
+b) "Palabras Clave" (incorporando una forma para definir criterios de inclusión "OR" y exclusión "AND" de palabras y/o frases)
+c) "Idioma": Incorporar trabajos en idioma Inglés, Español, Chino y Ruso.
+d) "Citas": cantidad mínima de citas del trabajo
+e) "Intervalo de fechas de publicación": fecha inicial y fecha final
+
+### Fase 1.2) Definir los criterios de exclusión
+ 
+a) "Trabajos duplicados": mantener en el corpus solamente una versión de los trabajos.
+b) "Tipo" de trabajo: (En OpenAlex, atributo "is_paratext" == true)
+Nota sobre el atributo "is_paratext" (Tipo Boolean). Descripción: True if we think this work is paratext.
+Turns out there is a lot of paratext in registries like Crossref. That's not a bad thing... but we've found that it's good to have a way to filter it out. We determine is_paratext algorithmically using title heuristics. 
+Conclusión: Si el trabajo recuperado es un paratext se lo excluye del corpus (atributo "is_paratext": true)
+c) ...
+
+### Fase 1.3) Definir las metodologías para construir el conjunto de datos
+
+a) Armar el conjunto de datos inicial aplicando los criterios de inclusión y exclusión
+b) Expandir el conjunto de datos inicial aplicando la metodología Snowballing (bola de nieve)
+c) Aplicar los criterios inclusión y exclusión al conjunto de datos expandido
+
+### Fase 1.4) Definir las BD Indexadas sobre las cuales se aplicarán los criterios de inclusión
+
+a) BD OpenAlex: dado que permite obtener los metadatos de los trabajos requeridos para aplicar los filtros de inclusión y exclusión y además, permiten realizar el análisis semántico necesario para categorizar los trabajos de acuerdo a interés del investigador que está llevando adelante el estudio.
+b) ...
+
+### Fase 1.5) Definir los criterios de ponderación de los trabajos
+
+#### Métodos bibliométricos: primera revisión 
+Al respecto puede aportar la bibliometría (bibliometrics), entendida como "the use of quantitative methods to analyze publications, bibliographic data, and other forms of scientific and scholarly communication. It can be used to evaluate the impact of research, track trends in scholarly communication, and inform decisions about resource allocation, among other things".
+
+Here are some of the most commonly used bibliometric methods:
+
++ Citation analysis: This involves analyzing the number of times a publication has been cited by other publications. It can be used to evaluate the impact of a particular author, journal, or research area.
+++ Atributo "cited_by_count". Tipo: Integer. Descripción: The number of citations to this work. These are the times that other works have cited this work: Other works ➞ This work.
+++ Atributo alternativo: counts_by_year (list): Works.cited_by_count for each of the last ten years, binned by year. To put it another way: each year, you can see how many times this work was cited.
+Nota: Analizar si es pertinente ponderar de acuerdo al año la cantidad de citas por año. Atributo "Works.cited_by_count": El detalle se encuentra en el atributo "counts_by_year" (Tipo: List. Descripción: "Works.cited_by_count" for each of the last ten years, binned by year. To put it another way: each year, you can see how many times this work was cited).
+
++ Journal impact factor: This is a measure of the average number of citations per article published in a particular journal. It is often used to evaluate the relative importance of different journals.
+
++ h-index: This is a measure of an author's productivity and impact, based on the number of papers they have published and the number of citations those papers have received.
+El índice H de Hirsch es un indicador que permite evaluar la producción científica de un investigador o investigadora. Se calcula ordenando las publicaciones de un investigador o investigadora por el número de citas recibidas en orden descendente y a continuación numerando e identificando el punto en el que el número de orden coincide con el de citas recibidas por una publicación. Por ejemplo: índice H = 7 (hay 7 publicaciones que han recibido al menos 7 citas cada una)
+
+++ Atributos de un Autor (The Authorship object)
+The Authorship object represents a single author and her institutional affiliations in the context of a given work. It is only found as part of a Work object.
+
+Atributo "author" (String): An author of this work, as a dehydrated Author object
+author$id: seguir este atributo, para recuperar los atributos del autor (de interés para puntuar importancia del trabajo).
+
+Atributo "cited_by_count" (Integer): The total number Works that cite a work this author has created.
+Alternativo: counts_by_year (List): Author.works_count and Author.cited_by_count for each of the last ten years, binned by year. To put it another way: each year, you can see how many works this author published, and how many times they got cited. 
+
+Atributo "works_count" (Integer): The number of  Works this this author has created.
+
+Atributo "institutions$id": seguir este atributo, para recuperar los atributos de la institución que al autor declara en el contexto del trabajo (de interés para puntuar importancia del trabajo).
+
++ Co-citation analysis: This involves analyzing the frequency with which two publications are cited together. It can be used to identify relationships between different areas of research.
+
++ Bibliographic coupling: This involves analyzing the similarity between the references cited in different publications. It can be used to identify areas of common interest among researchers.
+
+It is important to note that bibliometric methods have limitations and should be used in conjunction with other forms of evaluation, such as peer review and expert judgment. It is also important to use appropriate and validated methods, as misuse of bibliometric data can lead to unintended consequences.
+
+#### Métodos bibliométricos: segunda revisión
+
+##### Puntuación de Institución (a la que pertenece el autor principal o, también la que se obtiene del atributo "Location")
+Definir el criterio de acuerdo a los índices utilizados para puntuar a una institución, por ejemplo, evaluar si existe un índice H o factor de impacto.
+The Location object describes the location of a given work. It's only found as part of the Work objec.
+
+##### Indices complementarios al "factor de impacto de la revista" (Journal impact factor)
++ Cuartil: El cuartil es un indicador o medida de posición de una revista en relación con todas las de su área. Si dividimos en 4 partes iguales un listado de revistas ordenadas de mayor a menor factor de impacto, cada una de estas partes será un cuartil. Las revistas con el factor de impacto más alto estarán el primer cuartil, los cuartiles medios serán el segundo y el tercero y el cuartil más bajo será el cuarto.
++ Índice H: El índice H de Hirsch es un indicador que permite evaluar la producción científica de un investigador o investigadora. Se calcula ordenando las publicaciones de una revista por el número de citas recibidas en orden descendente y a continuación numerando e identificando el punto en el que el número de orden coincide con el de citas recibidas por una publicación.
+
+##### Conteo de "Palabras clave" en título y abstract
+Nota 1: no se puede incluir en el recuento en el cuerpo del artículo (full text) porque no puede garantizar el 
+acceso al texto completo del artículo. Solamente se podría acceder en caso que sea del tipo "open access" o 
+en caso que esté indexado en OpenAlex (se dispondría del atributo ngram)
+Nota 2: Con el objetivo de contar las palabras o frases en un texto se considera de interés analizar el siguiente documento: http://rafalab.dfci.harvard.edu/dslibro/procesamiento-de-cadenas.html
+
+##### Puntuar el matching entre "Palabras Clave" y el atributo "Concepts"
+En relación al atributo "Concepts" (Tipo Objeto). Descripción: List of dehydrated Concept objects. Each Concept object in the list also has one additional property: score (Float). Descripción: The strength of the connection between the work and this concept (higher is stronger). This number is produced by AWS Sagemaker, in the last layer of the machine learning model that assigns concepts. concepts$score (Float). Descripcion: The strength of the connection between the work and this concept (higher is stronger). This number is produced by AWS Sagemaker, in the last layer of the machine learning model that assigns concepts. Concepts with a score of at least 0.3 are assigned to the work. However, ancestors of an assigned concept are also added to the work, even if the ancestor scores are below 0.3.
+
+Se debería analizar que los conceptos busquen en el mismo lenguaje de las palabras clave, para lo cual puede ayudar el atributo "international" (Tipo Object. Descripción: This concept's display name in many languages, derived from article titles on each language's wikipedia). O por otro lado, en caso que las "Palabras Clave" estén en español, previamente se las deberá traducir el idioma inglés y efectuar la búsqueda.
+Se puede ponderar o filtrar por los conceptos por nivel. Atributo: "Level" (Tipo: integer: The level in the concept tree where this concept lives. Lower-level concepts are more general, and higher-level concepts are more specific).
+
++ Aporte al análisis de los conceptos: tomar como caso de estudio los conceptos "Artificial intelligence", "Machine learning" y "Deep learning"
+id: "https://openalex.org/W2954640990",
+doi: "https://doi.org/10.1111/ced.14029",
+title: "Artificial intelligence, machine learning and deep learning: definitions and differences",
+display_name: "Artificial intelligence, machine learning and deep learning: definitions and differences",
+
+##### Puntuar el matching entre el/los temas de interés y los temas más importantes abordados en un trabajo
+Se propone explorar la solución del problema utilizando redes semánticas para detectar los temas más importantes en un trabajo. Luego quedaría detectar los temas de interés, por ejemplo, a través del análisis de la pregunta disparadora u objetivo del estudio.
+
+A continuación se propone un grupo de actividades para cumplir el objetivo:
+
+1) definir las palabras clave de búsqueda
+2) armar n-gramas a partir de las palabras clave
+3) obtener las redes semánticas de los artículos (aplicado el análisis al Título y Abstract, los cuales están disponibles en todos los artículos de la BD, a diferencia de lo que sucede con el acceso al contenido fulltext, accesible solamente para los artículos publicados como open-access)
+4) filtrar los artículos donde la frecuencia de las palabras clave sea mayor a un umbral.
+
+Articulo de referencia: https://rpubs.com/jboscomendoza/redes_semanticas_r
+
+En este artículo revisamos como crear una red semántica usando R, en particular las funciones de los paquetes tidytext, igraph y ggraph. En el proceso también nos dimos cuenta que separar y unir texto de distintas maneras son tareas de procesamiento más importantes en minería de texto. En varias ocasiones, unimos nuestro texto sólo para separarlo una vez más, para así poder unirlo de una manera distinta.
+
+Las redes semánticas son una herramienta muy útil al realizar minería de texto. Como vimos, son relativamente simples de implementar y nos permiten darnos una idea de los temas más importantes de nuestros textos. Además, son lo suficientemente flexibles como para adaptarse a distintas necesidades de análisis.
+
+##### Propuesta para el abordaje de la puntuación requerida en los "métodos bibliométricos: segunda revisión"
+
++ Realizar "análisis semántico" de un texto.
+
+Resulta de aparente utilidad explorar las capacidades del texto de la referencia. Dado que representa interés para obtener un resumen de un corpus de documentos (como menciona en los objetivos del artículo). Esta capacidad podría complementar el análisis del corpus:
+a) exploratorio de la base de datos: presentando datos generales del contenido de la base de datos OpenAlex (incluso se podría brindar estos datos de otras bases de datos. (obtenidos de las facilidades de la API (cantidad de documentos indexados, cantidad de instituciones, cantidad de autores, entre otros)
+b) exploratorio del corpus: (a través de palabras clave): realizando búsqueda en el titulo, abstract y full text, presentando información resumen bibliométrica del resultado,  con el objetivo de refinar el filtro de manera que se obtengan los artículos (o elementos) de interés. En caso de usar la herramienta para explorar el estado del arte, se buscarán los más representativos del estado del arte.
+c) exploratorio ampliado de corpus de interés:
+c.1) se realiza un análisis bibliométrico ampliado, incorporando aquella información omitida en la presentación de resultados para ayudar el análisis anterior (bibliometrix y el documento modelo). 
+c.2) Además, se realiza al análisis de texto, utilizando distintas herramientas, entre ellas se muestra la frecuencia de ngramas (obtenido a partir del filtro anterior, ofreciendo la posibilidad de cambiar el filtro)
+c.3) Se intentará realizar un resumen de los documentos. Entre otras, se ofrece 
+c.3.1) utilizar análisis exploratorios para verificar errores y detectar patrones de nivel general;
+c.3.2) aplicar métodos básicos de estilometría a lo largo del tiempo y entre autores;
+c.3.3) enfocarse en el resumen de resultados para ofrecer descripciones de nivel general de los elementos en un corpus.
+Ver documento: https://programminghistorian.org/es/lecciones/procesamiento-basico-de-textos-en-r
+Nuestro acercamiento involucra únicamente el uso de un tokenizador (tokenizer) que realiza un análisis sintáctico del texto con elementos como palabras, frases y oraciones.
+
+En la base de datos indexada OpenAlex, es posible acceder al trabajo completo a través del atributo "pdf_url" (Tipo String), cuya decripción es "a URL where you can find this location as a PDF".
+
++ Generar los n-gramas de un texto
+Fuente: Archivo "Script_de_trabajo_n-gramas_Red_semantica"
+Siguientes pasos: continuar en la linea 283
+
+++ 1) Revisar si la generación de n-gramas funciona (parece que son pocas las repeticiones de cada n-grama)
+
+++ 2) Armar una función para mostrar la línea donde aparece un texto dado en un trabajo (puede ser el párrafo)
+La solución para este análisis podría ser utilizar la función de tokenización (install.packages("tokenizers")), segmentando por oraciones (oraciones <- tokenize_sentences(texto)), luego armar una función para buscar un texto en el objeto segmentado, y mostrar "n" oraciones pre y "n" oraciones post. Quizás también pueda aportar, armar una función similar pero el objeto central no serán oraciones sino párrafos (la forma de construir párrafos se puede obtener del documento: Script_de_trabajo_n-gramas_Red_semantica).
+
+++ 3) Armar una función para mostrar la cantidad de ocurrencias de dos palabras cercanas (puede ser armada a partir de ngramas). Por ejemplo, si fijamos una lejanía máxima de 10 palabras (contando stopwords), podemos encontrar los 10-gramas y buscar en este tibble si existe un ngrama que contenga a ambas palabras.
+
++ Crear una función para mostrar las 10 palabras más frecuentes (sacando las stopwords)
+Referencia: "Procesamiento básico de textos en R". https://programminghistorian.org/es/lecciones/procesamiento-basico-de-textos-en-r
+Esto será de utilidad para filtrar los trabajos de interés a partir del análisis semántico de los trabajos recuperados
+con los filtros usando openalexR y full-text.search.
+Se puede utilizar la función tokenizer (install.packages("tokenizers")) y segmentar por palabras (palabras <- tokenize_words(texto)), luego aplicar el filtro de stopwords, contar las palabras y ordenar de mayor a menor.
+
++ Crear una función que limpie el texto 
+Referencia: "Tidy Data". Enlace: https://www.jstatsoft.org/article/view/v059i10
+Esto será de utilidad para filtrar los trabajos de interés a partir del análisis semántico de los trabajos recuperados
+con los filtros usando openalexR y full-text.search.
+
+## Fase 2) Recuperar el conjunto de datos aplicando la metodología definida
+
+Actividades:
+a) ...
+b) ...
+
+## Fase 3) Ponderar los elementos del conjunto de datos
+
+Actividades:
+a) ...
+b) ...
+
+
+# Objetivo: Analizar las facilidades para publicar información desde RStudio
+
+## Conclusiones: Se encontraron cuatro alternativas para publicar información desde R
+
++ 1) La plataforma "RPubs": Contra no permite definir un criterio privado para el documento a publicar, por lo cual parece adecuadas para documentos públicos. Se accede desde el resultado de generación de un documetno HTML utilizando "Knit", luego "Publish" y "Rpubs". Se debe generar un usuario. Configuración desde RStudio en https://www.youtube.com/watch?v=pWQmm0pAo-k&ab_channel=Joaqu%C3%ADnCarrascosa
++ 2) La plataforma "R Studio Connect": contra es de pago. Se accede desde "Publish" en la interfaz de RStudio.
++ 3) La plataforma "Shinny". Configuración desde RStudio en https://www.shinyapps.io/admin/#/dashboard
++ 4) La plataforma "GitHub Pages": A favor, es gratuita y permite controlar los accesos a las páginas publicadas. Es conveniente instalar GitHub Desktop para gestionar GitHub de manera más ágil. Configuración en https://pages.github.com/ (o en https://docs.github.com/es/pages/quickstart)
+Para publicar un archivo, se debería vincular RStudio al repositorio de github pages. Luego se utiliza knit para generar el archivo html a publicar y se hace el commit. Se accede desde https://cschenone.github.io.
+
+## Interesante: Formateo del documento
+
+### Bibliometrix (paquete de R)
+Con el objetivo de ajustar los textos y las secciones del documento, se propone comparar el documento en construcción con el modelo de reporte de bibliometrix, descargado desde bibliometrix.org.
+El documento está ubicado en la carpeta "doctorado/articulo/bibliometrix_Report"
+
+### R Markdown
+Revisar los formatos disponibles en markdown: https://github.com/ricval/Documentacion/blob/master/Guias/GitHub/mastering-markdown.md
+
+## Interesante: Shinydashboard makes it easy to use Shiny to create dashboards
+Sitio oficial: http://rstudio.github.io/shinydashboard/
+Configuración en http://rstudio.github.io/shinydashboard/get_started.html
+
+## Interesante: Información complementaria para análisis de datos
+Enlace a github: https://github.com/jboscomendoza/rpubs/tree/master/red_semantica
+Git-hub General: https://github.com/jboscomendoza/rpubs
+
+### Temas abordados en el Git
++ Alfa de Cronbach - Psicometría con R
++ Webscrapping, APIs y minería de texto con R. Análisis de sentimientos de Coheed and Cambria
++ Mapas temáticos con R - Homicidios en México durante el 2017
++ Análisis exploratorio de datos - Encontrar y visualizar inconsistencias en los datos.
++ La importancia de explorar nuestros datos (Ventas de videojuegos con R)
++ Naïve Bayes con R para clasificacion de texto
++ Análisis de sentimientos con R - Léxico Afinn
++ Introducción a la minería de textos con R
+
+## Interesante: Aporte a la discusión sobre los ítems incorporados en la sección "Analisis de datos" del trabajo
+Mirar los "Example analyses" de: https://github.com/massimoaria/openalexR/blob/main/README.md
+Por ejemplo:
+Goal: track the popularity of Biology concepts over time.
+Goal: Rank institutions in Italy by total number of citations.
+Goal: Visualize big journals’ topics.
+
+# Objetivo: Analizar las facilidades implementadas en OpenAlex API para recuperar datos de la base de datos OpenAlex
+
+## Overview OpenAlex
+OpenAlex is a fully open catalog of the global research system. It's named after the ancie4nt Library of Alexandria and made by the nonprofit OurResearch.
+
+The OpenAlex dataset describes scholarly entities and how those entities are connected to each other. There are five types of entities: work, authors, venues, institutions, and concepts.
+
+Together, these make a huge web (or more technically, heterogeneous directed graph) of hundreds of millions of entities and billions of connections between them all.
+
+Referencia: https://docs.openalex.org/
+
+## ¿Cuáles son las facilidades de OpenAlex API?
+The API is the primary way to get OpenAlex data. It's free and requires no authentication. For best performance, add your email to all API requests, like mailto=example@domain.com.
+
+Documentación: https://docs.openalex.org/quickstart-tutorial
+
+# Objetivo: Presentar las facilidades de búsqueda de OpenAlex API
+
+## ¿Conviene utilizar el paquete openalaexR para consultar la base de datos OpenAlex?
+Debido a algunos inconvenientes al momento de transformar la información obtenida por el cliente openalexR, seguimos un camino alternativo, suponiendo que consultar la API Web  diretamente (como presentan en la pagina de OpenAlex) traería ventajas, como por ejemplo u mayor control, si bien quizás la construcción del filtro puede ser más sencilla, otros procesos presentan dificultades, entre otros hallazgos podemos mencionar la necesidad de aplicar transformaciones al conjunto de datos obtenidos, el cual viene en forma de objeto json y su transformación a data frame / tibble no es trivial.
+
+Conclusión: Se retoma la exploración del cliente openalexR. Como primer desafío se presenta la necesidad de descubrir el formato por medio del cual se pueden incorporar operadores lógicos en las palabras clave de los filtros.
+
+Hallazgos: En el "Documento de trabajo" se analizar los resultados de las pruebas.
+Se detectó la forma para hacer búsquedas por "AND" en el titulo. Para lo cual se deben incorporar tantos argumentos "title.search", como frases se deseen buscar.
+Luego las palabras como "OR" se agregan en la misma "title.search" con el separador "|" o con la función c().
+
+## ¿Cómo incorporo operadores lógicos en las consultas a OpenAlex by OpenAlex API?
+It's best to read about filters before trying these out. It will show you how to combine filters and build an AND, OR, or negation query
+https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/filter-entity-lists
+
+Filtros para trabajos (entidad:works)
+https://docs.openalex.org/api-entities/works/filter-works#works-convenience-filters
+https://docs.openalex.org/api-entities/works/filter-works#works-attribute-filters
+
+Mirar: https://blog.ourresearch.org/new-openalex-api-features/
+Search: You can now search both titles and abstracts. We’ve also implemented stemming, so a search for “frogs” now automatically gets your results mentioning “frog,” too. Thanks to these changes, searches for works now deliver around 10x more results. This can all be accessed using the new search query parameter.
+
+Herramienta útil: Conversor online de una uri a su forma legible. Seleccionar "Raw url decode": https://cafewebmaster.com/online_tools/utf8_encode
+
+### Ejemplo:
+Input: https://api.openalex.org/works?filter=title.search%3Abibliometric%20analysis%7Cscience%20mapping%2Ccited_by_count%3A%3E50%2Cfrom_publication_date%3A2020-01-01%2Cto_publication_date%3A2021-12-31&sort=cited_by_count%3Adesc
+
+Output: https://api.openalex.org/works?filter=title.search:bibliometric analysis|science mapping,cited_by_count:>50,from_publication_date:2020-01-01,to_publication_date:2021-12-31&sort=cited_by_count:desc
+
+Ver más casos en (Recuadro Goal, luego de cada ejemplo): https://github.com/massimoaria/openalexR
+
+## Discusión sobre facilidad "Search" en OpenaAlex API (busca en title, abstract y fulltext) vs Filter (específico para alguno de los atributos)
+
+Resumen: Search busca en title, abstract y fulltext, y Filter permite enfocar la búsqueda en un campo (title.search, abstract.search or fulltext.search)
+
+Search searches across any fields (title, abstract and fulltext): The best way to search for works is to use the search query parameter, which searches across title, abstract, and fulltext. 
+
+### Example:  
+Get works with search term "dna" in the title, abstract, or fulltext:
+https://api.openalex.org/works?search=dna
+
+## Search at specific field (title, abstract and/or fulltext)
+You can use search as a filter, allowing you to fine-tune the fields you're searching over. To do this, you append .search to the end of the property you are filtering for:
+
+Get works with "cubist" in the title:
+https://api.openalex.org/works?filter=title.search:cubist
+
+The following fields can be searched within works:
++ abstract.search
++ title.search as same as display_name.search
++ fulltext.search
+
+## Fulltext search is powered by an index of word sequences called "n-grams".
+You can read more about search . It will show you how relevance score is calculated and how words are stemmed to improve search results.
+
+Capacidades de la búsqueda utilizando "n-grams" en OpenAlex. Documentación:
+https://docs.openalex.org/api-entities/works/get-n-grams
+https://github.com/massimoaria/openalexR/blob/b3541e4f2695da771f15d0d92a7a050757e67e9c/vignettes/articles/A_Brief_Introduction_to_openalexR.Rmd
+https://www.bibliometrix.org/home/
+
+## ¿Qué facilidades brinda la búsqueda por "n-gramas"?
+Puede servir como complemento de la búsqueda en el titulo, abstract y full text de los documentos. Como complemento permitiría intentar hallar artículos no encontrados con las búsquedas tradicionales.
+En la página https://docs.openalex.org/api-entities/works/get-n-grams, se presentan estadísticas de la cantidad de trabajos indexados con n-gramas mostrando que la cobertura aún es escasa, para ser considerado una técnica principal, la cobertura debería ser mayor al 90% y actualmente promedia el 25%.
+
+## Capacidades de la búsqueda "Fulltext" en OpenAlex
+Analizar la capacidad de full text search. 
+Referencia: https://blog.ourresearch.org/fulltext-search-in-openalex/
+
+Full text search se relaciona con el ítem: "Analizar la capacidad "N-grams" de openalexR".
+https://docs.openalex.org/api-entities/works/get-n-grams
+
+## Analizar la posibilidad de acceder al texto completo del trabajo
+En principio OpenAlex brinda la posibilidad de saber si el artículo pertenece a la categoría Open Access, mediante el atributo is_oa == TRUE. En caso contrario sólamente se podrá acceder a búsquedas en el texto completo mediante la facilidad fulltext search.
+
+### Analizar las facilidades que brinda el atributo best_oa_location. ¿Aplica a todos los artículos o solamente a los del tipo open access?
+Revisar el atributo "best_oa_location" para obtener los datos que permitan acceder al documento (en caso que esté disponible). Una opción a explorar para los trabajos que no dispongan de esta información es utilizar la técnica de scrapping.
+best_oa_location (Object): A Location object with the best available open access location for this work.
+We score open locations to determine which is best using these factors:
+* Must have is_oa: true
+* type: "publisher" is better than "repository".
+* version: "publishedVersion" is better than "acceptedVersion", which is better than "submittedVersion".
+* pdf_url: A location with a direct PDF link is better than one without.
+* repository rankings: Some major repositories like PubMed Central and arXiv are ranked above others.
+
+## Análisis de la facilidad fulltext search vs atributo n-grams para resolver los problemas que involucren análisis semántico de texto.
+Como primer punto de análisis convendría aclarar si la búsqueda de OpenaAlex Fulltext Search recupera los trabajos buscando en el texto completo a partir de la consulta a n-gramas, sería la solución al problema planteado.
+
+En caso que la búsqueda fulltext search no brinde resultados satisfactorios, una propuesta alternativa sería recuperar los trabajos más significativos a partir del análisis bibliográfico. Considerando alguna (o un grupo) de variables, por ejemplo los 20 trabajos con mayor cantidad de citas, para hacer un análisis en profundidad del contenido de estos trabajos. Este análisis se puede realizar a partir de la minería de texto, como presenta el siguiente trabajo:
+https://rpubs.com/jboscomendoza/redes_semanticas_r
+
+Resumen: Las redes semánticas son una técnica de representación usada en distintas disciplinas, entre ellas, la minería de texto. Estas redes son una forma de obtener y visualizar la relación entre elementos de un texto, que pueden ser palabras, n-gramas, frases u otras unidades de texto. El resultado es similar a una telaraña, en la que cada nodo o punto de unión es una unidad, y de ellas salen líneas que las unen a otras unidades. De esta manera podemos extraer la información relevante de cuerpos de complejos.
+
+
+# Objetivo general: Definir las buenas prácticas
+
+## ¿Es pertienente utilizar el paquete bibliometrix para acompañar el analisis de los resultados? 
+
+Utilizar el archivo "OpenAlexAPI_A_Brief_Example_v01.Rmd", las posibilidades del paquete bibliometrix, además de biblioanalysis y summary().
+El siguiente trabajo de investigación puede resultar de ayuda para la discusión: https://arxiv.org/ftp/arxiv/papers/2205/2205.13471.pdf
+
+Conclusión: Una vez que se disponen de los datos se lo pueden procesar con las herramientas de R y además con bibliometrix. En este punto sería interesante analizar el modelo de documento descargado desde la pagina de bibliometrix dispuesto en el Git: doctorado/articulo/bibliometrix_Report.
+
+## ¿ Cómo empezar y qué tener en cuenta cuando escribes tu función en R?
+
+Para poder ejecutar una función primero debes guardarla en la memoria. Ocurre lo mismo que al activar/cargar una librería/biblioteca, hasta que no lo hagas las funciones contenidas en ella no se pueden llamar/utilizar. Existen dos métodos para cargar funciones en la memoria:
+
+a) Crear el texto de la función y pegarlo en la consola.
+b) Utilizar la función "source()" para cargar funciones desde un archivo .R (puedes tenerlo en tu directorio o descargarlo desde la web).
+
+La mejor opción es la segunda, por eso recomiendo crear tus funciones en un archivo .R con un nombre sencillo e intuitivo y guardarlo en su ordenador para llamarlo en el momento que desees. Por ejemplo:
+
+source( “ mifuncion.R”) # desde tu directorio > # Para acceder a una función que se encuentra en la web > source("https://raw.github.com/tonybreyal/Blog-Reference-Functions/master/R/bingSearchXScraper/bingSearchXScraper.R")
+
+## Plantear una sección al comienzo destinada a la instalación de las herramientas recomendadas
+
+### Manejo del software R para el análisis estadístico de datos de investigación
+Para guiar en la instalación de la herramientas recomendadas en su última versión estable:
+*R*
+*RTootls*
+*RStudio*
+Link al documento: https://rpubs.com/ArimaGM/922513
+
+## Plantear una sección al comienzo destinada a la definición de las variables de entorno de R
+
+### Configurar el directorio de trabajo
+setwd("C:/Users/cschenone/Documents/GitHub/doctorado")
+
+## Propuesta para el desarrollo de scripts en R para facilitar las comprobaciones 
+Para ordenar las propuestas de solución a los problemas planteados en el documento general se creó el archivo:
+"script_OpenAlex_v01.R"
+
+Analizarlo mirando las siguientes referencias:
+openalexR: Getting Bibliographic Records from 'OpenAlex' Database Using 'DSL' API (https://cran.r-project.org/web/packages/openalexR/openalexR.pdf)
+A brief introduction to bibliometrix (https://www.bibliometrix.org/vignettes/Introduction_to_bibliometrix.html)
+
+## Propuesta para el armado de una Notebook para analizar las capacidades de los filtros de OpenAlex API
+Enlace a la notebook:
+https://github.com/ourresearch/openalex-api-tutorials/blob/develop/notebooks/institutions/oa-percentage.ipynb
+
+## ¿Dónde puedo obtener respuestas a preguntas frecuentes sobre bibliometrix?
+Por ejemplo:
+Q8 - I would like to understand the difference between the concepts “Global Citation” and “Local Citation”.
+https://www.bibliometrix.org/home/index.php/faq

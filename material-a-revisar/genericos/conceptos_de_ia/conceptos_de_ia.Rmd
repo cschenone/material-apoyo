@@ -1,0 +1,2078 @@
+---
+title: "Inteligencia Artificial : De lo general a lo particular"
+output: 
+  html_document:
+    code_folding: show
+    theme:
+      base_font:
+        google: Prompt
+      heading_font:
+        google: Proza Libre
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+Notas:
+
+-   Seguir en el link [Machine Learning for
+    Humans](https://medium.com/machine-learning-for-humans/why-machine-learning-matters-6164faf1df12):
+    Ajustando los conceptos y agrupamientos de IA
+
+Quedé en la linea 462 del presente documento, y en la página 24 del
+libro.
+
+-   Seguir el gráfico, describiendo los algoritmos, [Artificial
+    Intelligence Framework: A Visual Introduction to Machine Learning
+    and
+    AI](https://towardsdatascience.com/artificial-intelligence-framework-a-visual-introduction-to-machine-learning-and-ai-d7e36b304f87)
+
+-   Luego agrupar las clasificaciones.
+
+## Conceptos de Inteligencia Artificial
+
+Documento para realizar la puesta en común de temas relacionados con la
+Inteligencia Artificial abordando conceptos generales y luego exploramos
+las áreas principales, para enfocarnos en las técnicas vinculadas al
+aprendizaje automático.
+
+## Técnicas de Inteligencia Artificial
+
+En primer término presentamos un resumen de las principales
+características de los modelos de inteligencia artificial débil, basados
+en redes neuronales artificiales.
+
+| Técnica (en español)          | Técnica (en Inglés)        | Grupo            | Descripción                                                                          | Problemas tipo                                                                    | Kits de Modelado                         | Link                                                                 | Repo de Datasets           |
+|-------------------------------|----------------------------|------------------|--------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| Redes neuronales artificiales | Artificial neural networks | Machine learning | Modelos de aprendizaje automático inspirados en el funcionamiento del cerebro humano | Clasificación, detección de objetos, reconocimiento de voz, traducción automática | TensorFlow, PyTorch, Keras, scikit-learn | [Wikipedia](https://en.wikipedia.org/wiki/Artificial_neural_network) | MNIST, CIFAR-10, ImageNet. |
+
+A continuación exploramos las características de los principales
+algoritmos de aprendizaje de los modelos basados en redes neuronales
+artificiales.
+
+| Algoritmo de aprendizaje (en español) | Algoritmo de aprendizaje (en Inglés) | Grupo            | Descripción                                  | Problemas tipo                                                  | Kits de Modelado                  | Link                                                              | Repo de Datasets          |
+|---------------------------------------|--------------------------------------|------------------|----------------------------------------------|-----------------------------------------------------------------|-----------------------------------|-------------------------------------------------------------------|---------------------------|
+| Aprendizaje automático supervisado    | Supervised machine learning          | Machine learning | Aprendizaje a partir de datos etiquetados    | Clasificación, regresión, detección de anomalías                | TensorFlow, PyTorch, scikit-learn | [Wikipedia](https://en.wikipedia.org/wiki/Supervised_learning)    | MNIST, CIFAR-10, ImageNet |
+| Aprendizaje automático no supervisado | Unsupervised machine learning        | Machine learning | Aprendizaje a partir de datos no etiquetados | Agrupación, reducción de dimensionalidad, detección de patrones | TensorFlow, PyTorch, scikit-learn | [Wikipedia](https://en.wikipedia.org/wiki/Unsupervised_learning)  | MNIST, CIFAR-10, ImageNet |
+| Aprendizaje automático por refuerzo   | Reinforcement learning               | Machine learning | Aprendizaje a partir de la experiencia.      | Juegos, robótica.                                               | TensorFlow, PyTorch, OpenAI Gym   | [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning) | OpenAI Gym, Atari games   |
+
+Mencionamos a continuación otras técnicas de modelado de problemas, que
+no utilizan redes neuronales artificiales. Si bien es posible
+implementar algunas de estas técnicas utilizando redes neuronales
+artificiales, la eficiencia de cada solución dependerá del problema a
+resolver, por ejemplo, es posible para problemas de clasificacicón
+binaria simples la técnica de regresión logística suele ser más
+eficiente computacionalmente y más fácil de interpretar que una red
+neuronal. Pero, en aquellos casos donde los problemas son más complejos
+y se requiera aprender representaciones más sofisticadas el abordaje
+utilizando la técnia de regresión logística puede no ser suficiente y
+convendría explorar el modelado utilizando una red neuronal artificial.
+
+| Técnica (en español)            | Técnica (en Inglés)     | Grupo            | Descripción                                                  | Problemas tipo                                                                     | Kits de Modelado     | Link                                                                 | Repo de Datasets                                 |
+|---------------------------------|-------------------------|------------------|--------------------------------------------------------------|------------------------------------------------------------------------------------|----------------------|----------------------------------------------------------------------|--------------------------------------------------|
+| Regresión logística             | Logistic regression     | Machine learning | Modelo estadístico que predice la probabilidad de un evento. | Clasificación binaria, clasificación multiclase                                    | scikit-learn, R, SAS | [Wikipedia](https://en.wikipedia.org/wiki/Logistic_regression)       | MNIST, CIFAR-10, ImageNet                        |
+| Máquinas de vectores de soporte | Support vector machines | Machine learning | Modelo estadístico que predice una clase de salida.          | Clasificación binaria, clasificación multiclase, regresión, detección de anomalías | scikit-learn, R, SAS | [Wikipedia](https://en.wikipedia.org/wiki/Support-vector_machine)    | MNIST, CIFAR-10, ImageNet                        |
+| Árboles de decisión             | Decision trees          | Machine learning | Modelo estadístico que toma decisiones en forma de árbol     | Clasificación, regresión, detección de anomalías                                   | scikit-learn, R, SAS | [Wikipedia](https://en.wikipedia.org/wiki/Decision_tree)             | MNIST, CIFAR-10, ImageNet                        |
+| Reglas de asociación            | Association rules       | Machine learning | Modelo estadístico que identifica reglas entre variables     | Minería de datos, análisis de patrones                                             | scikit-learn, R, SAS | [Wikipedia](https://en.wikipedia.org/wiki/Association_rule_learning) | Kaggle datasets, UCI Machine Learning Repository |
+| Reglas de producción            | Production rules        | Machine learning | Modelo estadístico que genera reglas para tomar decisiones   | Sistemas expertos, automatización de procesos.                                     | scikit-learn, R, SAS | [Wikipedia](https://en.wikipedia.org/wiki/Production_rule)           | MNIST, CIFAR-10, ImageNet                        |
+
+| Técnica (en español)              | Técnica (en Inglés)         | Grupo              | Descripción                                                                     | Problemas tipo                                                         | Kits de Modelado      | Link                                                                   | Repo de Datasets                                 |
+|-----------------------------------|-----------------------------|--------------------|---------------------------------------------------------------------------------|------------------------------------------------------------------------|-----------------------|------------------------------------------------------------------------|--------------------------------------------------|
+| Lógica difusa                     | Fuzzy logic                 | Machine Learning   | Modelo que representa el razonamiento aproximado a través de la lógica difusa.  | Control de sistemas complejos o variables, reconocimiento de patrones. | fuzzylite, fuzzywuzzy | [Wikipedia](https://en.wikipedia.org/wiki/Fuzzy_logic)                 | MNIST, CIFAR-10, ImageNet                        |
+| Procesamiento de lenguaje natural | Natural language processing | Machine Learning   | Modelo que representa el razonamiento aproximado a través de la lógica natural. | Procesamiento del lenguaje natural, visión artificial.                 | spaCy, NLTK, OpenCV   | [Wikipedia](https://en.wikipedia.org/wiki/Natural_language_processing) | Kaggle datasets, UCI Machine Learning Repository |
+| Inteligencia de enjambre          | Swarm intelligence          | Swarm intelligence | Algoritmos inspirados en el comportamiento de los enjambres de insectos.        | Optimización de problemas complejos, búsqueda de información.          | scikit-learn, R, SAS  |                                                                        |                                                  |
+
+**Referencias:**
+
+[Gráfico representando una clasificación de la inteligencia artificial y
+el aprendizaje
+automático](https://towardsdatascience.com/artificial-intelligence-framework-a-visual-introduction-to-machine-learning-and-ai-d7e36b304f87):
+Nota: Luego de la revisión mejorar la descripción de las técnicas,
+realizando, entre otras actividades, la incorporación de una breve
+descripción de la técnica, y si aplica, ingresar los datos sobre
+entradas y salidas del modelo.
+
+[Página de Casos de Uso y
+Código](https://medium.com/serpdotai/asynchronous-advantage-actor-critic-f56af759fed0):
+Nota: Luego de la revisión intentar encontrar casos para el resto de las
+técnicas, y agregar el link a la página.
+
+# Inteligencia Artificial
+
+La inteligencia artificial (IA) es un campo de la ciencia relacionado
+con la creación de ordenadores y máquinas que pueden razonar, aprender y
+actuar de una forma actualmente reservada a la inteligencia humana. Se
+enfoca en el diseño de un agente inteligente que perciba su ambiente y
+tome decisiones para maximizar las chances de conseguir su objetivo. La
+IA es un campo de investigación y desarrollo amplio que abarca muchas
+disciplinas diferentes, como la informática, estadística y analítica de
+datos, ingeniería de hardware y software, lingüística, neurociencias e
+incluso filosofía y psicología.
+
+A nivel operativo, la IA se construye a partir de un conjunto de
+tecnologías basadas principalmente en algoritmos de aprendizaje
+automático y aprendizaje profundo, especializados en resolver problemas
+relacionados con detección de patrones y anomalías, predicciones,
+categorización de objetos, procesamiento de lenguaje natural,
+recomendaciones y recuperación inteligente de datos, entre los campos de
+aplicación destacados.
+
+[IA](https://cloud.google.com/learn/what-is-artificial-intelligence?hl=es#section-2),
+Google Cloud, recurso en línea, fecha de consulta 14/01/2024
+
+## Visión de Alto Nivel de la Inteligencia Artificial
+
+Visión de alto nivel de la IA, Ackermann, N. Recurso en línea:
+[Gráfico](https://miro.medium.com/v2/resize:fit:720/format:webp/1*sQqJGWb4MP7Pdh2pFBV-WA.png)
+
+Las tecnologías de IA se clasifican por su capacidad para imitar
+características humanas, la tecnología que utilizan para hacerlo, sus
+aplicaciones en el mundo real y la teoría de la mente (que se refiere a
+la capacidad de discernir necesidades, emociones, creencias y procesos
+de pensamiento de otros titulares inteligentes). Utilizando estas
+características como referencia, todos los sistemas de inteligencia
+artificial (reales e hipotéticos) se agrupan en uno de los siguientes
+tipos:
+
+### Superinteligencia Artificial (ASI)
+
+La Superinteligencia Artificial, este nivel es conceptual e hipotético,
+representa una etapa evolutiva donde los sistemas de IA no solo podrían
+realizar las tareas que normalmente requieren inteligencia humana, sino
+que también superarían a los humanos en todos los aspectos de la
+inteligencia. En este nivel la máquina podría funcionar de una forma
+superior a la inteligencia. Este objetivo plantea dilemas éticos de
+magnitud considerable.
+
+*"Definamos una máquina ultrainteligente como una máquina que puede
+superar con creces todas las actividades intelectuales de cualquier
+hombre, por inteligente que sea. Dado que el diseño de máquinas es una
+de estas actividades intelectuales, una máquina ultrainteligente podría
+diseñar máquinas aún mejores; entonces se produciría sin duda
+una"explosión de inteligencia" y la inteligencia del hombre quedaría muy
+atrás. Así, la primera máquina ultrainteligente es el último invento que
+el hombre necesitará hacer, siempre que la máquina sea lo
+suficientemente dócil como para decirnos cómo mantenerla bajo control"*.
+(Good, I. 1965)
+
+### Inteligencia Artificial General o IA Fuerte - (Strong AI or AGI)
+
+La AGI es un tipo de inteligencia artificial que puede realizar
+cualquier tarea de índole intelectual, como aprender, planificar y tomar
+decisiones bajo condiciones de incertidumbre, mantener una comunicación
+en lenguaje natural, realizar bromas y mejorarse a sí misma. La
+inteligencia artificial general (AGI) sería la capacidad de una máquina
+para "sentir, pensar y actuar" como lo haría una persona. Los
+investigadores y científicos de IA aún no han logrado construir una
+máquina con IA Fuerte.
+
+### Inteligencia Artificial Débil (Artificial Narrow Intelligence o ANI)
+
+La ANI es el único tipo de inteligencia artificial que se ha concretado
+con éxito hasta la fecha. Estas máquinas están diseñadas para realizar
+tareas específicas (por ejemplo, reconocimiento facial, reconocimiento
+de voz/asistentes de voz, conducir un automóvil o buscar en Internet).
+Si bien estos modelos pueden parecer inteligentes, operan bajo un
+conjunto finito de restricciones y condiciones, razón por la cual
+también se la conoce como IA débil o IA estrecha. La IA restringida no
+imita ni replica la inteligencia humana, simplemente simula el
+comportamiento humano basándose en una gama limitada de parámetros y
+contextos.
+
+## Aprendizaje Automático (ML)
+
+El aprendizaje automático pertenece al área de la inteligencia
+artificial débil (ANI), su objetivo es generar algoritmos optimizados
+para permitir que una máquina o un sistema aprenda automáticamente y
+mejore a partir de la experiencia. En lugar de utilizar una programación
+explícita, el aprendizaje automático utiliza algoritmos para analizar
+grandes cantidades de datos, aprender de la información contenida y
+tomar decisiones fundamentadas.
+
+El algoritmo de aprendizaje automático le permite identificar patrones
+en los datos observados, construir modelos que expliquen el mundo y
+predecir situaciones sin tener reglas y modelos explícitos
+pre-programados. Estos algoritmos mejoran el rendimiento a medida que se
+entrenan y se enfrentan a más datos.
+
+Como resultado del proceso de entrenamiento se genera un modelo,
+concebido a partir de la interacción de un algoritmo de aprendizaje
+alimentado con datos de entrenamiento. En general, cuantos más datos se
+usen, mejor será el modelo.
+
+A continuación mencionamos algunos casos de uso del aprendizaje
+automático:
+
+-   *Automatización de procesos robóticos*: La combinación de la
+    automatización de procesos robóticos (RPA) y el aprendizaje
+    automático genera una inteligencia autónoma capaz de automatizar
+    tareas complejas, como el procesamiento de aplicaciones de
+    hipotecas.
+
+-   *Optimización de ventas*: Los datos de los clientes pueden entrenar
+    algoritmos de aprendizaje automático para analizar las opiniones de
+    los clientes, analizar previsiones de ventas y predecir la tasa de
+    abandono de los clientes.
+
+-   *Servicio de atención al cliente*: Algunos casos prácticos de
+    aprendizaje automático son los bots de chat y los asistentes
+    virtuales automatizados con los que se automatizan tareas rutinarias
+    de los servicios de atención al cliente y se acelera la resolución
+    de problemas.
+
+-   *Ciberseguridad*: El aprendizaje automático ayuda a las empresas a
+    mejorar sus capacidades de análisis de amenazas y la forma en que
+    responden a los ciberataques, los hackers y el software malicioso.
+
+-   *Marketing digital*: El aprendizaje automático permite a los
+    profesionales del marketing identificar nuevos clientes y ofrecer
+    los materiales de marketing idóneos a los usuarios adecuados en el
+    momento oportuno.
+
+-   *Prevención de fraudes*: El aprendizaje automático ayuda a las
+    empresas de tarjetas de crédito y a los bancos a revisar cantidades
+    ingentes de datos transaccionales para identificar actividad
+    sospechosa en tiempo real.
+
+## ¿Cómo se conectan la IA y el Aprendizaje Automático?
+
+Aunque la IA y el aprendizaje automático no son lo mismo, están
+estrechamente conectados. La IA es el concepto más amplio, orientado a
+permitir que una máquina o un sistema detecte, actúe o se adapte al
+contexto como una persona. El aprendizaje automático es una aplicación
+de IA que permite que las máquinas extraigan conocimiento de los datos y
+aprendan de ellos de forma autónoma. Una forma útil de recordar la
+diferencia entre el aprendizaje automático y la inteligencia artificial
+es pensar en ellas como categorías generales.
+
+La inteligencia artificial es el término global que abarca una gran
+variedad de enfoques y algoritmos específicos. El aprendizaje automático
+se enmarca dentro de esa categoría, pero también lo hacen otros campos
+secundarios importantes, como el aprendizaje profundo, la robótica, los
+sistemas de expertos y el procesamiento de lenguaje natural.
+
+## Técnicas utilizadas en el Aprendizaje Automático?
+
+Existen varias técnicas y algoritmos utilizados en el aprendizaje
+automático, cada uno con sus propias fortalezas y debilidades, a
+continuación presentamos algunas de las más comunes:
+
+-   **Regresión Lineal y Logística**: Son técnicas estadísticas básicas
+    para predecir una variable continua (regresión lineal) o binaria
+    (regresión logística) a partir de una o más variables de entrada.
+
+-   **Árboles de Decisión y Bosques Aleatorios**: Los árboles de
+    decisión dividen el espacio de entrada en regiones, cada una
+    asociada con una predicción. Los bosques aleatorios combinan las
+    predicciones de muchos árboles de decisión para obtener una
+    predicción más robusta.
+
+-   **Máquinas de Vectores de Soporte (SVM)**: Son algoritmos de
+    aprendizaje supervisado que se utiliza para resolver problemas de
+    clasificación y regresión. En el caso de un problema de
+    clasificación buscan el hiperplano que mejor separa las clases en un
+    espacio de alta dimensión.
+
+-   **Aprendizaje Profundo**: Las redes neuronales son modelos que
+    imitan la forma en que las neuronas del cerebro humano procesan la
+    información. El aprendizaje profundo es una categoría del
+    aprendizaje automático cuyo modelo se basa en redes neuronales con
+    muchas capas, con la capacidad de aprender representaciones de alto
+    nivel de los datos.
+
+-   **Agrupamiento (Clustering)**: Son algoritmos que buscan agrupar
+    puntos de entrada similares basándose en las etiquetas de los puntos
+    más cercanos, entre ellos, podemos mencionar el algoritmo *k-means*
+    en el grupo de aprendizaje no supervisado y *k-nearest neighbors*
+    (kNN) en aprendizaje supervisado.
+
+-   **Aprendizaje por Refuerzo**: Es un tipo de aprendizaje automático
+    donde un agente aprende a tomar decisiones optimizando una
+    recompensa acumulativa.
+
+Cada uno de estos algoritmos tiene sus propios usos y aplicaciones, y la
+elección del algoritmo depende en gran medida del problema específico
+que se está tratando de resolver.
+
+## Consideraciones en el diseño de los modelos de Aprendizaje Automático
+
+En el mundo del aprendizaje automático, los *hiperparámetros* y las
+*funciones de pérdida* juegan roles cruciales en la construcción y el
+entrenamiento de modelos efectivos. Los *parámetros* son variables de
+configuración internas al modelo cuyos valores se estiman a partir de
+los datos de entrenamiento y definen la habilidad del modelo para
+resolver el problema, luego, los *criterios de parada* indican cuándo un
+algoritmo de aprendizaje debe dejar de entrenar, son fundamentales para
+asegurar que el algoritmo de aprendizaje converge a una solución. Por
+último, debido a su extendido uso, mencionamos el algoritmo del
+*gradiente descendente* permitendo encontrar los parámetros que
+minimizan una función de pérdida por aproximación.
+
+Los hiperparámetros, representando valores establecidos antes del
+entrenamiento, son guías en el proceso de aprendizaje y pueden tener un
+impacto significativo en el rendimiento del modelo. Por otro lado, las
+funciones de pérdida proporcionan una medida cuantitativa de qué tan
+bien o mal un modelo está realizando predicciones, y el objetivo durante
+el entrenamiento es minimizar esta función. Juntos, los hiperparámetros
+y las funciones de pérdida forman la columna vertebral de la
+optimización en el aprendizaje automático.
+
+En este párrafo, exploraremos estos conceptos en detalle, discutiendo su
+importancia, cómo se utilizan y su impacto en los modelos de aprendizaje
+automático.
+
+### Hiperparámetros
+
+Los hiperparámetros son parámetros que no se aprenden de los datos
+durante el entrenamiento de un modelo de aprendizaje automático, sino
+que son establecidos por el usuario antes de que comience el proceso de
+entrenamiento. Estos parámetros controlan el comportamiento del
+algoritmo y pueden afectar significativamente el rendimiento del modelo.
+
+Los hiperparámetros pueden clasificarse en dos categorías:
+
+-   *Hiperparámetros del modelo:* no pueden deducirse mientras se ajusta
+    la máquina al conjunto de entrenamiento porque se refieren a la
+    tarea de selección del modelo. Por ejemplo, la topología y el tamaño
+    de una red neuronal son hiperparámetros del modelo, el número de
+    capas, la cantidad de neuronas de entrada y de salida.
+
+-   *Hiperparámetros del algoritmo*: en principio no influyen en el
+    rendimiento del modelo pero afectan a la velocidad y la calidad del
+    proceso de aprendizaje. Ejemplos de hiperparámetros del algoritmo
+    son la tasa de aprendizaje, el tamaño del lote y la cantidad de
+    iteraciones.
+
+Los hiperparámetros dependen del algoritmo, por ejemplo, para redes
+neuronales artificiales podemos nombrar los siguientes:
+
+-   Tasa de aprendizaje: Controla cuánto se ajustan los pesos de la red
+    en cada iteración del entrenamiento.
+
+-   Número de épocas: Define cuántas veces se recorre todo el conjunto
+    de entrenamiento.
+
+-   Número de capas ocultas: Determina cuántas capas de nodos se usan
+    entre la capa de entrada y la de salida.
+
+-   Número de nodos por capa oculta: Define cuántos nodos se usan en
+    cada capa oculta.
+
+Es importante aclarar que la *cantidad de neuronas en las capas de
+entrada* y *salida* de una red neuronal no se consideran típicamente
+como hiperparámetros, dado que estos valores están determinados por el
+problema que se está resolviendo. Por otro lado, la cantidad de capas
+ocultas y la cantidad de neuronas en cada capa oculta sí son
+hiperparámetros, ya que estos valores se ajustan durante el proceso de
+optimización del modelo.
+
+La capa de entrada de una red neuronal tiene una neurona por cada
+característica de entrada del conjunto de datos. Por ejemplo, si estás
+clasificando imágenes que son de 28x28 pixeles, tendrias 784 neuronas de
+entrada, una para cada píxel. La capa de salida tiene una neurona por
+cada clase que el modelo está tratando de predecir. Por ejemplo, en un
+problema de clasificación binaria, tendrías una sola neurona de salida.
+Para un problema de clasificación multiclase con 10 clases, tendrías 10
+neuronas de salida.
+
+-   Máquinas de Vectores de Soporte (SVM):
+
+    -   C: Es el parámetro de regularización que controla el equilibrio
+        entre lograr un margen amplio y minimizar las violaciones del
+        margen. El parámetro "C", está destinado a controlar la
+        compensación entre errores de formación y los márgenes rígidos,
+        creando así un margen blando (soft margin) que permite algunos
+        errores en la clasificación a la vez que los penaliza. El valor
+        "C" es una penalización que se aplica a las clasificaciones
+        erróneas, lo que significa que cuanto mayor sea el valor "C",
+        menos vectores de soporte tendrá en cuenta el clasificador y más
+        estrecho será el margen.
+
+    -   Kernel: define la función utilizada para transformar los datos
+        en un espacio de mayor dimensión.
+
+    -   Gamma: rs un parámetro del kernel RBF (Radial basis function)
+        que controla la forma de la frontera de decisión.
+
+-   Regresión Lineal:
+
+    -   Tasa de aprendizaje: Controla cuánto se ajustan los coeficientes
+        en cada iteración del entrenamiento.
+
+    -   Número de iteraciones: Define cuántas veces se recorre todo el
+        conjunto de entrenamiento.
+
+Elegir los hiperparámetros apropiados es clave para lograr un buen
+rendimiento y generalización en los modelos de aprendizaje automático.
+Establecer hiperparámetros demasiado bajos puede provocar un ajuste
+insuficiente, por el contrario elejir valores demasiado altos puede
+provocar un ajuste excesivo. El desajuste ocurre cuando el modelo es tan
+simple que no puede capturar los patrones subyacentes en los datos, lo
+que resulta en un rendimiento deficiente tanto en el conjunto de
+entrenamiento como en el de prueba. El sobreajuste, por otro lado,
+ocurre cuando el modelo se vuelve demasiado complejo mostrando un
+excelente desempeño para los datos de entrenamiento y un desempeño
+deficiente para los datos de prueba, es decir el modelo presenta una
+escasa capacidad de generalización.
+
+#### Ajuste de los hiperparámetros
+
+Un desafío es encontrar los hiperparámetros óptimos, para ello, existen
+varias técnica. Un enfoque común es la búsqueda en cuadrícula, donde se
+evalúa exhaustivamente un conjunto predefinido de valores de
+hiperparámetros y se selecciona la combinación que produce el mejor
+rendimiento.
+
+El ajuste de hiperparámetros es un paso esencial en el proceso de
+aprendizaje automático, ya que puede afectar significativamente el
+rendimiento del modelo. A continuación se ofrecen recomendaciones para
+realizar el ajuste de hiperparámetros:
+
+-   Definir las metas y objetivos: Antes de comenzar a ajustar tus
+    hiperparámetros, es importante definir el objetivo o problema a
+    resolver con el modelo.
+
+-   Seleccionar los hiperparámetros: No todos los hiperparámetros serán
+    relevantes para el modelo y objetivos específicos. Es importante
+    seleccionar cuidadosamente los hiperparámetros que desean ajustar.
+
+-   Determinar el rango de valores a probar: Para cada hiperparámetro,
+    se deberá decidir el rango de valores para probar.
+
+-   Utilizar un enfoque sistemático: existen varios enfoques diferentes
+    para el ajuste de hiperparámetros, incluyendo la búsqueda en
+    cuadrícula, la búsqueda aleatoria y la optimización bayesiana.
+
+-   Evalúa los resultados: después de probar un rango de valores para
+    cada hiperparámetro, es importante evaluar los resultados para ver
+    qué combinación de hiperparámetros resultó en el mejor rendimiento.
+
+-   Afinar y probar nuevamente: una vez que se haya encontrado la mejor
+    combinación de hiperparámetros, es factible, realizar ajustes
+    adicionales probando con rangos más pequeños de valores alrededor de
+    los valores óptimos.
+
+Es importante destacar que el ajuste de hiperparámetros puede ser un
+proceso lento, pero es un paso esencial en la creación de *modelos
+efectivos* de aprendizaje automático.
+
+### Parámetros
+
+Los parámetros en un modelo de aprendizaje automático son variables de
+configuración internas al modelo cuyos valores se pueden estimar a
+partir de los datos de entrenamiento y sus valores definen la habilidad
+del modelo para resolver el problema.
+
+A continuación presentamos ejemplos de parámetros en diferentes tipos de
+modelos de aprendizaje automático:
+
+-   Redes Neuronales Artificiales: los *pesos* son los parámetros que
+    determinan la importancia relativa de cada entrada a una neurona. Se
+    ajustan durante el proceso de entrenamiento para minimizar el error
+    entre las predicciones del modelo y los datos de entrenamiento.
+
+-   Máquina de Vectores de Soporte (SVM): En una SVM, los *vectores de
+    soporte* son los parámetros, representando los puntos de datos que
+    están más cerca del hiperplano de decisión y, por lo tanto, son los
+    más difíciles de clasificar. Los vectores de soporte son parámetros
+    del modelo porque determinan la posición y orientación del
+    hiperplano de decisión.
+
+-   Regresión Lineal o regresión logística: En la regresión lineal y
+    logística, los *coeficientes* son los parámetros, representando los
+    valores que multiplican cada variable independiente. Estos
+    coeficientes determinan cómo cada variable de entrada afecta la
+    variable de salida.
+
+Es importante destacar que, a diferencia de los hiperparámetros, los
+parámetros del modelo se aprenden durante el proceso de entrenamiento y
+no se establecen manualmente.
+
+### **Función de activación**
+
+Una función de activación es una función que se utiliza en las redes
+neuronales para transmitir la información generada por la combinación
+lineal de los pesos y las entradas. Estas funciones pueden transmitir la
+información sin modificaciones (función identidad) o pueden modificarla.
+La función de activación introduce no linealidad en la red, lo que le
+permite aprender relaciones no lineales en los datos. A continuación
+presentamos ejemplos de funciones de activación comúnmente utilizadas en
+los modelos de aprendizaje automático:
+
+-   Función Escalón: esta función es binaria, asumiendo un valor cero
+    hasta llegar a un determinado umbral, y tomando un valor uno a
+    partir del mismo. Es una de las funciones de activación más simples
+    y fue la primera en ser utilizada.
+
+-   Función Sigmoidal: es una función real de variable real
+    diferenciable, con dos asíntotas horizontales y un punto de
+    inflexión. Su derivada es simple, por lo cual es muy utilizada en
+    las capas de salida de los modelos de clasificación binaria.
+
+-   Función Rectificadora (ReLU): esta función produce una salida de
+    cero si la suma ponderada es negativa y copia la suma ponderada si
+    su valor es positivo. Es eficiente en términos computacionales y se
+    utiliza comúnmente en redes neuronales profundas. Sin embargo, se
+    debe prestar atención a las neuronas muertas, es decir, aquellas que
+    no aportan información y, además, ajustar con cuidado la velocidad
+    de aprendizaje.
+
+    -   Función Leaky ReLU: es una variante de la función ReLU diseñada
+        para mitigar el problema de las neuronas muertas en ReLU. En
+        lugar de producir una salida de cero para las entradas
+        negativas, Leaky ReLU permite que la neurona tenga una pequeña
+        salida negativa2.
+
+    -   Función Parametric ReLU (PReLU): es otra variante de ReLU que
+        permite que la salida sea una pequeña fracción de la entrada
+        para las entradas negativas. Al igual que Leaky ReLU, PReLU está
+        diseñada para mitigar el problema de las neuronas muertas.
+
+-   Función Tangente Hiperbólica: su dominio son todos los números
+    reales y su rango se limita a los valores comprendidos entre -1 y +1
+    (no incluidos). Es simétrica en torno al origen de coordenadas, lo
+    que la convierte en una opción ideal para redes neuronales que
+    requieren una salida balanceada.
+
+-   Funciones de Base Radial: estas funciones calculan la salida
+    considerando la distancia a un punto denominado centro. Son
+    funciones que se incrementan (o decrecen) monótonamente con la
+    distancia de la entrada respecto a un punto central (distancia
+    euclidiana). Son típicamente usadas para construir aproximaciones de
+    funciones. Incluyen las funciones gausianas, multicuadráticas,
+    multicuadráticas inversas, entre otras.
+
+La elección de la función de activación adecuada es un aspecto
+importante en el diseño de una red neuronal y puede tener un impacto
+significativo en el rendimiento del modelo. A continuación presentamos
+algunos factores a considerar al elegir una función de activación:
+
+-   Tipo de problema: El tipo de problema que estás resolviendo puede
+    influir en la elección de la función de activación. Por ejemplo,
+    para problemas de clasificación binaria, la función sigmoidal se
+    utiliza comúnmente en la capa de salida.
+
+-   Optimización basada en gradiente: La selección de la función de
+    activación es relevante al realizar optimización basada en
+    gradiente, debido a que la derivada de la función de activación
+    determina la magnitud del gradiente.
+
+-   Velocidad de convergencia: El aprendizaje profundo a menudo requiere
+    mucho tiempo para procesar grandes cantidades de datos, y la
+    velocidad de convergencia del modelo es particularmente importante.
+
+-   Neuronas “muertas”: El concepto se aplica principalmente en las
+    funciones de activación que tienen un rango de salida que incluye el
+    cero. En el contexto del aprendizaje automático, se refieren a las
+    neuronas en una red neuronal que no se activan durante el proceso de
+    entrenamiento, esto puede suceder, por ejemplo, cuando se utiliza la
+    función de activación ReLU (unidad lineal rectificada) si durante el
+    entrenamiento los pesos de una neurona se ajustan de tal manera que
+    la suma ponderada es siempre negativa, entonces esa neurona siempre
+    producirá una salida de cero, independientemente de la entrada. A
+    estas neuronas se les llama *muertas* porque no contribuyen al
+    proceso de aprendizaje. Contabilizar las neuronas muertas en un
+    modelo puede ser un poco complicado, una forma de hacerlo sería
+    examinar las salidas de las neuronas después de cada época de
+    entrenamiento. Si la salida de una neurona es siempre cero, entonces
+    se podría considerar que esa neurona está “muerta”. Sin embargo,
+    este método puede ser computacionalmente costoso, especialmente para
+    redes neuronales grandes. Es importante tener en cuenta que tener
+    neuronas muertas no es necesariamente algo malo. En algunos casos,
+    puede ser beneficioso para el modelo tener algunas neuronas que se
+    activan raramente, ya que esto puede ayudar a prevenir el
+    sobreajuste. Sin embargo, si una gran proporción de las neuronas en
+    la red están muertas, esto podría indicar un problema con el proceso
+    de entrenamiento, como por ejemplo, una tasa de aprendizaje
+    demasiado alta.
+
+-   Capas de la red: La elección de la función de activación puede
+    variar entre las capas de entrada, ocultas y de salida. La elección
+    de la función de activación puede requerir experimentación y ajuste,
+    ya que lo que funciona mejor puede depender de la naturaleza
+    específica del problema y los datos.
+
+### Funciones de pérdida
+
+Las funciones de pérdida en aprendizaje automático son una medida de
+cuán bien un modelo de aprendizaje automático puede predecir el
+resultado esperado. Se utilizan para optimizar los parámetros de un
+modelo, donde el objetivo es minimizar la función de pérdida.
+
+En las siguientes líneas presentamos ejemplos de funciones de pérdida
+para diferentes tipos de modelos:
+
+-   Redes Neuronales Artificiales: utilizan varias funciones de pérdida,
+    dependiendo del problema específico que estén resolviendo.
+
+    -   Error Cuadrático Medio (MSE, por sus siglas en inglés), calcula
+        la media de los cuadrados de las diferencias entre los valores
+        predichos y los valores de prueba o valores nuevos. En otras
+        palabras es el promedio de los eerores al cuadrado. Es útil para
+        problemas de regresión. Se enfoca en el promedio de los errores
+        cuadrados.
+
+    -   El Error de Sumas Cuadráticas (SSE, por sus siglas en inglés) es
+        la suma de los errores al cuadrado. Es decir, para cada
+        observación, se calcula la diferencia entre el valor observado y
+        el valor predicho (el error), se eleva al cuadrado, y luego se
+        suman todos estos valores cuadrados. Se centra en la suma total
+        de los errores cuadrados.
+
+    -   Entropía Cruzada Categórica: mide la distancia entre las
+        distribuciones de probabilidad reales y las predichas. Es útil
+        para problemas de clasificación multiclase.
+
+    -   Entropía Cruzada Binaria: es una variante de la entropía cruzada
+        que se utiliza para problemas de clasificación binaria.
+
+-   Máquina de Vectores de Soporte (SVM): entre otras, utiliza la
+    siguiente función de error,
+
+    -   Margen de error: en las SVM se define una zona en torno al
+        hiperplano donde se ignoran los errores. Esto se conoce como el
+        margen y es una característica clave de las SVM. Las SVM buscan
+        el hiperplano que tenga la máxima distancia (margen) con los
+        puntos que estén más cerca de él mismo. Los puntos del vector de
+        soporte, son etiquetados y ubicados de acuerdo a la categoría a
+        los lados del hiperplano. Las SVM permiten ajustar el margen de
+        error, a través del hiperparámetro C.
+
+-   Regresión Lineal: suele utilizar la siguiente función de error,
+
+    -   Error Cuadrático Medio (MSE) como función de pérdida. En otras
+        palabras es el promedio de los errores al cuadrado. Un MSE más
+        bajo indica que el modelo tiene un mejor rendimiento.
+
+Es importante destacar que la elección de la función de pérdida adecuada
+es crucial, ya que afecta directamente el rendimiento y la capacidad de
+generalización del modelo.
+
+#### Gradiente descendiente
+
+Para problemas simples es posible utilizar el cálculo numérico para
+encontrar los parámetros óptimos que minimizan la función de pérdida,
+por ejemplo mediante mínimos cuadrados se podría plantear la ecuación
+donde la pendiente de la curva (es decir la derivada) es igual a 0
+(cero). Pero a medida que el problema incorpora más parámetros la
+función de pérdida crece en complejidad dificultando la resolución por
+medio del cálculo numérico, para lo cual surge la técnica de *gradiente
+descendiente* que permite hallar los parámetros que minimizan la función
+de pérdida mediante un proceso iterativo. En términos matemáticos,
+permite encontrar el mínimo de la función por aproximación, ajustando el
+tamaño del paso a medida que se acerca al mínimo, dado grandes pasos
+cuando está lejos y reduciendo el paso a medida que se acerca al mínimo.
+
+A continuación presentamos ejemplos de su aplicación en diferentes tipos
+de modelos:
+
+-   Redes Neuronales Artificiales: es el método de aprendizaje más
+    utilizado para entrenar redes neuronales, el algoritmo ajusta
+    iterativamente los parámetros de la red (como los pesos y sesgos)
+    para minimizar el error de predicción, medido a través de una
+    función de pérdida, por ejemplo, Error Cuadrático Medio (MSE) que
+    mide la diferencia entre los valores predichos por el modelo y los
+    valores nuevos.
+
+-   Máquinas de vectores de soporte: el gradiente descendente se puede
+    utilizar para maximizar el margen, que es la distancia entre el
+    hiperplano de decisión y los puntos de datos más cercanos.
+
+-   Regresión Lineal: el gradiente descendente se utiliza para minimizar
+    el Error Cuadrático Medio (MSE).
+
+Es importante destacar que el gradiente descendente es un proceso
+iterativo que comienza con una conjetura inicial para los parámetros del
+modelo y continúa ajustándolos hasta que encuentra los valores que
+minimizan la función de costo.
+
+El Gradiente descendiente estocástico, es una variación del gradiente
+descendiente, para abordar los problemas que surgen en casos donde el
+conjunto de datos contenga muchas observaciones, por ejemplo, cuando se
+tienen millones de puntos de datos, donde la utilización del gradiente
+descendiente puede llevar mucho tiempo, por lo cual surge la técnica del
+"gradiente descendiente estocástico" cuya particularidad es que elije un
+subconjunto de datos seleccionado aleatoriamente en cada paso,
+reduciendo el tiempo requerido para calcular la derivada de la función
+de pérdida.
+
+### Criterios de parada
+
+Los criterios de parada en el aprendizaje automático son reglas o
+condiciones que determinan cuándo un algoritmo de aprendizaje debe dejar
+de entrenar. Estos criterios son esenciales para prevenir el sobreajuste
+y el desajuste, y para asegurar que el algoritmo converge a una
+solución.
+
+A continuación presentamos algunos ejemplos de criterios de parada para
+diferentes tipos de modelos:
+
+-   Redes Neuronales Artificiales: Los criterios pueden incluir los
+    siguientes casos:
+
+    -   N*úmero máximo de ciclos de entrenamiento*: el entrenamiento se
+        detiene después de un número predefinido de iteraciones.
+
+    -   *Precisión mínima*: el entrenamiento continúa hasta que se
+        alcanza una precisión especificada.
+
+    -   *Validación cruzada*: el entrenamiento se detiene si el error en
+        el conjunto de validación no disminuye después de cada ciclo.
+
+-   Máquina de Vectores de Soporte (SVM): utilizan como criterio de
+    ajuste la *maximización del margen*, entendiendo margen como la
+    distancia más corta entre la frontera de decisión y cualquiera de
+    las muestras. El entrenamiento se detiene cuando se ha maximizado
+    este margen.
+
+-   Regresión Lineal: el criterio de parada más común es la
+    *minimización del Error Cuadrático Medio* (MSE)5. El entrenamiento
+    se detiene cuando el MSE es lo más pequeño posible, lo que indica
+    que la línea de regresión se ajusta lo mejor posible a los datos de
+    entrenamiento.
+
+Es importante destacar que la elección del criterio de parada adecuado
+puede depender del problema específico que se esté resolviendo y del
+algoritmo de aprendizaje automático que se esté utilizando.
+
+### Sobreajuste
+
+El sobreajuste (overfitting) es un problema común en el aprendizaje
+automático donde un modelo se ajusta demasiado bien a los datos de
+entrenamiento y pierde la capacidad de generalizar a nuevos datos. A
+continuación presentamos algunas técnicas comunes para evitar el
+sobreajuste y los modelos donde suelen aplicarse:
+
+-   General para todos los modelos
+
+    -   División de Datos: Divide tus datos en conjuntos de
+        entrenamiento, validación y prueba. Entrena tu modelo en el
+        conjunto de entrenamiento, ajusta los hiperparámetros con el
+        conjunto de validación y finalmente evalúa el rendimiento del
+        modelo en el conjunto de prueba. Esta técnica es universal y se
+        aplica a todos los tipos de modelos de aprendizaje automático.
+
+    -   Validación Cruzada: Esta técnica divide el conjunto de
+        entrenamiento en ‘k’ subconjuntos y entrena el modelo en ‘k-1’
+        subconjuntos mientras se valida en el subconjunto restante. Este
+        proceso se repite ‘k’ veces, cada vez con un subconjunto
+        diferente como el conjunto de validación. La validación cruzada
+        proporciona una estimación más robusta del rendimiento del
+        modelo. Al igual que la división de datos, esta técnica es
+        universal y se puede aplicar a cualquier tipo de modelo.
+
+-   Redes Neuronales Artificiales
+
+    -   Aumento de Datos: Si es posible, puedes aumentar tus datos de
+        entrenamiento. En tareas de visión por computadora, esto podría
+        implicar rotaciones, traslaciones y otras transformaciones de
+        las imágenes de entrada. Esta técnica se utiliza principalmente
+        en tareas de visión por computadora y procesamiento del lenguaje
+        natural, donde los modelos de aprendizaje profundo son comunes.
+
+    -   Parada Temprana (Early Stopping): Durante el entrenamiento,
+        puedes monitorear el rendimiento del modelo en un conjunto de
+        validación. Cuando el rendimiento deja de mejorar, puedes
+        detener el entrenamiento. Esto puede prevenir el sobreajuste al
+        evitar que el modelo se entrene demasiado tiempo. Se utiliza
+        principalmente en el entrenamiento de redes neuronales.
+
+    -   Dropout: Es una técnica específica para las redes neuronales.
+        Durante el entrenamiento, algunas neuronas se “apagan” o se
+        ignoran de manera aleatoria. Esto ayuda a prevenir el
+        sobreajuste al evitar que las neuronas dependan demasiado de sus
+        entradas.
+
+-   Regresión Lineal
+
+    -   Regularización: Agrega una penalización a la complejidad del
+        modelo en la función de pérdida, como la regularización L1
+        (Lasso) o L2 (Ridge). Esto puede ayudar a prevenir el
+        sobreajuste al restringir la complejidad del modelo. Se utiliza
+        comúnmente en modelos lineales como la regresión lineal y
+        logística, así como en las redes neuronales.
+
+Es importante recordar que la elección de la técnica depende del tipo de
+modelo y las características del problema que se está abordando.
+
+## Clasificación de los algoritmos de Inteligencia Artificial según el modelo de aprendizaje
+
+A continuación presentamos una clasificación general de los algoritmos
+de inteligencia artificial según el tratamiento de los conjuntos de
+datos durante el aprendizaje del modelo y entre paréntesis indicamos el
+tipo de problemas al cual se enfocan:
+
+### **Aprendizaje Supervisado**
+
+Se utiliza cuando se tienen datos etiquetados y se desea predecir una
+salida basada en una entrada. Algunos algoritmos comunes incluyen :
+
+-   Regresión Lineal (Regresión) : La *regresión lineal* es un algoritmo
+    de aprendizaje supervisado que se utiliza para predecir un valor
+    numérico a partir de una o más variables independientes. En el
+    contexto de la regresión lineal, se ajusta una función matemática
+    (una línea recta en el caso más simple) a los datos. Esta línea
+    recta se define por la ecuación "y=α+βx". Es importante mencionar
+    que la regresión lineal asume una relación lineal entre las
+    variables independientes y la variable dependiente. Si esta
+    suposición no se cumple, se pueden explorar otros tipos de
+    regresión, como la regresión polinómica.
+
+-   Regresión Polinómica (Regresión) : es una forma de regresión lineal
+    en la que la relación entre la variable independiente "x" y la
+    variable dependiente "y" se modela como un polinomio de grado n
+    en x. En otras palabras, mientras que en la regresión lineal se
+    ajusta una línea a los datos, en la regresión polinómica se ajusta
+    un polinomio. La *regresión polinómica* permite modelar relaciones
+    más complejas entre las variables. La ecuación de un modelo de
+    regresión polinómica de grado n es "y=α+β1​x+β2​x2+β3​x3+...+βn​xn". Es
+    importante tener en cuenta que a medida que aumentamos el grado del
+    polinomio, el modelo se vuelve más flexible y puede ajustarse mejor
+    a los datos de entrenamiento. Sin embargo, un grado demasiado alto
+    puede llevar a un "sobreajuste", donde el modelo se ajusta tan bien
+    a los datos de entrenamiento que no generaliza bien a nuevos datos.
+    Por lo tanto, es crucial encontrar un equilibrio entre el "*sesgo*"
+    (error por suposiciones simplificadas) y la "*varianza*" (error por
+    sensibilidad a fluctuaciones en el conjunto de entrenamiento) al
+    utilizar la regresión polinómica.
+
+-   Regresión logística (Clasificación) : La regresión logística permite
+    modelar la relación entre una variable dependiente binaria y una o
+    más variables independientes, es un algoritmo de aprendizaje
+    supervisado que se utiliza tanto para tareas de predicción como de
+    clasificación. En el caso de la clasificación, busca clasificar dos
+    clases diferentes. En el caso de la predicción, realiza una
+    predicción binaria entre dos categorías. La ecuación general de un
+    modelo de regresión logística es ln(1−pp​)=β0​+β1​x1​+β2​x2​+...+βn​xn. ​En
+    la regresión logística, se busca predecir la probabilidad de que una
+    variable dependiente binaria sea 1 (uno) o interpretando la variable
+    como categórica podemos decir, que un evento sea verdadero.
+
+-   Máquinas de vectores de soporte (SVM) (Clasificación y Regresión) :
+    Son algoritmos de aprendizaje supervisado que se utilizan para
+    resolver problemas de clasificación y regresión. Intuitivamente, una
+    SVM es un modelo que representa a los puntos de muestra en el
+    espacio, separando las clases en dos espacios lo más amplios
+    posibles mediante un hiperplano de separación definido como el
+    vector entre los dos puntos de las dos clases, más cercanos. A este
+    vector se lo denomina "vector soporte". Una SVM construye un
+    hiperplano o conjunto de hiperplanos en un espacio de
+    dimensionalidad muy alta (o incluso infinita) que puede ser
+    utilizado en problemas de clasificación o regresión. La *función de
+    kernel* en las Máquinas de Vectores de Soporte (SVM) son
+    fundamentales, dado que en su forma básica, una SVM puede atender
+    solo problemas de clasificación que son linealmente separables, sin
+    embargo, muchos problemas del mundo real no son linealmente
+    separables y requieren una frontera de decisión más compleja. Para
+    estos casos, la clave es transformar o mapear los datos a un espacio
+    de mayor dimensión donde se pueden separar linealmente aplicando una
+    SVM lineal simple. La elección del kernel depende del problema
+    específico que se está tratando de resolver, entre ellos podemos
+    mencionar los siguientes:
+
+    -   Kernel Lineal: se utiliza cuando los datos son linealmente
+        separables. En otras palabras, se puede dibujar una línea (o un
+        hiperplano en dimensiones superiores) para separar las clases.
+
+    -   Kernel Polinomial: permite la separación de datos que siguen una
+        forma polinomial. El grado del polinomio determina la
+        complejidad del límite de decisión.
+
+    -   Kernel de Base Radial (RBF): permite resolver casos en los que
+        las clases no son linealmente separables. El kernel RBF puede
+        mapear los datos a un espacio de dimensiones infinitas.
+
+    -   Kernel Sigmoide: es similar a la función sigmoide utilizada en
+        la regresión logística. Se utiliza principalmente para problemas
+        de clasificación.
+
+-   Árboles de decisión (Clasificación y Regresión) : Un árbol de
+    decisión es un algoritmo de aprendizaje supervisado no paramétrico
+    que se utiliza tanto para tareas de clasificación como de regresión.
+    Tiene una estructura de árbol jerárquica, que consta de un nodo
+    raíz, ramas, nodos internos y nodos hoja.
+
+    El nodo raíz es el punto de partida del árbol, que no tiene ramas
+    entrantes. Las ramas representan las decisiones basadas en los
+    valores de las características. Los nodos internos, también
+    conocidos como nodos de decisión, realizan evaluaciones basadas en
+    las características disponibles para formar subconjuntos homogéneos.
+    Los nodos hoja o nodos terminales representan todos los resultados
+    posibles dentro del conjunto de datos.
+
+    El aprendizaje del árbol de decisiones identifica los puntos de
+    división óptimos dentro de un árbol. Este proceso de división se
+    repite de forma recursiva de arriba hacia abajo hasta que todos (o
+    la mayoría) de los datos se hayan clasificado según etiquetas
+    específicas.
+
+    Para reducir la complejidad y evitar el sobreajuste, generalmente se
+    emplea la podare. Este es un proceso que elimina las ramas que se
+    dividen en características con poca importancia. Luego, el ajuste
+    del modelo se puede evaluar mediante el proceso de validación
+    cruzada.
+
+-   Bosque aleatorio (Random Forest) (Clasificación y Regresión) : es un
+    método de aprendizaje automático que combina la salida de múltiples
+    árboles de decisión para alcanzar un solo resultado. Cada árbol se
+    entrena en un subconjunto de los datos y da un resultado. Los
+    resultados de todos los árboles de decisión se combinan para dar una
+    respuesta final. A diferencia de un solo árbol de decisión, el
+    bosque aleatorio disminuye el riesgo de caer en problemas de
+    sobreajuste. Los algoritmos de bosque aleatorio tienen tres
+    hiperparámetros principales que deben configurarse antes del
+    entrenamiento: tamaño del nodo, cantidad de árboles y cantidad de
+    características muestreadas. Es importante destacar que la elección
+    del número de árboles es un parámetro que por lo general, se ajusta
+    mediante validación cruzada.
+
+-   Naive Bayes (Clasificación) : El algoritmo Naive Bayes es un método
+    de aprendizaje automático basado en el teorema de Bayes, que es una
+    técnica estadística que utiliza la probabilidad para hacer
+    predicciones. El nombre “Naive” (ingenuo) proviene del supuesto de
+    que todas las características del conjunto de datos son
+    independientes entre sí dado el valor de la variable objetivo. En
+    otras palabras, este supuesto asume que cada característica
+    contribuye de forma independiente a la probabilidad de pertenecer a
+    una clase particular. Naive Bayes es uno de los algoritmos de
+    aprendizaje automático más rápidos y sencillos para predecir una
+    clase dado un conjuntos de datos. En el paquete Scikit-learn hay
+    tres implementaciones de este modelo, GaussianNB, MultinomialNB y
+    BernoulliNB1, diferenciándose principalmente en el tipo de datos que
+    pueden manejar y las suposiciones que hacen sobre la distribución de
+    los datos. Es importante destacar que, aunque el algoritmo Naive
+    Bayes es simple y eficaz, el supuesto de independencia puede no ser
+    válido en todos los casos, lo que puede afectar el rendimiento del
+    modelo.
+
+-   Redes Neuronales Convolucionales (CNN) (Aprendizaje Profundo a
+    través de Redes Neuronales Artificiales) : estas redes son una clase
+    de modelo de aprendizaje profundo que se utiliza principalmente para
+    el procesamiento de imágenes y audio, espacializado en tareas de
+    clasificación y reconocimiento de objetos. Las CNN utilizan
+    operadores locales de convolución y agrupamiento para extraer
+    características en forma eficiente. Es importante destacar que
+    pueden requerir un uso intensivo de recursos informáticos y
+    necesitar unidades de procesamiento gráfico (GPU) para entrenar los
+    modelos. Las CNN se componen de tres tipos de capas:
+
+    -   Capa convolucional: Es la primera capa de una red convolucional.
+        En cada capa, la CNN aumenta en complejidad, identificando
+        partes cada vez más grandes de la imagen.
+
+    -   Capa de agrupación: Esta capa se utiliza para reducir la
+        dimensionalidad de los datos y evitar el sobreajuste.
+
+    -   Capa totalmente conectada: Es la última capa de la red, donde
+        todos los nodos están conectados entre sí.
+
+-   Perceptrón Multicapa (MLP) (Aprendizaje Profundo a través de Redes
+    Neuronales Artificiales) : Los modelos de perceptrón multicapa (MLP,
+    por sus siglas en inglés) son un tipo de red neuronal artificial con
+    las siguientes características principales:
+
+    -   Estructura de capas: Los MLP están formados por múltiples capas
+        de neuronas interconectadas. Las capas pueden clasificarse en
+        tres tipos:
+
+        -   Capa de entrada: Constituida por aquellas neuronas que
+            introducen los patrones de entrada en la red. En estas
+            neuronas no se produce procesamiento.
+
+        -   Capas ocultas: Formada por aquellas neuronas cuyas entradas
+            provienen de capas anteriores y cuyas salidas pasan a
+            neuronas de capas posteriores.
+
+        -   Capa de salida: Neuronas cuyos valores de salida se
+            corresponden con las salidas de toda la red.
+
+    -   Funciones de transferencia: Las funciones de transferencia de
+        los elementos de procesado (neuronas) han de ser derivables.
+
+    -   Función de error: La función de error típica en un modelo de
+        Perceptrón Multicapa (MLP) es el Error Cuadrático Medio. Este
+        error se calcula como la diferencia entre el valor esperado y el
+        valor obtenido a la salida de la red. El objetivo durante el
+        entrenamiento es minimizar este error ajustando los parámetros
+        del modelo. Además, cuando se aplica la función de activación de
+        tangente hiperbólica, identidad o sigmoide a la capa de salida,
+        se utiliza el error de sumas cuadráticas. Por otro lado, cuando
+        se aplica la función de activación softmax a la capa de salida,
+        se utiliza el error de entropía cruzada. Es importante mencionar
+        que la elección de la función de error puede depender del
+        problema específico que se esté abordando. Por lo tanto, aunque
+        el Error Cuadrático Medio es comúnmente utilizado, no es la
+        única opción.
+
+    -   Capacidad de resolver problemas no lineales: Los MLP tienen
+        capacidad para resolver problemas que no son linealmente
+        separables, lo cual es la principal limitación del perceptrón
+        simple.
+
+    -   Algoritmo de entrenamiento: La propagación hacia atrás (también
+        conocido como retropropagación del error o regla delta
+        generalizada), es un algoritmo utilizado en el entrenamiento de
+        estas redes.
+
+    -   Limitaciones: El Perceptrón Multicapa no extrapola bien, es
+        decir, si la red se entrena mal o de manera insuficiente, las
+        salidas pueden ser imprecisas. La existencia de mínimos locales
+        en la función de error dificulta considerablemente el
+        entrenamiento.
+
+-   Red de Tensor Neuronal Recursivo (RNTN) (Aprendizaje Profundo a
+    través de Redes Neuronales Artificiales) :
+
+-   Redes Neuronales Recurrentes (RNN) (Aprendizaje Profundo a través de
+    Redes Neuronales Artificiales) : su estructura se especializa en el
+    procesamiento de datos con una topología temporal como series
+    temporales.
+
+    -   Memoria Larga a Corto Plazo (LSTM) (Aprendizaje Profundo a
+        través de Redes Neuronales Artificiales)
+
+    -   Unidades Recurrentes Cerradas (GRU) (Aprendizaje Profundo a
+        través de Redes Neuronales Artificiales)
+
+-   Máquina de Boltzmann Restringida (RBM) (Aprendizaje Profundo a
+    través de Redes Neuronales Artificiales) : Se utilizan generalmente
+    en área de reconocimiento de imágenes y voz.
+
+-   Redes de Creencias Profundas (DBN) (Aprendizaje Profundo a través de
+    Redes Neuronales Artificiales) : Están compuestos por capas formadas
+    por Máquinas de Boltzmann Restringidas (RBM) entrenadas utilizando
+    aprendizaje no supervisado. Una vez entrenadas las capas anteriores,
+    se ajusta el modelo a una tarea específica, entrenando la capa de
+    salida utilizando aprendizaje supervisado. Los DBN se utilizan en
+    diversas áreas, como el reconocimiento de imágenes, el
+    reconocimiento de voz y el procesamiento de lenguaje natural.
+
+### **Aprendizaje No Supervisado**
+
+Se utiliza cuando no se tienen etiquetas en los datos y se desea
+descubrir estructuras ocultas. Algunos algoritmos comunes incluyen:
+
+-   K-Means (Agrupamiento y Detección de anomalías) : K-Means es un
+    algoritmo de agrupamiento que se basa en la distancia entre los
+    puntos de datos y los centroides de los clusters. No utiliza redes
+    neuronales artificiales para aprender las características, sin
+    embargo, pueden ser utilizados juntos en ciertos contextos, por
+    ejemplo, las redes neuronales pueden ser entrenadas utilizando
+    características extraídas mediante K-Means.
+
+    -   Condiciones de inicio: El algoritmo requiere especificar la
+        cantidad de grupos en los cuales se desea dividir el conjunto de
+        datos.
+
+    -   Función de pérdida: suma de las distancias al cuadrado de cada
+        punto a su centroide.
+
+    -   Criterios de parada más comunes son los siguientes:
+
+        -   Asignaciones: Si después de una iteración, los puntos de
+            datos permanecen en el mismo clúster.
+
+        -   Umbral de tolerancia: Si la mejora (es decir, la disminución
+            en la función de pérdida es menor que un umbral predefinido.
+
+        -   Cantidad de iteraciones: Si el algoritmo no converge (es
+            decir, las asignaciones de clústeres siguen cambiando)
+            después de un cierto número de iteraciones.
+
+    -   Es importante tener en cuenta que el algoritmo K-Means puede
+        converger a un mínimo local en lugar de un mínimo global. Esto
+        significa que los resultados pueden variar dependiendo de los
+        centroides iniciales. Por lo tanto, a menudo es útil ejecutar el
+        algoritmo varias veces con diferentes centroides iniciales y
+        elegir la solución con la menor función de pérdida.
+
+-   DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
+    (Agrupamiento) : La técnica DBSCAN (Density-Based Spatial Clustering
+    of Applications with Noise) es un algoritmo de agrupamiento de datos
+    basado en densidad. El algoritmo clasifica los puntos como *puntos
+    núcleo* (si al menos "MinPts" puntos están a una distancia "ε" de él
+    y esos puntos son directamente alcanzables desde él), *puntos
+    alcanzables* (si existe un grupo a secuencia de puntos donde cada
+    punto en la secuencia es directamente alcanzable desde el anterior),
+    o *ruido* (un punto que no sea alcanzable desde cualquier otro
+    punto). Si un punto es un punto núcleo, este forma un cluster junto
+    a otros puntos (núcleo o no) que sean alcanzables desde él. Cada
+    cluster contiene al menos un punto núcleo. DBSCAN es muy útil para
+    agrupar formas de datos complejas, incluyendo procesamiento de
+    imágenes.
+
+    -   Función de pérdida: El algoritmo no tiene una función de pérdida
+        en el sentido tradicional, es decir, en lugar de minimizar una
+        función de pérdida, DBSCAN opera identificando y agrupando
+        puntos en el espacio de datos que están densamente cerca uno del
+        otro, y marcando como *ruido* los puntos que están lejos de
+        cualquier grupo. Por lo tanto, no hay una “función de pérdida”
+        que se minimice durante el entrenamiento.
+
+    -   Condiciones de inicio: el algoritmo requiere dos parámetros o
+        variables iniciales:
+
+        -   Epsilon (ε): Es la distancia máxima entre dos puntos para
+            que se consideren en la misma vecindad.
+
+        -   MinPts: Es el número mínimo de puntos que se necesitan para
+            formar una región densa.
+
+    -   Criterios de parada: DBSCAN no tiene un criterio de parada
+        explícito como otros algoritmos de agrupamiento. El algoritmo
+        continúa hasta que ha visitado todos los puntos en el conjunto
+        de datos y ha asignado cada punto a un clúster o lo ha marcado
+        como ruido3. En otras palabras, el algoritmo se detiene cuando
+        todos los puntos han sido considerados.
+
+-   Filtros Pasa Bajo (Detección de anomalías) : En el área del
+    procesamiento de imágenes y sonido, un filtro pasa bajo puede ser
+    implementado como una operación de convolución con un kernel, por
+    ejemplo, un filtro de suavizado o desenfoque aplicado al
+    procesamiento de imágenes. En el caso de series temporales, se puede
+    aplicar un filtro a la serie para suavizar las fluctuaciones
+    normales y resaltar las anomalías, como resultado las observaciones
+    significativamente más altas o más bajas que el valor suavizado
+    podrían indicar una anomalía. Un ejemplo es el filtro de Hampel, que
+    establece una ventana de datos sobre la cual se calcula la mediana.
+    Los puntos de datos que difieren significativamente de la mediana
+    pueden ser considerados como anomalías.
+
+-   Máquinas de vectores de soporte (SVM) (Detección de anomalías) :
+
+-   Apriori (Asociación) :
+
+-   Atención (Aplicaciones generales) :
+
+-   Transformadores (Aplicaciones generales) :
+
+-   PCA (Principal Component Analysis) :
+
+-   SOM (Aprendizaje Profundo a través de Redes Neuronales Artificiales)
+    :
+
+-   Autoencoders (Aprendizaje Profundo a través de Redes Neuronales
+    Artificiales) :
+
+    -   Contractivo (Aprendizaje Profundo a través de Redes Neuronales
+        Artificiales) :
+
+    -   De-Noising (Aprendizaje Profundo a través de Redes Neuronales
+        Artificiales) :
+
+    -   Máquina de Boltzmann Restringida (RBM) (Aprendizaje Profundo a
+        través de Redes Neuronales Artificiales) : Se utilizan
+        generalmente en área de reconocimiento de imágenes y voz.
+
+-   Redes de Creencias Profundas (DBN) (Aprendizaje Profundo a través de
+    Redes Neuronales Artificiales) : Están compuestos por capas de
+    Máquinas de Boltzmann Restringidas (RBM), que se entrenan utilizando
+    aprendizaje no supervisado. Una vez entrenado el DBN, se puede
+    utilizar aprendizaje supervisado para ajustar los pesos de la capa
+    final, y así, mejorar el desempeño del modelo para una tarea
+    específica. Los DBN se utilizan en diversas áreas, como el
+    reconocimiento de imágenes, el reconocimiento de voz y el
+    procesamiento de lenguaje natural.
+
+### **Aprendizaje Semi-Supervisado**
+
+Este tipo de aprendizaje utiliza una combinación de datos etiquetados y
+no etiquetados para entrenar un modelo. Recordando, los datos
+etiquetados son aquellos que tienen una respuesta o resultado conocido,
+mientras que los datos no etiquetados no tienen esta información. En
+algunos casos, la presencia de datos no etiquetados en el conjunto puede
+mejorar el rendimiento respecto al aprendizaje supervisado. Además, este
+enfoque puede aportar una solución cuando el proceso de etiquetado de
+datos es costoso o inviable.
+
+-   Redes Generativas Antagónicas (GAN) (Aprendizaje Profundo a través
+    de Redes Neuronales Artificiales) : El objetivo principal de las GAN
+    es generar datos desde cero. Para ello se emplean dos redes
+    neuronales, la primera red es el "generador" y la segunda es el
+    "discriminador". Ambas redes fueron entrenadas con un mismo conjunto
+    de datos, pero la primera debe intentar crear variaciones de los
+    datos que ya ha visto, luego el discriminador se enfoca en
+    identificar la más pequeña diferencia entre la entrada y la salida
+    del "generador". La red generadora necesita la discriminadora para
+    saber cómo crear una imitación tan realista que la segunda no logre
+    distinguir de una imagen real. Las redes GAN tienen amplia
+    amplicación, por ejemplo, pueden ayudar a brindar mayor realismo a
+    los videojuegos o aplicaciones de modelado 3D, en ingeniería se
+    podrían usar para optimizar un diseño o en medicina podrian ayudar a
+    testear la eficacia de un medicamento.
+
+-   Redes de Creencias Profundas (DBN) (Aprendizaje Profundo a través de
+    Redes Neuronales Artificiales) : Están compuestos por capas de
+    Máquinas de Boltzmann Restringidas (RBM), que se entrenan utilizando
+    aprendizaje no supervisado. Una vez entrenado el DBN, se puede
+    utilizar aprendizaje supervisado para ajustar los pesos de la capa
+    final, y así, mejorar el desempeño del modelo para una tarea
+    específica. Los DBN se utilizan en diversas áreas, como el
+    reconocimiento de imágenes, el reconocimiento de voz y el
+    procesamiento de lenguaje natural.
+
+### **Aprendizaje Por Refuerzo**
+
+Se utiliza cuando se tiene un agente que debe tomar decisiones en un
+entorno para maximizar alguna recompensa. Algunos algoritmos comunes
+incluyen:
+
+-   Algoritmo Genérico :
+
+-   Q-learning :
+
+-   Policy gradients :
+
+## Otra :: Clasificación de los algoritmos de Inteligencia Artificial según ...
+
+A continuación presentamos una clasificación general de los algoritmos
+de inteligencia artificial según el tratamiento de los conjuntos de
+datos durante el aprendizaje del modelo y entre paréntesis indicamos el
+tipo de problemas al cual se enfocan:
+
+-   **Aprendizaje Profundo**: Se utiliza para aprender representaciones
+    de los datos a diferentes niveles de abstracción. Los algoritmos en
+    esta categoría incluyen:
+
+    -   Redes Neuronales Convolucionales (CNN)
+
+    -   Redes Neuronales Recurrentes (RNN)
+
+    -   Redes Neuronales basadas en Transformadores.
+
+-   **Procesamiento del Lenguaje Natural (NLP)**: Se utiliza para
+    problemas que involucran texto o lenguaje. Algunos algoritmos
+    comunes incluyen:
+
+    -   Bag of Words
+
+    -   TF-IDF
+
+    -   Word2Vec
+
+    -   BERT.
+
+-   **Visión por Computadora**: Se utiliza para problemas que involucran
+    imágenes o video. Algunos algoritmos comunes incluyen:
+
+    -   Redes Neuronales Convolucionales (CNN)
+
+    -   Autoencoders
+
+    -   GANs para generación de imágenes.
+
+-   **Sistemas de Recomendación**: Se utilizan para sugerir productos o
+    servicios a los usuarios basándose en su comportamiento pasado.
+    Algunos algoritmos comunes incluyen:
+
+    -   Filtrado colaborativo
+
+    -   Filtrado basado en contenido.
+
+## Clasificación del aprendizaje automático según el tipo de problema a resolver
+
+Presentamos a continuación una clasificación general de las técnicas de
+aprendizaje automático según el método de abordaje del conjunto de
+datos.
+
+### **Clasificación**
+
+Estos métodos predicen una etiqueta de clase para las entradas dadas.
+Algunos ejemplos son:
+
+-   Regresión Logística
+
+-   Máquinas de Vectores de Soporte (SVM)
+
+-   Árboles de Decisión
+
+-   Redes Neuronales Artificiales
+
+    -   Redes Neuronales Convolucionales (para clasificación de
+        imágenes)
+
+    -   Redes Neuronales Recurrentes (para clasificación de secuencias)
+
+-   K-Nearest Neighbors (K-NN)
+
+-   Gradient Boosting / XGBoost
+
+### **Regresión**
+
+Estos métodos predicen un valor continuo para las entradas dadas.
+Algunos ejemplos son:
+
+-   Regresión Lineal
+
+-   Regresión Polinomial
+
+-   Regresión Ridge
+
+-   Regresión Lasso
+
+-   Redes Neuronales Artificiales
+
+### **Agrupamiento (Clustering)**
+
+Estos métodos agrupan entradas según similitudes. Algunos ejemplos son:
+
+-   K-Means
+
+-   DBSCAN
+
+-   Agrupamiento Jerárquico
+
+-   Agrupamiento Espectral
+
+-   Agrupamiento de medios desplazados (Mean Shift)
+
+-   Agrupamiento de mezcla gaussiana (GMM)
+
+-   Agrupamiento de propagación de afinidad
+
+### **Reducción de Dimensionalidad**
+
+Algunos ejemplos son:
+
+-   PCA
+
+-   t-SNE
+
+-   UMAP
+
+-   Autoencoders.
+
+### **Detección de Anomalías**
+
+Algunos ejemplos son:
+
+-   One-class SVM
+
+-   Isolation Forest
+
+-   Local Outlier Factor
+
+### **Aprendizaje de Representaciones**:
+
+Algunos ejemplos son:
+
+-   Word2Vec
+
+-   GloVe
+
+-   BERT (para texto)
+
+-   Autoencoders (para imágenes).
+
+### **Optimización**
+
+Algunos ejemplos son:
+
+-   Algoritmos genéticos
+
+-   Búsqueda de cuadrícula
+
+-   Búsqueda aleatoria.
+
+Es importante mencionar que esta es una clasificación muy general y que
+muchos algoritmos pueden ser adaptados para resolver diferentes tipos de
+problemas. La elección del método depende en gran medida del problema,
+los datos disponibles y el objetivo del modelado.
+
+## ¿Qué son las Redes Neuronales Artificiales (ANN) ?
+
+La Red Neuronal Artificial es una forma de abordar la solución de los
+problemas utilizando las técnicas basadas en Aprendizaje Automático,
+pero existen otras formas de modelar los problemas, como se presentará
+más adelante. El modelo de solución basado en ANN conceptualmente
+intenta replicar la estructura básica biológica del cerebro humano
+concebida a partir de la interconexión de neuronas.
+
+Una red neuronal es un sistema de neuronas artificiales, llamadas
+"perceptrones", representando nodos computacionales con la función de
+clasificar, analizar y estimar datos. La red se forma a partir de varias
+capas de neurona interconectadas. Los datos ingresan en la primera capa
+de la red o capa de entrada, luego, cada uno de los perceptores toma una
+decisión y, a continuación, transmite esa información a los nodos de la
+capa siguiente, así sucesivamente la información avanza y se transforma
+en cada capa, hasta llegar a la capa final o capa de salida.
+
+Los modelos de entrenamiento con más de tres capas se denominan "redes
+neuronales profundas" o "modelos de aprendizaje profundo". Algunas redes
+neuronales modernas tienen cientos o miles de capas. El resultado de los
+perceptrones finales lleva a cabo la tarea definida en la red neuronal,
+como clasificar un objeto, encontrar patrones en los datos o estimar un
+valor.
+
+A continuación presentamos algunos modelos de redes neuronales
+artificiales:
+
+### Las redes neuronales de retroalimentación (FF)
+
+son una de las formas más antiguas de redes neuronales, donde los datos
+fluyen en una dirección a través de capas de neuronas artificiales hasta
+que se obtiene el resultado. En la actualidad, la mayoría de las redes
+neuronales de retroalimentación se consideran de "realimentación
+profunda" con varias capas (y más de una capa "oculta"). Las redes
+neuronales prealimentadas suelen estar emparejadas con un algoritmo de
+corrección de errores llamado "backpropagation" que, dicho de forma
+sencilla, empieza por el resultado de la red neuronal y vuelve hasta el
+principio mientras detecta errores para mejorar la precisión de la red
+neuronal. Muchas redes neuronales sencillas pero potentes son de
+retroalimentación profunda.
+
+### Las redes neuronales recurrentes (RNN)
+
+Se diferencian de las redes neuronales de retroalimentación en que
+suelen usar datos de series temporales o datos que implican secuencias.
+A diferencia de las redes neuronales de retroalimentación, que usan
+ponderaciones en cada nodo de la red, las redes neuronales recurrentes
+tienen "recuerdos" de lo que ha ocurrido en la capa anterior que
+dependen del resultado de la capa actual. Por ejemplo, al procesar el
+lenguaje natural, las RNNs pueden "tener en cuenta" otras palabras que
+se usan en una frase. Las RNNs se suelen utilizar para el reconocimiento
+de voz, la traducción y para mostrar subtítulos en imágenes.
+
+### Las redes neuronales de Memoria Larga a Corto Plazo (LSTM)
+
+Son una forma avanzada de RNNs que pueden usar la memoria para
+"recordar" lo que ha ocurrido en capas anteriores. La única diferencia
+entre las RNNs y las LTSMs es que estas últimas pueden recordar lo que
+ocurrió hace varias capas gracias a las celdas de memoria. Las LSTMs se
+suelen usar en el reconocimiento de voz y para hacer predicciones.
+
+### Las redes neuronales convolucionales (CNN)
+
+Abarcan algunas de las redes neuronales más comunes en la inteligencia
+artificial moderna. Las CNN suelen usarse en el reconocimiento de
+imágenes y utilizan varias capas separadas (una capa convolucional y
+luego una capa de agrupación) que filtran las diferentes partes de una
+imagen antes de volver a juntarlas (en la capa completamente conectada).
+Las primeras capas convolucionales pueden buscar elementos simples de
+una imagen, como colores y bordes, antes de buscar características más
+complejas en capas posteriores.
+
+### Las redes generativas antagónicas (GAN)
+
+Comprenden dos redes neuronales que compiten entre sí en un juego, lo
+que en última instancia mejora la precisión del resultado. Una red, la
+"generadora", crea ejemplos que la otra red, la "discriminadora" intenta
+demostrar si son verdaderos o falsos. Las GANs se han usado para
+transferir aprendizaje, por ejemplo, crear una pintura clásica
+utilizando el estilo de otro pintor, por ejemplo reproducir la "La
+Gioconda" con el estilo de Vincent Van Gogh.
+
+## ¿Cuáles son los principales modelos de entrenamiento de los algoritmos de Aprendizaje Automático?
+
+El aprendizaje automático busca dotar a las computadoras de la habilidad
+para aprender sin haber sido explícitamente programadas. Se basa en
+algoritmos que mejoran su desempeño a partir de la experiencia o
+iteraciones. En el aprendizaje automático suelen utilizarse tres tipos
+de modelos de aprendizaje:
+
+### Aprendizaje Supervisado (SL)
+
+[SL](https://cloud.google.com/discover/what-is-supervised-learning),
+Google Cloud, Recurso en línea, fecha de consulta 14/07/2024.
+
+El aprendizaje supervisado es un tipo de aprendizaje automático que
+utiliza datos etiquetados (lo que significa que contiene ejemplos tanto
+de entradas, llamadas características, como de salidas correctas
+(llamadas etiquetas). Estos datos se utilizan para entrenar un algoritmo
+cuyo objetivo es predecir resultados y reconocer patrones. Los objetivos
+de los modelos de aprendizaje supervisado también están predeterminados,
+lo que significa que el tipo de resultado de un modelo ya se conoce
+antes de que se apliquen los algoritmos. En otras palabras la entrada se
+asigna a la salida según los datos de entrenamiento, y los algoritmos
+deben aprender las relaciones entre las entradas y la salidas.
+
+En problemas de aprendizaje supervisado, comenzamos con un conjunto de
+datos que contiene ejemplos de entrenamiento con etiquetas asociadas
+según los atributos que necesitemos modelar. Luego, el algoritmo
+aprenderá la relación entre los datos y las etiquetas asociadas, y
+aplicará esa relación aprendida para clasificar datos completamente
+nuevos (sin etiquetas) que la máquina no haya visto antes.
+
+Los datos de entrada ingresados en el algoritmo de aprendizaje deberían
+incluir la información relevante sobre los atributos de los individuos
+en el conjunto de datos. Estos atributos se llaman "características" o
+features, las cuales pueden ser variables numéricas o categóricas. Sería
+deseable contar con datos de calidad que expresen la relación entre las
+características y el valor de salida a predecir. El conjunto de datos de
+entrada se separa en entrenamiento, validación y test. El grupo de
+entrenamiento posee etiquetas, el grupo de test no está etiquetado.
+
+#### Casos de Uso
+
+Presentamos a continuación situaciones donde el aprendizaje supervisado
+tiene éxito:
+
+-   Evaluación de riesgos: los modelos de aprendizaje automático
+    supervisados pueden ayudar a los bancos y otras empresas de
+    servicios financieros a determinar si es probable que los clientes
+    incumplan sus préstamos, lo que ayuda a minimizar el riesgo en sus
+    carteras.
+-   Clasificación de imágenes: los algoritmos de aprendizaje automático
+    supervisados a menudo se entrenan para clasificar objetos en
+    imágenes y videos. Por ejemplo, se podría utilizar un algoritmo para
+    reconocer a una persona en una imagen y etiquetarla automáticamente
+    en una plataforma de redes sociales.
+-   Detección de fraude: el aprendizaje supervisado sustenta muchos
+    sistemas de detección de fraude, lo que permite a las empresas
+    reconocer actividades fraudulentas. Estos modelos se entrenan en
+    conjuntos de datos que contienen actividad tanto fraudulenta como no
+    fraudulenta para que puedan usarse para detectar actividades
+    sospechosas en tiempo real.
+-   Sistemas de recomendación: las plataformas en línea y los servicios
+    de transmisión utilizan algoritmos de aprendizaje supervisado para
+    impulsar recomendaciones basadas en el comportamiento anterior del
+    cliente o el historial de compras. Los modelos extraen información
+    importante sobre el comportamiento de un usuario y sugieren
+    productos y contenidos similares.
+
+#### Tipología de problemas
+
+En particular, el aprendizaje supervisado se orienta principalmente
+hacia las siguientes tareas:
+
+##### Regresión
+
+Orientado a predecir un valor numérico continuo, por ejemplo ¿ Cuál será
+el valor estimado de venta de una propiedad ? En este caso, la salida
+del modelo es el valor estimado de venta de la casa y las entradas son
+las características que describen la casa y su entorno.
+
+Su principal algoritmo es:
+
+-   Regresión Lineal
+    -   Funciones de pérdida (Loss functions)
+        -   Error Cuadrático Medio (MSE)
+    -   Técnica para minimizar el error
+        -   Gradiente descendiente.
+        -   Gradiente descendiente estocástico.
+
+##### Clasificación
+
+Orientado a asignar una etiqueta (o un valor numérico representado una
+probabilidad) a una entrada. Por ejemplo ¿Esta foto representa un gato o
+perro?
+
+Los principales algoritmos enfocados en la clasificación son:
+
+-   Regresión Logística
+-   Máquinas de vectores de soporte (SVM)
+
+##### Propósitos generales: Aprendizaje no paramétrico
+
+Sus algoritmos principales son:
+
+-   Vecinos k-cercanos (k-nearest neighbors)
+-   Árboles de decisión
+-   Bosques aleatorios (random forest)
+
+##### Propósitos generales: Aprendizaje basado en Redes Neuronales Artificiales (ANN)
+
+Sus algoritmos principales son:
+
+-   Aprendizaje Profundo (DL)
+    -   RN Convolucionales (CNN)
+    -   RN Recurrentes (RNN)
+        -   Memoria de Largo y Corto Tiempo (LSTM)
+        -   Unidad Recurrente Cerrada (GRU)
+    -   Perceptron Multicapa (MLP)
+    -   RN Tensoriales Recursivas (RNTN)
+
+#### 
+
+### Aprendizaje No Supervisado (UL)
+
+[UL](https://cloud.google.com/discover/what-is-unsupervised-learning#section-1),
+Google Cloud, Recurso en línea, fecha de consulta 14/07/2024.
+
+El aprendizaje no supervisado en inteligencia artificial es un tipo de
+aprendizaje automático que aprende de datos sin supervisión humana. A
+diferencia del aprendizaje supervisado, los modelos de aprendizaje
+automático no supervisados reciben datos sin etiquetar y se les permite
+descubrir patrones e ideas sin ninguna guía o instrucción explícita. Los
+algoritmos de aprendizaje no supervisados son más adecuados para tareas
+de procesamiento complejas, como organizar grandes conjuntos de datos
+sin etiquetar, ayudando a comprender la estructura subyacente e
+identificar patrones y relaciones dentro del conjunto de datos sin la
+necesidad de que un humano les enseñe.
+
+#### Casos de Uso
+
+A continuación presentamos casos de uso comunes que ayudan a las
+empresas a explorar grandes volúmenes de datos rápidamente.
+
+-   Detección de anomalías: la agrupación en clústeres no supervisada
+    puede procesar grandes conjuntos de datos y descubrir puntos de
+    datos que son atípicos en un conjunto de datos.
+-   Motores de recomendación: al utilizar reglas de asociación, el
+    aprendizaje automático no supervisado puede ayudar a explorar datos
+    transaccionales para descubrir patrones o tendencias que pueden
+    usarse para generar recomendaciones personalizadas para minoristas
+    en línea.
+-   Segmentación de clientes: el aprendizaje no supervisado también se
+    utiliza comúnmente para generar perfiles de personas compradoras
+    agrupando los rasgos comunes o los comportamientos de compra de los
+    clientes. Estos perfiles se pueden utilizar para guiar el marketing
+    y otras estrategias comerciales.
+-   Detección de fraude: el aprendizaje no supervisado es útil para la
+    detección de anomalías, ya que revela puntos de datos inusuales en
+    conjuntos de datos. Estos conocimientos pueden ayudar a descubrir
+    eventos o comportamientos que se desvían de los patrones normales en
+    los datos, revelando transacciones fraudulentas o comportamientos
+    inusuales como la actividad de los bots.
+-   Procesamiento del lenguaje natural (PNL): el aprendizaje no
+    supervisado se utiliza comúnmente para diversas aplicaciones de PNL,
+    como categorizar artículos en secciones de noticias, traducción y
+    clasificación de textos o reconocimiento de voz en interfaces
+    conversacionales.
+-   Investigación genética: la agrupación genética es otro ejemplo común
+    de aprendizaje no supervisado. Los algoritmos de agrupamiento
+    jerárquico se utilizan a menudo para analizar patrones de ADN y
+    revelar relaciones evolutivas.
+
+#### Tipología de problemas
+
+En particular, el aprendizaje no supervisado se orienta principalmente
+hacia las siguientes tareas:
+
+##### Agrupamiento (Clustering)
+
+Sus algoritmos principales son:
+
+-   Algoritmo K-Means
+
+##### Detección de patrones o anomalías
+
+Sus algoritmos principales son:
+
+-   Algoritmo K-Means
+-   Filtros Pasa Bajo
+-   Máquinas de vectores de soporte (SVM)
+
+##### Asociación (Association rules)
+
+Sus algoritmos principales son:
+
+-   Algoritmo Apriori
+
+##### Reducción de dimensionalidad
+
+Sus algoritmos principales son:
+
+-   Análisis de componentes principales (PCA)
+-   Descomposición de valores singulares (SVD) Orientado a propósitos
+    generales
+-   Atención / Transformadores (Attention / Transformers)
+
+##### Propósitos generales: Aprendizaje basado en Redes Neuronales Artificiales (ANN)
+
+-   Aprendizaje Profundo (DL)
+    -   Mapa Autoorganizadado (SOM)
+    -   Red Profunda de Creencia (DBN)
+    -   Codificador automático (Autoencoders)
+        -   Codificador Automático Contractivo (CAE)
+        -   Eliminación de ruido (DAE)
+        -   Máquina de Boltzmann Restringida (RBM)
+
+### Aprendizaje Semisupervisado
+
+Además del aprendizaje supervisado y no supervisado, se suele emplear un
+enfoque mixto, llamado aprendizaje semisupervisado, en el que solo se
+etiquetan algunos datos. Aunque en el aprendizaje semisupervisado ya se
+conocen características de un grupo de datos, el algoritmo debe aprender
+cómo organizar y estructurar los datos para lograr los resultados
+deseados incorporando un conjunto de datos sin etiquetar.
+
+#### Tipología de problemas
+
+En particular, el aprendizaje semi supervisado se orienta principalmente
+hacia las siguientes tareas:
+
+##### Propósitos generales: Aprendizaje basado en Redes Neuronales Artificiales (ANN)
+
+-   Aprendizaje Profundo (DL)
+    -   Red Generativa Antagónica (GAN)
+    -   Red Profunda de Creencias (DBN)
+
+### Aprendizaje con Refuerzo (RL)
+
+El aprendizaje por refuerzo es un modelo de aprendizaje automático donde
+un "agente" aprende a llevar a cabo una tarea definida mediante ensayo y
+error (un bucle de retroalimentación) hasta que su rendimiento se
+encuentra dentro del intervalo deseado. El agente recibe refuerzo
+positivo cuando hace la tarea bien y refuerzo negativo cuando falla. Un
+ejemplo de aprendizaje de refuerzo sería enseñar a una mano robótica a
+recoger una pelota. Se puede describir en líneas generales como
+"aprender con la práctica".
+
+El aprendizaje por refuerzo permite a un agente aprender a comportarse
+en un entorno interactuando con él y recibiendo recompensas o castigos.
+Utilizado principalmente en las áreas de robótica y juegos.
+
+#### Tipología de problemas
+
+En particular, el aprendizaje por refuerzo se orienta principalmente
+hacia las siguientes tareas:
+
+##### Propósitos generales: Aprendizaje basado en Agentes inteligentes
+
+Nota: Revisar en la tesis de la UBA si corresponde incorprorarlo como
+tipología de problema en RL.
+
+##### Propósitos generales: Aprendizaje basado en Políticas o Gradientes
+
+-   Estado-Acción-Recompensa-Estado-Acción (SARSA)
+-   Q-Learning
+-   Aprendizaje basado en políticas
+
+##### Propósitos generales: Aprendizaje basado en Redes Neuronales Artificiales (ANN)
+
+-   Aprendizaje Profundo con refuerzo (DRL) o Deep reinforcement
+    learning
+    -   Ventaja Asincrónica Actor-Crítico (A3C)
+    -   Red Q Profunda (DQN)
+
+#### Diseño y ajuste del modelo
+
+-   Procesos de decisión de Markov (PDM): es una formalización
+    matemática del proceso de decisión secuencial, donde se considera un
+    agente que realiza acciones en un ambiente, retroalimentándose con
+    los cambios en el estado y las recompensas recibidas.
+
+# Clasificación de algoritmos de Aprendizaje Automático
+
+## Según su funcionamiento
+
+### Aprendizaje supervisado
+
+#### Regresión lineal
+
+Recordando que en el proceso de aprendizaje supervisado durante el
+*entrenamiento* la máquina aprende la relación o función "f" que mejor
+ajusta el conjunto de observaciones a partir de los datos de
+entrenamiento etiquetados. La función a ajustar se puede representar
+como: Y = f(X) + ε, donde Y es la salida, X = (x1, x2…xn) son las
+características y ε es el término de error.
+
+Durante el *test* la máquina predice la salida "Y" de los datos de
+testeo no etiquetados buscando el menor error posible. Es importante
+notar que "X" puede ser un tensor (es una estructura de datos vector o
+matriz de "n" dimensiones) con cualquier número de dimensiones. Un
+tensor 1D es un vector (1 fila, muchas columnas), un tensor 2D es una
+matriz (muchas filas, muchas columnas) y entonces pueden haber tensores
+con 3, 4, 5 o más dimensiones (por ejemplo, un tensor 3D con filas,
+columnas y profundidad).
+
+Regresión Lineal es un método paramétrico, lo cual significa que se
+asume la forma de la función que establece la relación entre el valor de
+"x" (entrada o entradas) con el valor de "y" (salida). En regresión
+lineal asumimos explícitamente una relación lineal entre "x" e "y", es
+decir, en problemas de regresión lineal la función de aproximación es
+una línea. La siguiente es una fórmula general para la regresión lineal:
+
+𝑦𝑗 = 𝑏𝑜 + 𝑏1𝑥1𝑗 + 𝑏2𝑥2𝑗 + ⋯ + 𝑏𝑘𝑥𝑘𝑗 + 𝑢𝑗
+
+Y para la regresión lineal simple quedaría:
+
+𝑦𝑗 = 𝑏𝑜 + 𝑏1𝑥1𝑗+ 𝑢𝑗
+
+Donde "b0" y "b1" son los coeficientes, "y" es el regresando, "x" es el
+regresor y uj es el término de error.
+
+La "y" es una variables que puede denominarse alternativamente como
+endógena, dependiente, regresando, explicada o variable respuesta, entre
+otros, mientras que las "x" son unas variables que puede denominarse:
+exógena, independiente, regresor o explicativa.
+
+y = b0 + b1 \* x + ε
+
+El objetivo del algoritmo de entrenamiento es aprender los parámetros
+del modelo (en este caso b0 y b1) que minimicen el error en las
+predicciones. Luego, definimos la función de error, por ejemplo, podemos
+utilizar la suma de los cuadrados de los residuos, pero en caso que sea
+suficiente una función lineal para lograr una buena aproximación se
+puede optar por funciones polinómicas.
+
+La regresión lineal simple es aplicable en situaciones donde una
+característica sea sufienciente para describir el problema, pero en caso
+que se requieran incorporar más características surgirán más variables
+"x" cada una con su correspondiente coeficiente "b", aplicando el modelo
+genérico para "j" sea igual a la cantidad de características.
+
+Para encontrar los mejores parámetros, es necesario:
+
+1.  Definir la función de costo o pérdida, que permita medir el grado de
+    imprecisión de nuestro modelo. Por ejemplo, Error Cuadrático Medio
+    (MSE).
+
+2.  Encontrar los parámetros que minimicen la función de pérdida, dicho
+    de otra forma, encontrar los parámetros de hagan que las
+    predicciones de nuestro modelo sean los más precisas posibles. Por
+    ejemplo, aplicando la técnica del gradiente descendiente.
+
+Pensando en la representación gráfica, en dos dimensiones, el ejemplo
+resulta en una línea que mejor se ajusta a la nube de puntos del grupo
+de entrenamiento (la distancia entre la línea y los puntos sea menor).
+En tres dimensiones, se representaría un plano y luego, para más
+dimensiones quedarían los hiperplanos.
+
+##### Error Cuadrático Medio (MSE)
+
+La función de pérdida utilizada en la regresión lineal se llama Error
+Cuadrático Medio (MSE, por sus siglas en inglés). En términos
+matemáticos, se expresa como:
+
+MSE= 1/n ∑ ​(yi​−y\^​i​)2, para i = 1 a n.
+
+Donde:
+
+-   "n" es el número total de observaciones.
+
+-   "yi"​ es el valor real de la observación "i".
+
+-   "y\^​i"​ es el valor predicho por el modelo para la observación "i".
+
+El objetivo de la regresión lineal es minimizar esta función de pérdida.
+Es decir, se busca el modelo que haga que el MSE sea lo más pequeño
+posible.
+
+##### Gradiente Descendiente
+
+En el caso de dos dimensiones, la función de costo asume la forma de la
+sumatoria del cuadrado de la diferencia entre los puntos (la función
+cuadrado evita los valores negativos y penaliza las diferencias mayores)
+normalizado (dividido) por el doble de la cantidad de pares de valores
+(x,y) del conjunto de datos (observaciones).
+
+Para un problema simple, como el anterior, es posible utilizar el
+cálculo numérico para encontrar los parámetros óptimos que minimizan la
+función de costo anteriormente propuesta, por ejemplo utilizando la
+técnica de mínimos cuadrados se podría buscar el valor donde la
+pendiente de la curva (es decir la derivada) es igual a 0. Pero cuando
+esta función crece en complejidad, a medida que se incorporan más
+características, se dificulta la posibilidad de resolver el problema
+apelando al cálculo numérico, por lo cual surge una aproximación que
+resuelve el problema mediante un proceso iterativo, denominada
+"gradiente descendiente", el cual permite hallar los parámetros que
+minimicen un función de costo compleja.
+
+En términos matemáticos, el gradiente descendente permite encontrar el
+mínimo de una función por aproximación, dado grandes pasos cuando está
+lejos del mínimo y pequeños pasos a medida que se acerca. El método del
+gradiente descendente consiste en aplicar la siguiente función en forma
+iterativa:
+
+w \<- w - a \* gradiente p
+
+El valor "w" identifica las variables de la función de error, en nuestro
+caso serán los parámetros que buscamos cuyo valor minimizan la función.
+El parámetro "a" se denomina tasa de aprendizaje y permite ajustar los
+pasos en busca del mínimo, para evitar que el algoritmo diverja.Al
+inicio del algoritmo se elijen dos parámetrosel valor "a" y la cantidad
+de de iteraciones. Luego se elije un punto aleatorio del dominio de la
+función de error, "p0" y se calcula el valor del gradiente de la función
+en este punto, luego se calcula el valor de los parámetros de la función
+de error en la siguiente iteración, denominado "w1", resultantes del
+siguiente cálculo:
+
+w1 \<- w0 - a \* gradiente p0
+
+En consecuencia, se pasará del punto 0, "p0" al punto 1, "p1". Y así
+sucesivamente, hasta llegar a la cantidad de iteraciones fijadas o el
+tamaño del paso (resultante del producto entre "a" y el gradiente del
+punto), sea muy pequeño, en la práctica un valor de corte sería 0,001 o
+menor. En la practica también fija un máximo para el número de pasos,
+por ejemplo, el número máximo de pasos puede ser 1.000.
+
+Para una explicación más detallada puedes consultar este video:
+[Stochastic Gradient Descent, Clearly Explained!!! by Josh Starmer,
+English,
+10'](https://www.youtube.com/watch?v=vMh0zPT0tLI&ab_channel=StatQuestwithJoshStarmer)
+[Gradiente descendiente paso a paso por Josh Starmer traducción
+automática, Español,
+23'53"l](https://www.youtube.com/watch?v=sDv4f4s2SB8&ab_channel=StatQuestwithJoshStarmer)
+
+Los pasos del algoritmo de aproximación mediante el gradiente
+descendiente son los siguientes:
+
+-   *Paso 1*. Toma la derivada de la función de pérdida para cada
+    parámetro. En Aprendizaje Automático, calculamos el "Gradiente" de
+    la "Función de Pérdida".
+
+-   *Paso 2*. Elije valores aleatorios para los parámetros.
+
+-   *Paso 3*. Introduce los valores de los parámetros en las derivadas
+    ("gradientes")
+
+-   *Paso 4*. Calcula el tamaño del paso: Tamaño del paso = Pendiente x
+    Tasa de Aprendizaje
+
+-   *Paso 5*. Calcular los nuevos parámeteros: Nuevo parámtero =
+    Parámetro anterior - Tamaño del paso Paso 6: Ir al Paso 3, hasta que
+    el Tamaño del Paso sea menor a 0,001 o la cantidad de pasos sea
+    mayor a 1.000.
+
+##### Gradiente descendiente estocástico
+
+En caso que el conjunto de datos contenga muchas observaciones, por
+ejemplo, cuando se tienen millones de puntos de datos, seel algoritmo
+puede llevar mucho tiempo, por lo cual surge la técnica del "*gradiente
+descendiente estocástico*" cuya particularidad es que elije un
+subconjunto de datos seleccionado aleatoriamente en cada paso,
+reduciendo el tiempo requerido para calcular la derivada de la función
+de pérdida.
+
+### Regresión
+
+### Clasificación
+
+### Arboles de decisión
+
+### Agrupación (Clustering)
+
+### Detección de anomalías
+
+## Según el algoritmo
+
+### Máquinas de vectores de soporte (SVM)
+
+### Redes Neuronales Artificiales
+
+### Aprendizaje Profundo (DL)
+
+### Algoritmos genéticos
+
+### Aprendizaje automático de confrontación
+
+# Aprendizaje Profundo
+
+## ¿ Cómo se conectan el Aprendizaje Automático y el Aprendizaje Profundo ?
+
+Tanto el aprendizaje profundo como el aprendizaje automático son ramas
+de la inteligencia artificial, pero el aprendizaje automático es un
+término más amplio que abarca una variedad de técnicas, incluido el
+aprendizaje profundo.
+
+Los algoritmos de aprendizaje automático generalmente se entrenan en
+grandes conjuntos de datos de datos etiquetados, mientras que los
+algoritmos de aprendizaje profundo se entrenan en conjuntos de datos
+masivos de datos sin etiquetar.
+
+El aprendizaje automático suele ser una buena opción para tareas como el
+reconocimiento de imágenes, el reconocimiento de voz y el procesamiento
+del lenguaje natural, mientras que los algoritmos de aprendizaje
+profundo son adecuados para tareas que requieren un alto grado de
+reconocimiento de patrones, como la clasificación de imágenes y la
+detección de objetos.
+
+## ¿Cuáles son los beneficios de utilizar modelos de aprendizaje profundo?
+
+Existen varios beneficios al utilizar modelos de aprendizaje profundo,
+que incluyen:
+
+-   Puede aprender relaciones complejas entre características de los
+    datos: esto los hace más poderosos que los métodos tradicionales de
+    aprendizaje automático.
+-   Entrenamiento de grandes conjuntos de datos: esto los hace muy
+    escalables y capaces de aprender de una gama más amplia de
+    experiencias, haciendo predicciones más precisas.
+-   Aprendizaje basado en datos: los modelos DL pueden aprender de forma
+    basada en datos, lo que requiere menos intervención humana para
+    entrenarlos, lo que aumenta la eficiencia y la escalabilidad. Estos
+    modelos aprenden de datos que se generan constantemente, como datos
+    de sensores o redes sociales.
+
+## Desafíos en los modelos de Aprendizaje Profundo (DL)
+
+El aprendizaje profundo presenta una serie de desafíos, los cuales
+incluyen:
+
+-   Requisitos para los conjuntos de datos: los modelos de aprendizaje
+    profundo requieren grandes cantidades de datos de los que aprender,
+    lo que dificulta la aplicación del aprendizaje profundo a problemas
+    en los que no hay muchos datos disponibles.
+-   Sobreajuste: los modelos DL pueden ser propensos al sobreajuste.
+    Esto significa que pueden aprender el ruido de los datos en lugar de
+    las relaciones subyacentes.
+-   Sesgo: estos modelos pueden estar potencialmente sesgados,
+    dependiendo de los datos en los que se basan. Esto puede dar lugar a
+    predicciones injustas o inexactas. Es importante tomar medidas para
+    mitigar el sesgo en los modelos de aprendizaje profundo.
+
+## Aprendizaje Profundo enfocado en el análisis de videos
+
+### Casos de Uso
+
+[Human Activity Recognition (HAR) Tutorial with Keras and Core
+ML](https://towardsdatascience.com/human-activity-recognition-har-tutorial-with-keras-and-core-ml-part-1-8c05e365dfa0)
+
+### Metodología
+
+A continuación se propone una serie de etapas enfocadas en la
+identificación de características de una escena de video, utilizando
+técnicas de inteligencia artificial en el área de aprendizaje profundo.
+
+#### Comprensión del problema
+
+El tema se enfocará al uso de maquinas basadas en técnicas de
+aprendizaje automático aplicado a la resolución de problemas vinculados
+al análisis de escenas.
+
+#### Comprensión de los datos
+
+#### Preprocesamiento de datos
+
+##### Tratamiento de nulos
+
+##### Discretización
+
+-   Métodos de discretización de la información
+-   Jittering
+-   Anonimización
+
+#### Extracción de características
+
+-   Selección de características
+    -   El proceso de Análisis de Componentes Principales (PCA)
+    -   Ejemplo práctico de aplicación
+
+#### Entrenamiento
+
+-   Overfitting y underfitting
+    -   Cómo evitar el overfitting y el underfitting
+
+#### Evaluación del modelo
+
+-   **Aprendizaje Activo:** En el aprendizaje activo, el modelo tiene la
+    capacidad de interactuar con el usuario (o alguna otra fuente de
+    información) con el objetivo de aplicar etiquetas para los ejemplos
+    más informativos o ambiguos. También, se puede aplicar este enfoque
+    durante la etapa de ajuste del modelo, aplicando el proceso de
+    etiquetado en forma manual para aquellas observaciones que el modelo
+    no identificó correctamente.
+
+-   Elección de las métricas.
+
+-   Elección del método.
+
+-   Comparación de resultados
+
+    -   Curvas ROC
+
+-   Validación cruzada (cross-validation)
+
+-   Ajuste de los hiper-parámetros
+
+-   Ensamble de modelos
+
+#### Análisis de resultados
+
+...
+
+#### Despliegue del modelo
+
+# 

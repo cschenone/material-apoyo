@@ -1,0 +1,488 @@
+---
+title: "Metodología híbrida para el abordaje de la extracción de patrones en videos usando CCN y RNN"
+author: "Carlos Schenone"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5  # up to five depths of headings (specified by #, ## and ...)
+    number_sections: false  # if you want number sections at each table header
+    theme: united  # specifies the theme style
+    highlight: tango  # specifies the syntax highlighting style 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Extracción de patrones en videos usando CCN y RNN
+
+A continuación se presenta un modelo para realizar la extracción de patrones en videos, aplicando redes neuronales convolucionales y redes neuronales recurrentes, con el objetivo de etiquetar los objetos y acciones del video.
+
+## Referencias
+
+### Caso 1: [Loading and preprocessing video data with TensorFlow](https://www.youtube.com/watch?v=3xualF8abC4&ab_channel=TensorFlow)
+
+#### Description.
+
+Learn how to preprocess video data and load it into a TensorFlow model. Loading video data into a deep learning model is similar to how you would load in image data, but with an extra dimension. Shilpa Kancharla, a TensorFlow Developer Relation Engineer, introduces how to split videos into frames, or images, in this tutorial. This video shows Python code snippets so you can understand how to use deep learning, which is helpful for studying computer vision.
+
+#### Resources.
+
+-   [You can find the code from this video here](https://goo.gle/3XxGkUU)
+
+-   [Loading and preprocessing video data tutorial](https://goo.gle/3Xxc10G)
+
+-   [Video classification with Keras and Tensorflow tutorial](https://goo.gle/3Zao8SL)
+
+-   [Transfer learning with MoViNet](https://goo.gle/40ZtDFu)
+
+-   [Watch more ML Tech Talks](https://goo.gle/ml-tech-talks)
+
+-   [Subscribe to TensorFlow](https://goo.gle/TensorFlow)
+
+Products mentioned: TensorFlow - General
+
+### Caso 2: [Video Classification with a CNN-RNN Architecture \| Human Activity Recognition](https://www.youtube.com/watch?v=ezjnySXqdTo&ab_channel=CodeWithAarohi)
+
+Author: In case of any query, You can comment or you can contact me at [aarohisingla1987\@gmail.com](mailto:aarohisingla1987@gmail.com){.email}
+
+#### Description.
+
+[Github Repository](https://github.com/AarohiSingla/Video...)
+
+#### Resources.
+
+Topics which I will cover in this Video Classification Tutorial are:
+
+-   Overview of Video Classification
+
+-   Steps to build our own Video Classification model
+
+-   Exploring the Video Classification dataset
+
+-   Training our Video Classification Model
+
+-   Evaluating our Video Classification Model
+
+#### Definitions:
+
+-   What are videos? Videos are a collection of images(frames) arranged in a specific order.
+
+-   What are video classification? Video Classification is the task of predicting a label that is relevant to the video.
+
+-   What is image classification? In Image classification: we take images, use feature extractors (like convolutional neural networks or CNNs) to extract features from images, and then classify that image based on these extracted features. Video classification involves just one extra step.
+
+#### Steps:
+
+While performing Video classification we can follow these steps:
+
+-   1-We first extract frames from the given video.
+
+-   2-We use feature extractors (like convolutional neural networks or CNNs) to extract features from all the frames,
+
+-   3-Classify every frame based on these extracted features.
+
+Before we talk about Video Classification, let us first understand what is Human Activity Recognition?. The task of classifying or predicting the activity/action performed by someone is called Activity recognition.
+
+With the help of Video Classification models we can solve the problem of Human Activity Recognition.
+
+# Planteo general de la metodología.
+
+## Paso 1. Objetivo del estudio
+
+### Descripción
+
+El estudio se basa en lograr un modelo basado en redes neuronales enfocado en la extracción de objetos y clasificación de escenas en videos.
+
+## Paso 2. Estado del arte
+
+### Descripción
+
+Estudio del estado del arte del objetivo del estudio.
+
+### Actividades
+
+#### 2.1. Estudio del estado del arte de los modelos disponibles y sus características
+
+Se analiza el estado del arte de la clasificación de videos usando técnicas de inteligencia artificial
+
+## Paso 3. Diseño del estudio
+
+### Descripción
+
+En esta etapa, se diseña el experimento. Se define el modelo a utilizar, junto con los parámetros de evaluación y los niveles de aceptación para cada indicador. Por ejemplo, generalmente se mencionan como parámetros de evaluación:
+
+-   Exactitud o Accuracy
+
+-   Sencibilidad o Recall
+
+-   Presición
+
+-   F1 Score.
+
+A continuación se ofrece el siguiente blog que habla del tema [¿Cómo sé si mi modelo de predicción es realmente bueno?](https://datos.gob.es/es/blog/como-se-si-mi-modelo-de-prediccion-es-realmente-bueno#:~:text=Exactitud%20o%20accuracy%3A%20la%20fracci%C3%B3n,de%20cada%20clase%20es%20similar). Idioma Español. Fecha de publicación: 26-01-2021.
+
+### Actividades
+
+#### 3.1. Selección del modelo a utilizar
+
+Se definirá la arquitectura
+
+#### 3.2. Selección de la técnica de evaluación del modelo
+
+Se definirá la/las indicadores a utilizar para evaluar la calidad del modelo construido
+
+#### 3.3. Selección de la técnica de entrenamiento y evaluación
+
+Se evaluarán el uso de técnicas de aceleramiento del entrenamiento como la transferencia de conocimiento desde modelos pre-entrenados o entrenamiento desde cero.
+
+#### 3.4. Selección del Framework a utilizar para realizar la construcción, entrenamiento y test del modelo.
+
+Como recomendación se utilizará el siguiente entorno:
+
+-   Python (para desarrollo)
+-   GoogleColab (para entrenamiento y test en la nube)
+-   R (para documentación del proceso)
+-   Github (para la gestión del proyecto)
+
+## Paso 4. Selección y ajuste del conjunto de datos a utilizar
+
+### Descripción
+
+En la etapa se selecciona el conjunto de datos a utilizar durante el entrenamiento, validación y test. Se pueden consultar sitios de referencia como los siguientes:
+
+### Conjunto de datos
+
+#### General Categories
+
+-   [Kaggle](https://www.kaggle.com/datasets)
+
+#### Human Actions
+
+-   UDF101
+-   [UCF101 - Action Recognition Data Set](https://www.crcv.ucf.edu/data/UCF101.php)
+-   [UCF-QNRF - A Large Crowd Counting Data Set](https://www.crcv.ucf.edu/data/ucf-qnrf/)
+-   [Open Images Dataset](https://blog.research.google/2016/09/introducing-open-images-dataset.html)
+
+### Actividades
+
+#### 4.1. Selección de la fuentes de datos
+
+Identificación y elección del dataset para entrenamiento y test del modelo.
+
+#### 4.2. Preprocesamiento del dataset
+
+Ajustes en el formato de los videos del dataset de acuerdo a los requerimientos del modelo.
+
+## Paso 5. Entrenamiento del modelo
+
+### Descripción
+
+En esta etapa se realiza el entrenamiento del modelo.
+
+## Paso 6. Test del modelo
+
+### Descripción
+
+En esta etapa se realiza el test del modelo. Si el resultado está dentro de lo esperable se acepta el modelo y se continúa, sino se debe revisar.
+
+## Paso 7. Desarrollo del estudio
+
+### Descripción
+
+En esta etapa, se aplica el modelo a un conjunto de videos con el objeto de extraer las características (objetos y acciones) y evaluar los resultados.
+
+### Actividades
+
+#### 7.1. Preprocesamiento del video.
+
+Separación en fotogramas y ajustes de los parámetros del video (color, tamaño de los cuadros y cantidad de fotogramas).
+
+#### 7.2. Extracción de características de los fotogramas.
+
+a)  extracción de objetos y b) clasificación de acciones
+
+#### 7.3. Etiquetación de los fotogramas
+
+Considerando las características extraídas (objetos y acciones)
+
+#### 7.4. Etiquetación del video
+
+A partir de las características extraídas de los fotogramas
+
+## Paso 8. Visualización de los resultados
+
+### Descripción
+
+Se presenta el video de entrada y las características, junto a los fotogramas y sus características particulares.
+
+## Paso 9. Interpretación y presentación de resultados
+
+### Descripción
+
+En esta última etapa, se interpreta y describen los hallazgos.
+
+### Actividades
+
+#### 9.1. Interpretación de los hallazgos
+
+Análisis y comprensión de los resultados obtenidos a través de los métodos utilizados.
+
+#### 9.2. Descripción de resultados
+
+Documentación y presentación de los resultados y conclusiones del estudio, resaltando los aspectos más relevantes.
+
+## Anexo: Estructuras del Estudio propuestas
+
+A continuación se presentan algunas estructuras posibles del estudio:
+
+### Caso 1: ...
+
+-   Fuente: [Google Drive](https://drive.google.com/drive/u/0/folders/1nFDrGLxQaTimxLZX-psFsX1XaxvXyh0e)
+
+-   *Comentario*:
+
+-   **Secciones**
+
+    -   Title
+
+    -   Abstract
+
+    -   1.Introduction
+
+    -   2.Methods
+
+        -   Eligibility criteria
+
+        -   Information sources
+
+        -   Search strategy
+
+        -   Selection process
+
+        -   Data collection process
+
+        -   Data items
+
+        -   Study risk of bias assessment
+
+        -   Effect measures
+
+        -   Synthesis methods
+
+        -   Reporting bias assessment
+
+        -   Certainty assessment
+
+    -   3.Results
+
+        -   Study selection
+
+        -   Study characteristics
+
+        -   Risk of bias in studies
+
+        -   Results of individual studies
+
+        -   Results of syntheses
+
+        -   Reporting biases
+
+        -   Certainty of evidence
+
+    -   4.Discussion
+
+    -   5.Other information
+
+        -   Registration and protocol
+
+        -   Support
+
+        -   Competing interests
+
+        -   Availability of data, code and other materials
+
+### Caso 2: A bibliometric analysis of bitcoin scientific production
+
+-   Fuente: [Google Drive](https://drive.google.com/drive/u/0/folders/1nFDrGLxQaTimxLZX-psFsX1XaxvXyh0e)
+
+-   *Comentario*:
+
+<!-- -->
+
+-   **Secciones**:
+
+    -   Title
+
+    -   Abstract
+
+    -   Keywords
+
+    -   1.Introduction
+
+    -   2.Related literature
+
+    -   3.Data and results
+
+        -   3.1. Corresponding author's geographical distribution
+
+        -   3.2. Top publication sources
+
+        -   3.3. Main keywords.
+
+        -   3.4. Highly cited papers
+
+        -   3.5. Degree of concentration of selected variables
+
+        -   3.6. Citation, sources and authors graphs
+
+    -   4.Potential research lines
+
+    -   5.Conclusions
+
+    -   Acknowledgments
+
+    -   References
+
+### Caso 3: Where do we stand in cryptocurrencies economic research: A survey based on hybrid analysis
+
+-   Fuente [Google Drive](https://drive.google.com/drive/u/0/folders/1nFDrGLxQaTimxLZX-psFsX1XaxvXyh0e)
+
+-   *Comentario*: En la propuesta de enfoque híbrido, se aborda un primer filtro o *lectura distante* utilizando Bibliometría, para identificar clusters, determinar autores, áreas de interés y luego, se realiza una *lectura detallada* o close reading. La estrategia anterior permite identificar los artículos de interés a analizar en detalle, para poder comentarlos.
+
+-   Secciones:
+
+    -   Title
+
+    -   Abstract
+
+    -   Keywords
+
+    -   1.Introduction
+
+    -   2.Methodological Design
+
+        -   2.1 First Step: Distant Reading by Means of Bibliometric Analysis
+
+        -   2.2 Second Step: Close Reading of Cryptocurrency Literature
+
+    -   3.Close Reading Findings
+
+        -   3.1 Data Sources
+
+        -   3.2 Data Frequency
+
+        -   3.3 Main Research Topics
+
+            -   3.3.1 Monetary Economics and Overview of Bitcoin Ecosystem
+
+            -   3.3.2 Informational Efficiency
+
+            -   3.3.3 Price Discovery
+
+            -   3.3.4 Price Volatility
+
+            -   3.3.5 Assets Correlation and Portfolio Optimization
+
+            -   3.3.6 Safe-Haven Characteristics
+
+            -   3.3.7 Bubble Formation
+
+            -   3.3.8 Initial Coin Offering (ICO)
+
+    -   4.Literature Gaps and Open Research Paths
+
+    -   5\. Conclusions
+
+    -   Acknowledgments
+
+    -   Data Availability Statement
+
+    -   Notes
+
+    -   References
+
+### Caso 4: Guidelines for Snowballing in Systematic Literature Studies and a Replication in Software Engineering
+
+-   Fuente [Artículo](https://sci-hub.se/10.1145/2601248.2601268)
+
+-   Comentario:
+
+-   Secciones:
+
+    -   Title
+
+    -   Abstract
+
+    -   Categories and Subject Descriptors
+
+    -   General Terms
+
+    -   Keywords
+
+    -   1\. Introduction
+
+    -   2.Related Work
+
+    -   3.Snowballing Procedure
+
+        -   3.1 Start Set
+
+        -   3.2 Iterations
+
+            -   3.2.1 Backward Snowballing
+
+            -   3.2.2 Forward Snowballing
+
+            -   3.2.3 Inclusion and Exclusion
+
+            -   Figure 1. Snowballing procedure
+
+        -   3.3 Authors
+
+        -   3.4 Data Extraction
+
+    -   4.Replication
+
+        -   4.1 Introduction
+
+        -   4.2 Start Set
+
+        -   4.3 Iteration 1
+
+            -   4.3.1 Backward Snowballing
+
+            -   4.3.2 Forward Snowballing
+
+            -   4.3.3 Summary of Status
+
+        -   4.4 Iteration 2
+
+            -   4.4.1 Backward Snowballing
+
+            -   4.4.2 Forward Snowballing
+
+        -   4.5 Iteration 3
+
+        -   4.6 Efficiency
+
+        -   4.7 Authors
+
+        -   4.8 Citation Matrix and Timeline
+
+        -   4.9 Reflections
+
+            -   4.9.1 Ten Lessons Learned from Snowballing
+
+            -   4.9.2 Validity Threats
+
+        -   4.10 Comparison
+
+    -   5.Discussion Snowballing
+
+    -   6.Summary
+
+    -   7.Acknowledgments
+
+    -   8.References

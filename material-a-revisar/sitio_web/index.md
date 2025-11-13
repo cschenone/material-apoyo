@@ -1,0 +1,68 @@
+---
+title: "Doctorado en Inteligencia Artificial - PhD in Artificial Intelligence"
+author: "Carlos Schenone"
+date: {r Sys.Date()}
+output:
+  html_document:
+    toc: true
+    toc_depth: 5  # up to five depths of headings (specified by #, ## and ...)
+    number_sections: false  # if you want number sections at each table header
+    theme: united  # specifies the theme style
+    highlight: tango  # specifies the syntax highlighting style 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+¡Bienvenidas y bienvenidos a mi espacio! Concebido como un lugar de encuentro para compartir el camino al Doctorado - *Welcome to my space! Conceived as a meeting place to share the path to the PhD*
+
+## **Sobre mi - *About Me***
+
+👋 ¡Hola! - *Hi there!*
+
+Mi nombre es Carlos, vivo en Argentina - *My name is Carlos, I'm from Argentina*
+
+Trabajo como profesor e investigador en el Programa de Tecnologías de la Información y la Comunicación en Aplicaciones de Interés Social del Instituto de Ingeniería y Agronomía en la Universidad Nacional Arturo Jauretche - *I'm profesor and researcher at Institute of Engineering and Agronomy - TICAPPS/IIyA/UNAJ*
+
+También soy investigador en el Centro para la Gestión Local Sostenible del Agua y el Hábitat Humano en la Facultad de Ciencia y Tecnología de la Universidad Autónoma de Entre Ríos - *I'm researcher at Center for the Sustainable Management of Water and Human Habitat - CEGELAH/FCyT/UADER*
+
+🔭 Actualmente estoy trabajando en mi Doctorado en Inteligencia Artificial - *I’m currently working on PhD in Artificial Intelligence*
+
+🌱 En la actualidad estoy investigando sobre modelos híbridos de aprendizaje automático enfocados en el reconocimiento de escenas - *I’m currently researching Machine learning hybrid models for video action recognition*
+
+## **Proyectos - Projects**
+
+A continuación presentamos los proyectos en los cuales estamos trabajando, categorizados como investigación o desarrollo:
+
+### Desarrollo - Development
+
+-   [Metodología híbrida para el abordaje de la extracción de patrones en videos usando CCN y RNN](http://127.0.0.1:13743/html_preview/docs/desarrollo/analisis-videos/Metodolog%C3%ADa-h%C3%ADbrida-para-el-abordaje-de-la-extracci%C3%B3n-de-patrones-en-videos-usando-CCN-y-RNN.html)
+
+    El objetivo del proyecto es desarrollar un modelo para realizar la extracción de patrones en videos, aplicando redes neuronales convolucionales y redes neuronales recurrentes, con el objetivo de etiquetar los objetos y escenas del video.
+
+-   [Metodología híbrida para el análisis de un corpus de artículos académicos](http://127.0.0.1:13743/html_preview/docs/desarrollo/analisis-corpus/Metodolog%C3%ADa-h%C3%ADbrida-para-al-an%C3%A1lisis-de-un-corpus-de-art%C3%ADculos-acad%C3%A9micos.html)
+
+    El objetivo del proyecto es desarrollar una herramienta que ayude a estudiar el estado del arte de un tema de investigación, aplicando análisis bibliométrico y técnicas de revisión sistemática, aportando un conjunto de elementos que simplifiquen el análisis de un campo científico
+
+    -   [Próximos pasos](http://127.0.0.1:13743/html_preview/docs/desarrollo/analisis-corpus/Proximos-pasos.html): El documento contiene las directrices y los siguientes pasos para el desarrollo del artículo donde se presenten los resultados del proyecto.
+
+### Investigación - Research
+
+-   [Metodogía híbrida para la detección de Cianobacterias](http://127.0.0.1:13743/html_preview/docs/investigacion/cianobacterias/Cianobacterias.html)
+
+    El objetivo del proyecto es realizar la detección de cianobacterias utilizando técnicas de aprendizaje profundo aplicadas al procesamientos de imágenes satelitales de fuentes abiertas
+
+-   [Metodología híbrida para la detección de Plagas y Malezas](http://127.0.0.1:13743/html_preview/docs/investigacion/plagasymalezas/PlagasyMalezas.html)
+
+    El objetivo del proyecto es realizar la detección de plagas y malezas utilizando técnicas de aprendizaje profundo aplicadas al procesamientos de imágenes satelitales de fuentes abiertas e imágenes capturadas del sobrevuelo de drones
+
+## **Sitios amigos - Friendly sites**
+
+-   [TICAPPS/IIyA/UNAJ - Algoritmos de Machine Learning para procesamiento de imágenes en aplicaciones biomédicas, agronómicas y ambiental](https://investigacion.unaj.edu.ar/algoritmos-de-machine-learning-para-procesamiento-de-imagenes-en-aplicaciones-biomedicas-agronomicas-y-ambientales/).
+
+    El objetivo general del programa es generar conocimiento sobre nuevas herramientas en el sector de las Tecnologías de la Información y la Comunicación aplicadas la mejora de la calidad de vida
+
+-   [CEGELAH/FCyT/UADER - Centro para la Gestión Local Sostenible del Agua y el Hábitat Humano](https://cegelahfcyt.wordpress.com/)
+
+    El CEGELAH es una organización académica destinada a ejecutar actividades de investigación científica, desarrollo tecnológico, docencia, formación de recursos humanos, extensión y prestación de servicios a terceros contribuyendo al desarrollo de sistemas de gestión sostenible del agua y del hábitat humano aplicables a municipios de regiones en vías de desarrollo.

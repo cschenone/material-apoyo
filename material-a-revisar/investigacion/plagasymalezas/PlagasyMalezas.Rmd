@@ -1,0 +1,24 @@
+---
+title: "Proyecto de investigación Plagas y Malezas"
+output: 
+  html_document:
+    code_folding: show
+    theme:
+      base_font:
+        google: Prompt
+      heading_font:
+        google: Proza Libre
+---
+
+```{r setup, include=FALSE}
+if (requireNamespace("thematic")) 
+  thematic::thematic_rmd(font = "auto")
+```
+
+## Objetivo
+
+El objetivo general del proyecto es realizar un aporte a la detección de plagas y malezas utilizando técnicas de aprendizaje profundo aplicadas al procesamientos de imágenes satelitales de fuentes abiertas e imágenes capturadas del sobrevuelo de drones.
+
+## Plan de Trabajo
+
+... En Construcción...

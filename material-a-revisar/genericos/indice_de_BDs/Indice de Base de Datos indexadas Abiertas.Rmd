@@ -1,0 +1,40 @@
+---
+title: "Indice de BDs Rusia y China"
+author: "Carlos Schenone"
+date: "2023-05-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Indices de BDs
+
+Enlaces que podrían ser útiles para acceder a las bases de datos de Rusia y China:
+
+# Para Rusia:
+
+* Russian Science Citation Index (RSCI): https://elibrary.ru/en/
+* eLibrary.ru: https://www.elibrary.ru/defaultx.asp
+* CyberLeninka: https://cyberleninka.ru/
+
+# Para China:
+
+* China National Knowledge Infrastructure (CNKI): https://www.cnki.net/
+* China Academic Journals (CAJ): https://www.cnki.net/kcms/detail/platform/CAJOnline
+* Wanfang Data: http://www.wanfangdata.com.cn/index.html
+
+# Otras bases de datos abiertas:
+
+* Directory of Open Access Journals (DOAJ): es una base de datos que recopila información sobre revistas científicas de acceso abierto de todo el mundo. Puedes acceder a ella a través de este enlace: https://doaj.org/
+* CORE: es una plataforma que recopila millones de artículos de acceso abierto de todo el mundo. Puedes acceder a ella a través de este enlace: https://core.ac.uk/
+* OpenAlex : OpenAlex es un catálogo bibliográfico de artículos científicos, autores e instituciones accesibles en modo de acceso abierto, que lleva el nombre de la Biblioteca de Alejandría. OurResearch comenzó a operar en enero de 2022 como resultado del finalizado Microsoft Academic Graph. Openalex compite con productos comerciales como Web of Science de Clarivate o Scopus de Elsevier, y se complementa con herramientas bibliométricas y una API. Puedes acceder a ella a través de este enlace: https://openalex.org/
+
+# Buscadores académicos
+
+* Google academics
+* Science.gov
+* Microsoft academic
+* Web of Science de Clarivate
+* Scopus de Elsevier

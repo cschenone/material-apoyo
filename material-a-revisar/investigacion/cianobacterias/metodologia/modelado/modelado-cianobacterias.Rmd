@@ -1,0 +1,72 @@
+---
+title: "Modelado para detección de Cianobacterias"
+output: 
+  html_document:
+    code_folding: show
+    theme:
+      base_font:
+        google: Prompt
+      heading_font:
+        google: Proza Libre
+---
+
+```{r setup, include=FALSE}
+if (requireNamespace("thematic")) 
+  thematic::thematic_rmd(font = "auto")
+```
+
+# Modelado
+
+Documento de diseño de un modelo de aprendizaje profundo para la detección de cianobacterias
+
+## Objetivo
+
+El objetivo de este documento es diseñar un modelo de aprendizaje profundo que reciba como entrada imágenes satelitales y construya un mapa de calor representando la probabilidad de encontrar condiciones favorables para el florecimiento de cianobacterias.
+
+## Arquitectura del modelo
+
+La arquitectura del modelo recomendado es una red neuronal convolucional (CNN) con una capa de entrada, una o varias capas ocultas convolucionales y una capa de salida. La capa de entrada recibirá las imágenes satelitales, que se convertirán en un tensor de tamaño 3D (ancho, alto, número de canales). Las capas ocultas convolucionales se encargarán de extraer las características relevantes de las imágenes, y la capa de salida generará un mapa de calor con la probabilidad de que se produzca un florecimiento de cianobacterias en cada píxel.
+
+## Framework
+
+El framework recomendado para realizar el diseño, entrenamiento y validación del modelo es TensorFlow. TensorFlow es una biblioteca de código abierto para el aprendizaje automático que proporciona una amplia gama de herramientas y funcionalidades para el desarrollo de modelos de aprendizaje profundo.
+
+## Dataset
+
+El dataset utilizado para entrenamiento y validación del modelo se puede obtener de los siguientes recursos:
+
+*MODIS/Aqua* Landsat \*Sentinel-2
+
+Estos datasets contienen imágenes satelitales de alta resolución que pueden ser utilizadas para entrenar un modelo de aprendizaje profundo para la detección de cianobacterias.
+
+## Proceso de entrenamiento
+
+El proceso de entrenamiento del modelo se puede dividir en las siguientes etapas:
+
+### Preprocesamiento de los datos
+
+En esta etapa, los datos se preparan para el entrenamiento del modelo. Esto incluye tareas como la normalización de los datos, la eliminación de valores atípicos y la división de los datos en un conjunto de entrenamiento y un conjunto de validación.
+
+### Diseño del modelo
+
+En esta etapa, se selecciona la arquitectura del modelo y se definen los parámetros del entrenamiento.
+
+### Entrenamiento del modelo
+
+En esta etapa, el modelo se entrena utilizando el conjunto de entrenamiento. El proceso de entrenamiento puede ser iterativo, en el que el modelo se actualiza repetidamente hasta que se alcanza un criterio de parada.
+
+### Evaluación del modelo
+
+En esta etapa, el modelo se evalúa utilizando el conjunto de validación. Esto permite evaluar el rendimiento del modelo en datos nuevos.
+
+## Resultados esperados
+
+Se espera que el modelo propuesto sea capaz de detectar cianobacterias con una precisión del 90% o superior.
+
+## Conclusiones
+
+El modelo propuesto es una solución prometedora para la detección de cianobacterias. El modelo se basa en una arquitectura CNN, que es una técnica de aprendizaje profundo que ha demostrado ser eficaz en una amplia gama de tareas de visión por computadora. El modelo se entrenará utilizando un dataset de imágenes satelitales, que permitirá que el modelo sea capaz de detectar cianobacterias en diferentes condiciones ambientales.
+
+## Recomendaciones
+
+Para mejorar el rendimiento del modelo, se recomienda utilizar un dataset más grande y diverso. También se recomienda explorar otras arquitecturas CNN para determinar si existe una arquitectura que pueda lograr un rendimiento superior.

@@ -1,0 +1,328 @@
+---
+title: "Directrices para el procesamiento en IA"
+author: "Carlos Schenone"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5  # up to five depths of headings (specified by #, ## and ...)
+    number_sections: true  # if you want number sections at each table header
+    theme: united  # specifies the theme style
+    highlight: tango  # specifies the syntax highlighting style 
+---
+
+```{r}
+chooseCRANmirror(graphics=FALSE)
+```
+
+# Introducción
+En el documento abordamos los pasos fundamentales para realizar el tratamiento de textos con técnicas de machine learning y el tratamiento de imágenes con técnicas de deep learning.
+
+# Metodologia
+Para cada caso proponemos los siguientes pasos mínimos recomendados:
+
+## montaje del entorno
+Elegimos el entorno para llevar a cabo la prueba de concepto.
+
+## tratamiento del conjunto de datos
+Seleccionamos el conjunto de datos apropiado para el objetivo del estudio.
+
+## desarrollo de la prueba de concepto
+Planteamos una prueba de concepto para demostrar las técnicas comentadas.
+
+# Tratamiento de imágenes
+
+## montaje del entorno
+Elegimos el entorno para llevar a cabo la prueba de concepto.
+
+## tratamiento del conjunto de datos
+Seleccionamos el conjunto de datos apropiado para el objetivo del estudio.
+
+## desarrollo de la prueba de concepto
+Planteamos una prueba de concepto para demostrar las técnicas comentadas.
+
+# Tratamiento de textos
+## montaje del entorno
+Elegimos el entorno para llevar a cabo la prueba de concepto.
+
+## tratamiento del conjunto de datos
+Seleccionamos el conjunto de datos apropiado para el objetivo del estudio.
+
+## desarrollo de la prueba de concepto
+Planteamos una prueba de concepto para demostrar las técnicas comentadas.
+
+# tratamiento de textos: caso 1: conto de palabras
+
+## Infraestructura necesaria y pasos para implementarla utilizando el entorno R:
+
+### a) Instalación de R y RStudio:
+
+*Descarga e instala R desde el sitio web oficial de R. [R](https://www.r-project.org/)
+*Descarga e instala RTools, herramientas para crear paquetes R y entorno R desde el origen en Windows. [RTools](https://cran.r-project.org/bin/windows/Rtools/)
+*Descarga e instala RStudio, un entorno de desarrollo integrado (IDE) para R. [RStudio](https://www.rstudio.com/products/rstudio/download/)
+
+Nota: En caso que tenga instaladas versiones anteriores, luego de instalar las últimas versiones desinstale las anteriores.
+
+### b) Configuración del entorno de desarrollo:
+
+*Abre RStudio y crea un nuevo proyecto.
+*Crea un nuevo Script R en el proyecto para escribir y ejecutar el código.
+
+### c) Instalación de paquetes necesarios:
+
+En RStudio, ejecuta los siguientes comandos para instalar los paquetes requeridos:
+
+```{r}
+# chooseCRANmirror(graphics=FALSE) # Permite seleccionar el espejo de CRAN
+install.packages("tm")  # Para manipulación de texto
+install.packages("stringr")  # Para manipulación de cadenas de texto
+```
+
+### d) Carga de paquetes necesarios:
+
+```{r}
+chooseCRANmirror()
+
+library(tm)
+library(stringr)
+```
+## Presentamos una función en R para contar palabras en un texto
+A continuación, te presento una función en R que realiza el conteo de palabras en un texto, utilizando una lista de palabras clave como entrada. La función devuelve la lista de palabras clave agregando el conteo de ocurrencias en el texto.
+
+```{r}
+conteo_palabras <- function(texto, keywords) {
+  # Preprocesamiento del texto
+  corpus <- Corpus(VectorSource(texto))
+  corpus <- tm_map(corpus, content_transformer(tolower))
+  corpus <- tm_map(corpus, removePunctuation)
+  corpus <- tm_map(corpus, removeNumbers)
+  corpus <- tm_map(corpus, removeWords, stopwords("english"))
+  corpus <- tm_map(corpus, stripWhitespace)
+  
+  # Creación de la matriz de términos
+  dtm <- DocumentTermMatrix(corpus)
+  terms <- colnames(dtm)
+  
+  # Inicialización del contador
+  contador <- rep(0, length(keywords))
+  
+  # Conteo de ocurrencias de palabras clave
+  for (i in 1:length(keywords)) {
+    contador[i] <- sum(str_count(terms, keywords[i]))
+  }
+  
+  # Combinación de palabras clave y conteo
+  resultado <- data.frame(keywords, contador)
+  
+  return(resultado)
+}
+```
+
+Para utilizar esta función, puedes llamarla pasando el texto y la lista de palabras clave como argumentos.
+
+Recuerda reemplazar "Aquí va el texto que deseas analizar." con el texto real que deseas analizar, y "palabra1", "palabra2", "palabra3" con tus palabras clave de interés. El resultado se imprimirá en la consola de RStudio.
+
+### Ejemplo de uso de la función "conteo_palabras"
+
+```{r}
+texto <- "Aquí va el texto que deseas analizar. Mira el texto que deseas analizar."
+keywords <- c("mira", "deseas", "texto")
+
+resultado <- conteo_palabras(texto, keywords)
+print(resultado)
+```
+
+# tratamiento de texto: función de puntuación por cercanía con una lista de palabras clave
+
+Propuesta de código en R para realizar el análisis de un texto y obtener una puntuación de acuerdo a la cercanía con una lista de palabras clave. Además, se agregaron comentarios al código para facilitar su comprensión.
+
+```{r}
+library(tm)
+library(stringr)
+```
+
+
+```{r}
+# Función para calcular la puntuación de un texto
+calcular_puntuacion <- function(texto, keywords) {
+  # Preprocesamiento del texto
+  corpus <- Corpus(VectorSource(texto))
+  corpus <- tm_map(corpus, content_transformer(tolower))
+  corpus <- tm_map(corpus, removePunctuation)
+  corpus <- tm_map(corpus, removeNumbers)
+  corpus <- tm_map(corpus, removeWords, stopwords("english"))
+  corpus <- tm_map(corpus, stripWhitespace)
+  
+  # Creación de la matriz de términos
+  dtm <- DocumentTermMatrix(corpus)
+  terms <- colnames(dtm)
+  
+  # Inicialización del contador de puntuación
+  puntuacion <- 0
+  
+  # Cálculo de la puntuación basada en la cercanía con las palabras clave
+  for (i in 1:length(keywords)) {
+    puntuacion <- puntuacion + sum(str_count(terms, keywords[i]))
+  }
+  
+  return(puntuacion)
+}
+```
+
+```{r}
+# Ejemplo de uso
+texto <- "Este es un ejemplo de texto para realizar el análisis de texto."
+keywords <- c("ejemplo", "análisis", "texto", "realizar")
+
+puntuacion <- calcular_puntuacion(texto, keywords)
+print(puntuacion)
+```
+
+## Comentarios adicionales:
+
+La función calcular_puntuacion toma un texto y una lista de palabras clave como entrada y devuelve una puntuación basada en la cercanía del texto con las palabras clave.
+El preprocesamiento del texto es similar al utilizado en la función anterior (se realiza unn reprocesamiento para eliminar puntuación, números y palabras irrelevantes).
+La puntuación se calcula sumando el número de ocurrencias de cada palabra clave en el texto.
+El ejemplo muestra cómo llamar a la función calcular_puntuacion con un texto y una lista de palabras clave predefinidas. El resultado se imprime en la consola.
+
+# Infraestructura necesaria para ejecutar el código
+
+Se requiere tener R, RTools y RStudio instalados en la máquina.
+Los paquetes tm y stringr deben estar instalados. Si no están instalados previamente, puedes usar los comandos install.packages("tm") y install.packages("stringr") para instalarlos.
+
+# Prueba de concepto
+
+Como prueba de concepto, puedes realizar el análisis de diferentes textos utilizando la función **calcular_puntuacion**, proporcionando diferentes palabras clave.
+Puedes ajustar la lista de palabras clave y observar cómo la puntuación varía en función de la cercanía del texto a esas palabras clave.
+Además, puedes experimentar con diferentes técnicas de preprocesamiento de texto y ponderación de términos para refinar el análisis y mejorar la precisión de la puntuación.
+
+# tratamiento de texto: función de puntuación por cercanía con una lista de palabras clave y link a la ubicación en el texto
+
+```{r}
+# Cargar bibliotecas necesarias
+library(tm)
+library(xml2)
+library(xslt)
+```
+
+# Función para analizar el texto y asignar una puntuación basada en palabras clave
+
+```{r}
+# Función para analizar el texto y contar la frecuencia de palabras
+analyze_text <- function(text, keywords) {
+  # Preprocesamiento del texto
+  text <- tolower(text)
+  text <- removePunctuation(text)
+  
+  # Crear un objeto de tipo PlainTextDocument
+  doc <- PlainTextDocument(text)
+  
+  # Crear una matriz término-documento para el documento de texto
+  dtm <- DocumentTermMatrix(doc)
+  
+  # Obtener las palabras clave y sus frecuencias en el documento
+  keyword_frequencies <- termFreq(dtm, keywords)
+  
+  # Calcular la puntuación basada en la suma de las frecuencias de palabras clave
+  score <- sum(keyword_frequencies)
+  
+  # Devolver la puntuación del documento
+  return(score)
+}
+```
+
+```{r}
+# Función para generar un documento HTML con tabla de contenido y enlaces
+generate_html_document <- function(text, keywords) {
+  # Preprocesamiento del texto
+  text <- tolower(text)
+  text <- removePunctuation(text)
+  
+  # Convertir el texto a un objeto de documentos
+  corpus <- Corpus(VectorSource(text))
+  
+  # Crear una matriz término-documento
+  dtm <- DocumentTermMatrix(corpus)
+  
+  # Obtener las palabras clave y sus frecuencias en el documento
+  keyword_frequencies <- colSums(as.matrix(dtm))
+  
+  # Crear el documento HTML con la tabla de contenido
+  html_doc <- xml2::read_html("<html><body></body></html>")
+  
+  # Agregar las palabras clave a la tabla de contenido con enlaces
+  toc <- xml2::xml_child(html_doc, "body")
+  for (keyword in keywords) {
+    keyword_count <- keyword_frequencies[keyword]
+    if (!is.na(keyword_count) && keyword_count > 0) {
+      keyword_anchor <- paste0("#", keyword)
+      keyword_link <- xml2::xmlNode("a", href = keyword_anchor, keyword)
+      keyword_entry <- xml2::xmlNode("p", keyword_link)
+      xml2::xmlAddChild(toc, keyword_entry)
+    }
+  }
+  
+  # Agregar el contenido del documento con enlaces a las palabras clave
+  for (i in 1:length(corpus)) {
+    content <- as.character(corpus[[i]])
+    if (!is.na(xml2::read_html(content))) {
+      content_html <- xml2::read_html(content)
+      
+      # Agregar enlaces a las palabras clave en el contenido
+      for (keyword in keywords) {
+        keyword_anchor <- paste0("#", keyword)
+        keyword_nodes <- xml2::xml_find_all(content_html, paste0("//text()[contains(., '", keyword, "')]/parent::*"))
+        for (node in keyword_nodes) {
+          xml2::xmlSetAttr(node, "href", keyword_anchor)
+        }
+      }
+      
+      # Agregar el contenido al documento HTML
+      xml2::xmlAddChild(html_doc$children[[1]], content_html$children[[1]])
+    }
+  }
+  
+  # Devolver el documento HTML como una cadena de caracteres
+  return(as.character(html_doc))
+}
+```
+
+## Descripción de la prueba de concepto
+
+Para procesar el texto se generaron las funciones **analyze_text** y **generate_html_document**.
+
+**analyze_text** recibe como parámetros un texto y una lista de palabras clave como entrada y devuelve una puntuación basada en la frecuencia de las palabras clave en el texto.
+Ejemplo de uso: analyze_text <- function(text = "Este es un texto a analizar", keywords = "texto, analizar")
+Retorno: 2
+
+**generate_html_document** recibe un texto y una lista de palabras clave como entrada y devuelve un documento HTML con una tabla de contenido presentando hipervinculos a las palabras clave en el documento.
+Ejemplo de uso: generate_html_document <- function(text = "Este es un texto a analizar", keywords = "texto, analizar")
+Retorno: documento en formto html con hipervínculos a las palabras clave en el texto.
+
+Para ejecutar este código, necesitarás tener instaladas las bibliotecas tm, xml2 y xslt en tu entorno de R.
+Una vez que las bibliotecas estén instaladas, puedes llamar a las funciones **analyze_text** y **generate_html_document** con tus textos y palabras clave para obtener los resultados deseados.
+
+Ten en cuenta que el código anterior es un pseudocódigo y puede requerir adaptaciones adicionales según tus necesidades específicas. Además, este código utiliza la biblioteca tm para el preprocesamiento del texto y la creación de la matriz término-documento. Puedes consultar la documentación de la biblioteca tm para obtener más información sobre las técnicas de preprocesamiento y personalización adicionales que puedes aplicar.
+
+# Ejemplo de puntuación de texto
+
+A continuación se realiza una prueba de concepto sobre un texto con al menos 100 palabras, almacenado en la variable "text" y una lista de palabras clave con al menos 6 elementos, incluyendo frases de dos y tres palabras, almacenado en la variable "keyword". Luego se llama a las funciones **analyze_text** y **generate_html_document**.
+
+```{r}
+text <- "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada elit ut neque feugiat, ac volutpat nunc pharetra. Proin at felis metus. Nunc vitae tortor ac lacus condimentum auctor. Nulla facilisi. Sed convallis, urna eu rhoncus efficitur, justo dolor aliquam risus, ac consectetur lectus urna vel justo. Morbi auctor tellus sit amet tortor porttitor, vitae facilisis purus finibus. Cras condimentum malesuada turpis, sed feugiat velit pharetra id. Mauris rhoncus purus non facilisis sollicitudin. Nullam id finibus turpis. Integer ac efficitur nisl. Nam luctus semper est ac ultrices. Quisque suscipit dictum lorem at posuere. Suspendisse ut condimentum est. Phasellus ut risus mi."
+
+# Ejemplo de palabras clave
+keywords <- c("Lorem ipsum", "consectetur adipiscing elit", "ac volutpat", "Nulla facilisi", "finibus turpis", "Nam luctus semper")
+```
+
+```{r}
+# Llamada a la función analyze_text
+score <- analyze_text(text, keywords)
+print(paste("Puntuación:", score))
+```
+
+```{r}
+# Llamada a la función generate_html_document
+html_doc <- generate_html_document(text, keywords)
+print(html_doc)
+```

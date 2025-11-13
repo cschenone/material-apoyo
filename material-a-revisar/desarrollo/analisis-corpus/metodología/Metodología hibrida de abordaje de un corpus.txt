@@ -1,0 +1,114 @@
+Metodología híbrida para al análisis de un corpus de artículos académicos
+
+A continuación se presenta una metodología para abordar un estudio mixto de un corpus, con el objetivo de conocer el estado del arte de un tema de investigación, aplicando en primer término técnicas de análisis bibliométrico y posteriormente se profundiza el análisis del corpus resultante aplicando criterios de la revisión sistemática, con el objetivo de aportar un conjunto de elementos que ayuden a realizar el análisis de la estructura y el desarrollo de un campo científico utilizando métodos cuantitativos y datos bibliográficos. 
+
+Planteo general de la metodología.
+
+Paso 1. Diseño del estudio:
+Descripción: En esta etapa, los académicos definen las preguntas de investigación y seleccionan los métodos bibliométricos apropiados que pueden responder a esas preguntas. Se mencionan tres tipos generales de preguntas de investigación que se pueden abordar mediante la bibliometría: identificar la base de conocimientos de un tema o campo de investigación y su estructura intelectual, examinar el frente de investigación o estructura conceptual de un tema o campo de investigación, y producir una estructura de red social de una comunidad científica específica. También se menciona la importancia de decidir el marco de tiempo del estudio, ya sea como un momento específico o dividido en períodos de tiempo, para capturar el desarrollo del campo a lo largo del tiempo.
+
+Actividades:
+1.1. Formulación de preguntas de investigación: Identificación y definición de las preguntas específicas que se abordarán en el estudio bibliométrico.
+1.2. Selección de métodos: Elección de los métodos apropiados para responder a las preguntas de investigación planteadas.
+1.3. Determinación del marco de tiempo: Decisión de utilizar un momento específico o dividir el período de estudio en intervalos de tiempo.
+
+Paso 2. Recopilación de datos:
+Descripción: En esta etapa, los académicos seleccionan la base de datos que contiene los datos bibliométricos, filtran el conjunto de documentos principales y exportan los datos de la base de datos seleccionada. Se menciona que esta etapa puede implicar la construcción de una base de datos propia.
+Actividades:
+2.1. Selección de fuentes de datos: Identificación y elección de las bases de datos bibliográficas o repositorios pertinentes para extraer la información necesaria.
+2.2. Definición de criterios de búsqueda: Establecimiento de los criterios que se utilizarán para realizar búsquedas y recopilar los datos bibliométricos.
+2.3. Extracción de datos: Recopilación y extracción de los datos bibliográficos relevantes según los criterios de búsqueda establecidos.
+
+Paso 3. Análisis de datos:
+Descripción: En esta etapa, se utilizan una o más herramientas de software bibliométrico o estadístico para analizar los datos recopilados. También se menciona que los académicos pueden escribir su propio código informático para satisfacer sus requisitos de análisis.
+Actividades:
+3.1. Preparación y limpieza de datos: Procesamiento de los datos recopilados, eliminando cualquier información no relevante o duplicada, y preparándolos para su análisis.
+3.2. Cálculo de métricas bibliométricas: Aplicación de fórmulas y métodos para calcular métricas bibliométricas como citas, índices de impacto, cocitaciones, entre otros.
+3.3. Análisis de redes: Utilización de técnicas de análisis de redes para identificar y visualizar las relaciones entre los documentos, autores o instituciones.
+3.4. Análisis de coocurrencia de términos: Identificación de la frecuencia y patrones de coocurrencia de términos clave en los documentos analizados.
+
+Paso 4. Visualización de datos:
+Descripción: En esta etapa, los académicos deben decidir qué método de visualización se utilizará para presentar los resultados del análisis de datos. También se menciona la necesidad de utilizar el software de mapeo adecuado para la visualización.
+Actividades:
+4.1. Selección de métodos de visualización: Elección de las técnicas y herramientas de visualización adecuadas para representar los resultados del análisis bibliométrico.
+4.2. Creación de gráficos y mapas: Generación de gráficos, mapas y otros elementos visuales para mostrar patrones, tendencias y relaciones identificadas en los datos bibliométricos.
+
+Paso 5. Interpretación y presentación de resultados:
+Descripción: En esta última etapa, se interpreta y describen los hallazgos. Se destaca que, aunque los métodos bibliométricos pueden revelar la estructura de un campo de manera diferente a las revisiones tradicionales de literatura, no reemplazan la lectura exhaustiva en el campo. Se reconoce que los académicos con un conocimiento profundo del campo tienen una ventaja distintiva en esta etapa.
+Actividades:
+5.1. Interpretación de los hallazgos: Análisis y comprensión de los resultados obtenidos a través de los métodos bibliométricos utilizados.
+5.2. Descripción de resultados: Documentación y presentación de los resultados y conclusiones del estudio bibliométrico, resaltando los aspectos más relevantes.
+
+A continuación se presentan los dos niveles de estudio, a través de los cuales se analizará el estudio del tema de interés, abordado de lo general a lo particular.
+
+Nivel 1: Estudio general mediante técnicas de análisis bibliométrico
+Descripción: Realizar un estudio general del estado del arte del tema de investigación mediante el análisis bibliométrico de un corpus bibliográfico relevante y priorizado.
+Entrada: Bases de datos académicas relevantes y criterios de búsqueda (palabras clave, rango de fechas, filtros de búsqueda).
+Salida: Corpus bibliográfico relevante según los criterios establecidos.
+
+Etapa 1: Selección y preparación del corpus
+Descripción: Identificar las bases de datos académicas relevantes y definir los criterios de búsqueda para la construcción del corpus.
+Herramientas recomendadas: Por ejemplo, Web of Science, Scopus, PubMed.
+Referencia: Van Eck, N. J., & Waltman, L. (2011). Text mining and visualization using VOSviewer. Scientometrics, 87(3), 467-476.
+
+Actividades:
+1.1. Identificación de bases de datos académicas relevantes: Seleccionar las bases de datos bibliográficas que contengan artículos académicos relevantes para el tema de investigación.
+1.2. Definición de criterios de búsqueda: Establecer los criterios de búsqueda, incluyendo palabras clave, rango de fechas de publicación y restricciones de búsqueda en el título, resumen y texto completo de los artículos.
+
+Etapa 2: Recopilación y limpieza de datos
+Descripción: Extraer los datos bibliográficos necesarios y eliminar duplicados y datos irrelevantes del corpus.
+Herramientas recomendadas: Por ejemplo, Zotero, EndNote.
+Referencia: Zhang, J., & Li, X. (2019). Comparative study of reference management software: EndNote, Zotero, and Mendeley. Journal of Library Administration, 59(3), 319-332.
+
+Actividades:
+2.1. Extracción de datos bibliográficos: Recopilar los metadatos de los artículos académicos que cumplen con los criterios de búsqueda.
+2.2. Eliminación de duplicados y datos irrelevantes: Limpiar el corpus eliminando duplicados y aquellos artículos que no sean relevantes para el estudio.
+
+Etapa 3: Análisis de datos bibliométricos
+Descripción: Realizar análisis de coautoría, colaboración y citas para obtener información sobre la estructura y las relaciones en el corpus.
+Herramientas recomendadas: Por ejemplo, VOSviewer, CiteSpace.
+Referencia: Chen, C. (2017). Science mapping: A systematic review of the literature. Journal of Data and Information Science, 2(2), 1-40.
+
+Actividades:
+3.1. Análisis de coautoría y colaboración: Identificar patrones de coautoría y colaboración entre autores e instituciones.
+3.2. Análisis de citas: Calcular métricas de citas para evaluar la influencia y relevancia de los artículos seleccionados.
+
+Etapa 4. Visualización de datos.
+Descripcion: En esta etapa, los académicos deben decidir qué método de visualización se utilizará para presentar los resultados del análisis de datos. También se menciona la necesidad de utilizar el software de mapeo adecuado para la visualización.
+
+Actividades:
+4.1. Selección de métodos de visualización: Elección de las técnicas y herramientas de visualización adecuadas para representar los resultados del análisis bibliométrico.
+4.2. Creación de gráficos y mapas: Generación de gráficos, mapas y otros elementos visuales para mostrar patrones, tendencias y relaciones identificadas en los datos bibliométricos.
+
+Etapa 5: Interpretación y presentación de resultados.
+Descripción: En esta etapa, se interpetan y describen los hallazgos.
+
+Actividades:
+5.1. Interpretación de los hallazgos: Análisis y comprensión de los resultados obtenidos a través de los métodos bibliométricos utilizados.
+5.2. Descripción de resultados: Documentación y presentación de los resultados y conclusiones del estudio bibliométrico, resaltando los aspectos más relevantes.
+
+Etapa 6: Priorización del corpus
+Descripción: Analizar el corpus obtenido y aplicar criterios para priorizar los artículos más cercanos y relevantes al tema de investigación.
+
+Actividades:
+6.1. Análisis temático del corpus: Identificar los artículos más relevantes y cercanos al tema de investigación.
+Herramientas recomendadas: Por ejemplo, Topic Modeling (con LDA o LSA), análisis de palabras clave y coocurrencias.
+Referencia: Blei, D. M., Ng, A. Y., & Jordan, M. I. (2003). Latent Dirichlet allocation. Journal of Machine Learning Research, 3(Jan), 993-1022.
+
+6.2. Priorización del corpus: Ordenar los artículos según su relevancia y cercanía al tema de investigación.
+Herramientas recomendadas: Por ejemplo, algoritmos de clasificación o puntuación basados en criterios definidos.
+Referencia: Yang, Y., & Pedersen, J. O. (1997). A comparative study on feature selection in text categorization. In ICML (Vol. 97, pp. 412-420).
+
+Nivel 2: Estudio detallado mediante revisión sistemática basada en PRISMA
+Descripción: Complementar los resultados de la revisión bibliométrica realizando una revisión detallada del corpus priorizado obtenido, dado que si bien los métodos bibliométricos pueden revelar la estructura de un campo de manera diferente a las revisiones tradicionales de literatura, no reemplazan el estudio en profundidad de cada elemento recuperado.
+Entrada: Corpus priorizado a partir de las técnicas bibliométricas.
+Salida: Corpus priorizado según la cercanía con el tema de interés.
+
+Etapa 7: Aplicación de la metodología de revisión PRISMA
+Descripción: Diseñar el protocolo de revisión y aplicarlo al corpus priorizado.
+Herramientas recomendadas: Por ejemplo, Rayyan, Covidence.
+Referencia: Moher, D., Liberati, A., Tetzlaff, J., & Altman, D. G. (2009). Preferred reporting items for systematic reviews and meta-analyses: The PRISMA statement. PLoS Medicine, 6(7), e1000097.
+
+Actividades:
+5.1. Diseño del protocolo de revisión: Establecer los criterios de inclusión y exclusión, así como los procedimientos de priorización a aplicar al corpus.
+5.2. Búsqueda y priorización de artículos: Realizar una búsqueda exhaustiva en el corpus seleccionado según el protocolo definido.

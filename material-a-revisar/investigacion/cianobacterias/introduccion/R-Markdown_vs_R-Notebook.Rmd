@@ -1,0 +1,92 @@
+---
+title: "Análisis comparativo entre R Markdown y R Notebook como herramienta para apoyar la investigación en el concetxto de Ciencia Abierta"
+output: 
+  html_document:
+    code_folding: show
+    theme:
+      bg: "#202123"
+      fg: "#B8BCC2"
+      primary: "#EA80FC"
+      secondary: "#00DAC6"
+      base_font:
+        google: Prompt
+      heading_font:
+        google: Proza Libre
+---
+
+```{r setup, include=FALSE}
+if (requireNamespace("thematic")) 
+  thematic::thematic_rmd(font = "auto")
+```
+
+# Informe comparativo entre R Markdown y R Notebook
+
+## Introducción
+
+La Ciencia Abierta es un movimiento que promueve la difusión y el acceso libre a los datos, el código y los resultados de la investigación científica. Este movimiento tiene como objetivo facilitar la reproducción y la evaluación de los resultados científicos, así como la colaboración entre investigadores.
+
+R Markdown y R Notebook son dos herramientas que permiten compartir los avances de una investigación aplicando el concepto de Ciencia Abierta. Ambas herramientas combinan texto y código R en un mismo documento, lo que facilita la comprensión de los resultados de la investigación.
+
+## Objetivos
+
+El objetivo de este informe es comparar R Markdown y R Notebook en función de su idoneidad para compartir los avances de una investigación aplicando el concepto de Ciencia Abierta.
+
+## Metodología
+
+Para realizar esta comparación, se han considerado los siguientes criterios:
+
+- **Integridad de los datos:** La herramienta debe permitir preservar la integridad de los datos, evitando que se modifiquen sin dejar rastro.
+
+- **Reproducibilidad de los resultados:** La herramienta debe facilitar la reproducción de los resultados de la investigación, permitiendo a cualquier investigador seguir los mismos pasos para obtener los mismos resultados.
+
+- **Accesibilidad:** La herramienta debe ser accesible a un público amplio, incluyendo investigadores con diferentes niveles de experiencia en R.
+
+## Resultados
+
+### R Markdown
+
+R Markdown es una herramienta que permite generar documentos de texto, presentaciones, informes y otros tipos de documentos a partir de un archivo de texto con extensión .Rmd. El texto del documento se puede combinar con código R, lo que permite realizar análisis estadísticos y generar gráficos.
+
+**Integridad de los datos**
+
+R Markdown permite preservar la integridad de los datos mediante el uso de un sistema de control de versiones, como Git. Esto permite rastrear los cambios realizados en el documento y restaurarlo a una versión anterior si es necesario.
+
+**Reproducibilidad de los resultados**
+
+R Markdown facilita la reproducción de los resultados de la investigación mediante la inclusión de todo el código necesario para realizar los análisis. El código se puede ejecutar en cualquier entorno R, lo que permite a cualquier investigador reproducir los resultados.
+
+**Accesibilidad**
+
+R Markdown es una herramienta relativamente sencilla de usar. El código R se puede escribir en un lenguaje natural, lo que facilita su comprensión por parte de investigadores con diferentes niveles de experiencia.
+
+### R Notebook
+
+R Notebook es una herramienta que permite crear documentos interactivos que combinan texto, código R y gráficos. Los documentos se pueden compartir en línea, lo que facilita su difusión.
+
+**Integridad de los datos**
+
+R Notebook permite preservar la integridad de los datos mediante el uso de un sistema de control de versiones, como Git. Esto permite rastrear los cambios realizados en el documento y restaurarlo a una versión anterior si es necesario.
+
+**Reproducibilidad de los resultados**
+
+R Notebook facilita la reproducción de los resultados de la investigación mediante la inclusión de todo el código necesario para realizar los análisis. El código se puede ejecutar en cualquier entorno R, lo que permite a cualquier investigador reproducir los resultados.
+
+**Accesibilidad**
+
+R Notebook es una herramienta relativamente sencilla de usar. El código R se puede escribir en un lenguaje natural, lo que facilita su comprensión por parte de investigadores con diferentes niveles de experiencia.
+
+## Conclusiones
+
+R Markdown y R Notebook son dos herramientas que son adecuadas para compartir los avances de una investigación aplicando el concepto de Ciencia Abierta. Ambas herramientas permiten preservar la integridad de los datos, facilitar la reproducción de los resultados y son accesibles a un público amplio.
+
+## Recomendaciones
+
+En general, R Markdown es una herramienta más adecuada para compartir los avances de una investigación aplicando el concepto de Ciencia Abierta. R Markdown es más flexible que R Notebook, lo que permite generar diferentes tipos de documentos. Además, R Markdown es más fácil de compartir en línea, lo que facilita su difusión.
+
+**Recomendación específica**
+
+Para compartir los avances de una investigación aplicando el concepto de Ciencia Abierta, se recomienda utilizar R Markdown con un sistema de control de versiones, como Git. Esto permitirá preservar la integridad de los datos y facilitar la reproducción de los resultados.
+
+**Recomendación adicional**
+
+Para facilitar la comprensión de los resultados de la investigación por parte de un público amplio, se recomienda utilizar un lenguaje natural para escribir el código R.
