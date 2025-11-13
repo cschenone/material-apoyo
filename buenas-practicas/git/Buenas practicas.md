@@ -1,0 +1,232 @@
+# Recomendaciones para trabajar con Git
+
+# Antes de arrancar 
+
+## Tutorial inicial
+Referencia: Tutorial de GIT para principantes! - Usando la linea de comandos en Git
+* URL: https://www.youtube.com/watch?v=kEPF-MWGq1w&ab_channel=PeladoNerd
+
+## Lecturas recomendadas
+
+### ¿Qué es un "branch"" (rama) y como funciona un "merge"?
+https://platzi.com/clases/1557-git-github/19947-que-es-un-branch-rama-y-como-funciona-un-merge-en-/
+
+### Comentario respecto al cambio de nombre en la rama principal (por defecto)
+En la actualidad, la rama principal se llama "main", en versiones anteriores se llamaba "master".
+
+### Posibles estados en la gestión del repositorio
+
+* "working directory" : espacio de trabajo local. Estos archivos no están en repositorio de internet, pero el cliente git monitorea el estado de los archivos en relación con el repositorio principal, es decir en caso de detectar cambios en algún archivo git lo ingresa a este ára. Actualizo el repositorio local desde el repositorio principal con git checkout "pull". Lo paso al stagging área con stage (o git add o git commit -a)
+* "stagging" : espacio destinado a los archivos que consideramos están listos para subir el repositorio (también se dice que estos archivos están listos para "comitear"). Lo subo al repositorio con git commit "push" 
+* "repositorio" : espacio en internet donde residen los archivos con su historial de cambios (https://github.com/)
+
+## Pasos iniciales
+
+### Descargar cliente
+* Sitio de descarga: https://desktop.github.com/ (cliente en entorno de caracteres, denominado github bash)
+Nota: existe una versión mejorada de cliente modo caracteres provista por GitHub (https://cli.github.com/)
+
+### Configurar profile (nombre y email)
+* git config --global user.name "Carlos Schenone"
+* git config --global user.email "cschenone@gmail.com"
+
+#### Validar las configuraciones
+* git config -list
+
+### Siguiente paso: gestión de repositorio
+
+#### Crear un nuevo repositorio
+* git init (crea un repositorio en la carpeta donde estamos posicionados)
+
+Nota: This command only initializes a folder as a Git repository. It does not link a repository to a remote repository.
+We have not told Git the location of the “origin” repository. We’ve initialized a new repository using “git init” and so our repository is not linked to any remote repository by default.
+To fix this error, we need to manually tell Git where the remote version of our repository exists. Do this using the git remote add command :
+
+* git remote add origin https://github.com/cschenone/gitinitials
+
+This command tells Git the remote called “origin” should be associated with a particular URL.
+
+* git status (estado de los archivos)
+
+#### Clonar un repositorio
+
+* git clone url_del_repositorio (se puede obtener ingresando el github y observando las propiedades del repositorio o copiando desde el botón "Clone or download")
+
+# Buenas prácticas
+
+## Operaciones diarias
+
+### a) Usando comandos
+Referencia: Tutorial de GIT para principantes! - Usando la linea de comandos en Git (https://www.youtube.com/watch?v=kEPF-MWGq1w&ab_channel=PeladoNerd)
+
+* Abrir el cliente github (GitHub CLI. Descarga desde: https://cli.github.com/)
+* Situarse en la carpeta gestionada del repositorio local (ejecutar el comando "ls -lha" y al final del nombre de la carpeta se debería observar la rama sobre la cual se está trabajando entre paréntesis, por ejemplo "main")
+
+A continuación se podrán utilizar los siguientes comandos al iniciar la jornada de trabajo:
+
+* git checkout master (para pasarnos a la branch master)
+* git pull origin master (para actualizagit pull r el local desde el branch master del repositorio)
+* git branch "nueva_branch" (para crear una nueva rama, de manera que trabajaemos sobre esta y no sobre el master)
+
+* git checkout "nueva_branch" (para pararse en la nueva rama) 
+
+Luego se trabaja sobre el codigo y al finalizar se deberá agregar el/los archivos modificados al staging, se hace el commit y se lo sube al repositorio, como se puede observar a continuación:
+
+* git add -A (agregamos al stagging todos los archivos del repositorio)
+* git commit -m "modificamos el archivo ..."
+* git push -u origin "nueva_branch" (avisamos al repositorio en internet que tenemos una nueva branch, denominada "nueva_branch", linkeada con la branch "nueva_branch" del repositorio local, y desamos subir los cambios realizados en la branch "nueva_branch" al repositorio)
+
+Lo anterior actualiza los cambios en la rama de trabajo en el repositorio remoto, pero no están en la rama principal (main). Luego de considerar que los cambios están listos para ser compartidos con el equipo de trabajo, se debe hacer un merge de la rama de trabajo con la rama main para dejar los cambios disponibles en la rama principal, luego de trabajar sobre una rama paralela. Lo cual se puede realizar con los siguientes comandos:
+
+* git checkout master (para pasarnos a la brunch master)
+* git pull origin master (para asegurarnos que tenemos la última version)
+* git branch --merged (para validar si esta mergeada la nuevabranch)
+* git merge nueva_branch (para mergear la rama paralela con la rama principal (en el repositorio local)
+* git push origin master (para actualizar el branch master en el repositorio remoto)
+
+### b) Usando el entorno web de gihub
+Nota: "pull request" es una página donde se pueden comparar los cambios entre dos brunchs (generalmente la branch main y una rama features). En la pagina se pueden autorizar los cambios con el botón "Review changes". Finalmente, para que los cambios pasen a la rama main, se debe accionar el botón "Merge pull request".
+
+* abrir github web, luego deberás identificarte con tu nombre de usuario y clave de acceso (https://github.com/)
+* crear un repositorio (se puede utilizar el signo "+" en la parte superior derecha de la pantalla, luego seleccionar "new repository" y asignarle un nombre, por ejemplo "mi_repo")
+
+* Abrir el cliente github en la pc local (GitHub CLI. Descarga desde: https://cli.github.com/)
+* Situarse en la carpeta gestionada del repositorio local (ejecutar el comando "ls" y al final del nombre de la carpeta se debería observar la rama sobre la cual se está trabajando entre paréntesis, por ejemplo "(main)"), luego ejecutar los siguientes comandos:
+
+* Existen diferentes alternativas dependiendo si:
+
+a)  se desea iniciar un repositorio vacío:
+* git init
+* git add archivo
+* git commit -m "first commit"
+* git remote add origin dirección_del_repositorio_en_github
+* git push -u origin main (el parámetro "-u" linkea el branch donde estamos situados en el repositorio local con el brunch de internet. Esto permite omitir la rama que estamos pusheando, sólo bastará con hacer git push)
+
+*b) se desea linkear con un repositorio existente:
+* git remote add origin dirección_del_repositorio_en_github
+* git push -u origin main  (o el nombre de la rama que deseamos linkear)
+
+## Recomendaciones para solucionar errores
+Referencia: Tutorial de GIT - Parte 2 / Arreglando tus errores con la linea de comandos y usando Github.com (https://www.youtube.com/watch?v=7-JHoPyJy-Q&t=33s&ab_channel=PeladoNerd)
+Resumen: Usando la linea de comandos, podemos resetear nuestros cambios usando checkout o git reset. Tambien presentamos un comando nuevo que se llama reflog, que permite ver el historial de cambios, incluidos aquellos commits que fueron sobre-escritos por un amend.
+
+### Resumen de comandos:
+* git status (para ver el estado de los archivos)
+* git log (para ver el historial de cambios del repositorio)
+* git log --stat (permite ver los archivos modificados en cada commit)
+* git reflog (historial completo de la branch, incluidos los ammend)
+* git diff (muestra las diferencias entre el repositorio local y el repositorio de internet)
+* git diff "commit_id1" "commit_id2" (destaca las diferencias entre dos commits. Recordemos que para ver el "commit_id" se puede utilizar el comando git log) 
+
+Se pueden presentar tres situaciones, en relación al archivo de interés:
+
+#### a) El archivo está en el "working directory" (aún no se lo agregó al stagging área)
+* git checkout archivo (caso de desear volver atrás todas las modificaciones realizadas. Como resultado el archivo sale del working directory)
+* se modifica el archivo (en caso que se deseen mantener las modificaciones anteriores)
+
+* git add archivo (o git commit -a, para agregar el archivo al stagging)
+
+#### b) El archivo está en el "stagging" (pero hay un commit esperando)
+* git commit -ammend (permite agregar un archivo modificado actualmente en el stagging área al commit en espera, además permite modificar el comentario del commit)
+* git restore --staged <archivo> (para retirar un archivo del área stagging)
+
+#### c) Se trabajó en la rama equivocada (por ejemplo en la rama "main" y se deseaba trabajar en una rama de trabajo) y se realizó el commit
+* git log (para tomar nota del commit id que se desea copiar a la otra rama, supongamos "commit_hash")
+* git checkout nueva_branch (la rama debe estar creada, sino hay que crearla con git branch "nueva_branch")
+* git cherry-pick "commit_hash" (recordemos que "commit_hash" es el id del commit que se desea copiar a la rama "nueva_branch")
+
+Resta volver atrás el commit en la branch main
+* git checkout main (para pasarnos a la branch master)
+* git reset --soft "commit_hash"
+
+* Nota: El comando reset tiene tres modos, soft, mix y hard.
+* El modo "soft" retira el commit pero mantiene los cambios con el comit anterior en el área stagging. Esto puede ser útil si se desea modificar alguno de los archivos, o realizar un commit con otro mensaje.
+* el atributo reset sin argumentos despliega el modo "mix", en el cual elimina el commit y las diferencias con el commit anterior se retiran del stagging area, pero se mantienen en el "working directory". Esto es útil si se desea comitear solamente alguno de los archivos modificados.
+* El modo "hard" elimina el commit y limpia los cambios del working directory (es decir los cambios se pierden, por ejemplo en caso que se haya creado un archivo, al realizar un git reset --hard, el archivo desaparece del sistema de archivos, sería equivalente a borrarlo). 
+
+### Resolución de conflictos
+Referencia: Conflictos de Git merge (https://www.atlassian.com/es/git/tutorials/using-branches/merge-conflicts)
+
+El conflicto sucede cuando una acción (stagging o commit) pone el repositorio en un estado en el que se tienen al menos 2 (dos) nuevas confirmaciones. Un camino posible intentar que git guíe la solución del problema, usando el comando:
+
+* git merge <rama> (en caso que el conflicto suceda entre una rama de trabajo y la rama main, en el argumento se recomienda apuntar a la rama de trabajo)
+
+#### Algunos comandos que pueden ayudar en la fusión:
+Referencia: Opciones y ejemplos de estrategias de Git Merge (https://www.atlassian.com/es/git/tutorials/using-branches/merge-strategy)
+
+##### Herramientas generales
+* git status
+* git log --merge (el argumento --merge al comando git log, se creará un registro con una lista de confirmaciones que entran en conflicto entre las ramas que se van a fusionar)
+* git diff (ayuda a encontrar diferencias entre los estados de un repositorio/unos archivos. Esto es útil para predecir y evitar conflictos de fusión)
+
+##### Herramientas para cuando git no puede iniciar una fusión
+* git checkout (puede utilizarse para deshacer cambios en los archivos o para cambiar ramas)
+* git reset --mixed (puede utilizarse para deshacer cambios en el directorio de trabajo y el entorno de ensayo).
+
+##### Herramientas para cuando surgen conflictos de git durante una fusión
+* git merge --abort (la opción --abort, se saldrá del proceso de fusión y volverá a poner la rama en el estado que tenía antes de que empezara la fusión)
+* git reset (puede utilizarse durante un conflicto de fusión para restablecer los archivos conflictivos a un estado que se sabe que es adecuado).
+
+
+## Gestión de ramas (branchs)
+
+### ¿Que hacer si encontramos un proyecto con rama "master"?
+Al crear un proyecto con el client de escritorio GitHub, la rama principal se denomina "master". Entonces resolvimos el tema de la siguiente forma:
+
+1) Renombramos la rama local master a main
+Seguir el ejemplo: https://www.git-tower.com/learn/git/faq/git-rename-master-to-main
+2) Usamos el parámetro "--force" en el primer git push origin main
+
+### Cuándo eliminar ramas
+Es común que en un repositorio de Git tengamos diferentes ramas. Son una manera recomendada y de buenas prácticas abrir una rama nueva para crear diferentes funciones y correcciones mientras se aísla el nuevo código del código principal.
+Los repositorios a menudo tienen una rama principal main donde está todo el código base principal y los desarrolladores creamos otras ramas para trabajar nuevas funciones o realizar correcciones.
+Una vez completamos el trabajo, se recomienda eliminar la rama.
+
+### Eliminar una rama en el repositorio local
+
+Git no te permitirá eliminar la rama en la que te encuentras actualmente, por lo que debes asegurarte de verificar que te encuentres en la rama principal o en cualquier otra rama que no sea la que deseas eliminar. Para moverte entre ramas o regresar a la principal puedes ejecutar el siguiente comando:
+
+* git checkout main
+
+Y para eliminar la rama se dispone del siguiente comando:
+
+* git branch -d <nombre_de_rama> (la opción -d eliminará la rama sólo si ya se ha enviado y fusionado a la rama remota o si la rama sólo se encuentra en tu repositorio local. En caso contrario debes utilizar -D en su lugar si deseas forzar la eliminación de la rama, incluso si aún no se ha sincronizado remotamente)
+
+* Por ejemplo: git branch -d fix/login
+En este punto la rama local ha sido eliminada.
+
+### Eliminar una rama en el repositorio remoto (internet)
+
+El comando para eliminar una rama de forma remota en Git es:
+
+* git push origin -d <nombre_de_rama>
+
+Debes tener en cuenta que aquí utilizo origin porque es el nombre que por lo general tienen los repositorios remotos, pero debes fijarte si el tuyo tiene este nombre u otro.
+
+* Por ejemplo: git push origin -d fix/login
+
+En este punto la rama remota ha sido eliminada.
+
+También puedes usar un comando más corto para eliminar una rama remota en Git.
+
+* git push origin :<nombre_de_rama>
+
+* Por ejemplo: git push origin :fix/login
+
+### Que hacer si sucede un error
+
+Si obtienes un error, esto puede significar que alguien más ha eliminado la rama y no existe.
+
+Intenta sincronizando tu lista de ramas con el siguiente comando:
+
+* git fetch -p (el parámetro -p buscará y eliminará las ramas que ya no existan en el repositorio remoto en tu repositorio local).
+
+## Fusionando repositorios 
+[Fusionando repositorios de Git sin morir en el intento](https://leanmind.es/es/blog/fusionando-repositorios-de-git-sin-morir-en-el-intento/) Por Aitor Santana Cabrera y José Luis
+En el artículo, se explica como unir varios repositorios de Git en uno solo, manteniendo el histórico de commits que exista en cada uno de los repositorios a unir.
+
+# ¿Cómo publicar un proyecto en forma simple, usando GitHub Pages?
+En las siguientes página se puede encontrar introducción al tema, y ejemplos:
+1) Blog: https://platzi.com/blog/github-pages/
+2) Canal de PeladoNerd: https://www.youtube.com/watch?v=wyRfN5oLzx4&ab_channel=PeladoNerd
+
