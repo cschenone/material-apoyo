@@ -3,6 +3,6 @@ En el repositorio encontraran material recomendado para aprender y practicar sob
 
 ##  Listado de Carpetas
 
-### python_numpy
-"Tutorials for Stanford cs228 and cs231n": Preparatory material for the probabilistic graphical models and the deep learning classes at Stanford.
+### machine-learning
+* [python_numpy](https://github.com/cschenone/material-apoyo/tree/main/recursos-aprendizaje/machine-learning/python_numpy): "Tutorials for Stanford cs228 and cs231n": Preparatory material for the probabilistic graphical models and the deep learning classes at Stanford.
 
