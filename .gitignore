@@ -1,3 +1,4 @@
-material-apoyo/.git/
-*.tmp
-temp/
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
